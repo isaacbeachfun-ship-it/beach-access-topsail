@@ -1,5 +1,6 @@
 import { type FormEvent, useMemo, useState } from "react";
 import accessesData from "../data/accesses.json";
+import { sampleRentals } from "../data/sampleRentals";
 import { geocodeTopsailAddress } from "../lib/geocode";
 import {
   findNearestAccess,
@@ -11,7 +12,7 @@ import type { AccessMatch, BeachAccess } from "../types/access";
 const accesses = accessesData as BeachAccess[];
 
 export function AccessFinderPage() {
-  const [address, setAddress] = useState("305 S Shore Dr, Surf City, NC 28445");
+  const [address, setAddress] = useState("");
   const [match, setMatch] = useState<AccessMatch | null>(null);
   const [error, setError] = useState<string | null>(null);
   const majorAccesses = useMemo(
@@ -26,6 +27,12 @@ export function AccessFinderPage() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setError(null);
+
+    if (!address.trim()) {
+      setMatch(null);
+      setError("Enter a Topsail Island address to find the closest beach access.");
+      return;
+    }
 
     try {
       const point = await geocodeTopsailAddress(address);
@@ -58,12 +65,27 @@ export function AccessFinderPage() {
           value={address}
           onChange={(event) => setAddress(event.target.value)}
           aria-label="Topsail address"
-          placeholder="Enter a Topsail Island address"
+          placeholder="305 S Shore Dr, Surf City, NC 28445"
           autoComplete="street-address"
           enterKeyHint="search"
         />
         <button type="submit">Find Access</button>
       </form>
+      <div className="sample-addresses" aria-label="Sample rental addresses">
+        {sampleRentals.map((rental) => (
+          <button
+            key={rental.id}
+            type="button"
+            onClick={() => {
+              setAddress(rental.address);
+              setMatch(null);
+              setError(null);
+            }}
+          >
+            {rental.town}
+          </button>
+        ))}
+      </div>
       {error ? <p className="error-message">{error}</p> : null}
       {match ? (
         <article className="finder-result">

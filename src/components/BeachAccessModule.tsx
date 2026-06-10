@@ -1,9 +1,14 @@
+import type { ReactNode } from "react";
 import { formatDistanceFeet, toAccessMatch } from "../lib/accessLookup";
 import type { AccessMedia, BeachAccess, RentalSample } from "../types/access";
 import { AccessFacts } from "./AccessFacts";
 import { AccessMediaGallery } from "./AccessMediaGallery";
 
 interface BeachAccessModuleProps {
+  sectionId?: string;
+  eyebrow?: string;
+  heading?: string;
+  intro?: ReactNode;
   rental: RentalSample;
   closestAccess: BeachAccess;
   alternates: BeachAccess[];
@@ -11,6 +16,10 @@ interface BeachAccessModuleProps {
 }
 
 export function BeachAccessModule({
+  sectionId = "rental",
+  eyebrow = "Closest public beach access",
+  heading = "Your Beach Path",
+  intro,
   rental,
   closestAccess,
   alternates,
@@ -26,17 +35,21 @@ export function BeachAccessModule({
   return (
     <section
       className="beach-module"
-      id="rental"
+      id={sectionId}
       aria-labelledby="beach-module-heading"
     >
       <div className="module-copy">
-        <p className="eyebrow">Closest public beach access</p>
-        <h2 id="beach-module-heading">Your Beach Path</h2>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 id="beach-module-heading">{heading}</h2>
         <p>
-          From <strong>{rental.name}</strong>, the closest public access is{" "}
-          <strong>{closestAccess.name}</strong>. Use the bigger alternatives if
-          your group needs more parking, restrooms, showers, or accessibility
-          support.
+          {intro ?? (
+            <>
+              From <strong>{rental.name}</strong>, the closest public access is{" "}
+              <strong>{closestAccess.name}</strong>. Use the bigger alternatives
+              if your group needs more parking, restrooms, showers, or
+              accessibility support.
+            </>
+          )}
         </p>
       </div>
 
