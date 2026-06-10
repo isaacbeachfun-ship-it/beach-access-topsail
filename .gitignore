@@ -1,4 +1,5 @@
 .superpowers/
+artifacts/
 dist/
 node_modules/
 *.tsbuildinfo
