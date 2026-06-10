@@ -21,6 +21,8 @@ Give Treasure guests an accurate, delightful answer to: "Where do I go to get to
 
 The primary experience is a rental-detail module. Each listing should show the closest public beach access, practical guest facts, and bigger nearby alternatives. A standalone Beach Access Finder page can reuse the same data so visitors can type any Topsail address and browse the island-wide access inventory.
 
+The prototype must be shareable outside the local machine. The default deployment target is GitHub Pages under the same GitHub Pages account used by the Treasure mockup, with an expected public URL shaped like `https://isaacbeachfun-ship-it.github.io/beach-access-topsail/`.
+
 ## Primary User Experience
 
 On a rental detail page, show a "Your Beach Path" module:
@@ -136,6 +138,8 @@ Before calling the prototype complete:
 - Browser-test the rental-detail module and address lookup on desktop and mobile.
 - Verify no non-launch-safe media is unlabeled.
 - Verify Google/Street View usage is embed/API-based with attribution, not stored screenshots.
+- Verify the production build works under a GitHub Pages subpath.
+- Verify the deployed public URL loads and can be shared.
 
 ## Non-Goals
 
@@ -143,7 +147,8 @@ Before calling the prototype complete:
 - No claiming scraped photos are launch-safe.
 - No exact walking-route engine in the first version unless existing Supabase walking-distance data covers the address/listing.
 - No unrelated Treasure website redesign.
+- No local-only final handoff.
 
 ## Implementation Plan Direction
 
-Build this as a static or lightweight Vite app first, using generated JSON from the local master CSV and optional read-only Supabase stats. The first visible implementation should be a Treasure-branded rental-detail module with a full island finder page available as a secondary route.
+Build this as a static or lightweight Vite app first, using generated JSON from the local master CSV and optional read-only Supabase stats. The first visible implementation should be a Treasure-branded rental-detail module with a full island finder page available as a secondary route. The completed prototype should be deployed as a shareable static site, with GitHub Pages as the recommended default.

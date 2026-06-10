@@ -2,11 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a Treasure Vacation Rentals prototype that shows each guest the nearest public beach access, bigger nearby alternatives, accurate access facts, and clearly labeled prototype media.
+**Goal:** Build and deploy a shareable Treasure Vacation Rentals prototype that shows each guest the nearest public beach access, bigger nearby alternatives, accurate access facts, and clearly labeled prototype media.
 
-**Architecture:** Use a static Vite + React + TypeScript app. Generate app-ready JSON from the canonical Topsail beach-access CSV, keep lookup/classification logic in pure TypeScript modules with Vitest coverage, then render a Treasure-branded rental-detail module plus a secondary finder page. Supabase stays read-only and optional; no prototype step writes to Supabase.
+**Architecture:** Use a static Vite + React + TypeScript app. Generate app-ready JSON from the canonical Topsail beach-access CSV, keep lookup/classification logic in pure TypeScript modules with Vitest coverage, then render a Treasure-branded rental-detail module plus a secondary finder page. Deploy the static build to GitHub Pages at `https://isaacbeachfun-ship-it.github.io/beach-access-topsail/`; Supabase stays read-only and optional, and no prototype step writes to Supabase.
 
-**Tech Stack:** Vite, React, TypeScript, Vitest, Testing Library, MapLibre GL JS, CSS modules or plain CSS, Node.js data-generation script.
+**Tech Stack:** Vite, React, TypeScript, Vitest, Testing Library, MapLibre GL JS, CSS modules or plain CSS, Node.js data-generation script, GitHub Pages via GitHub Actions.
 
 ---
 
@@ -32,6 +32,7 @@
 - Create `src/data/mediaCandidates.json`: curated/prototype media references.
 - Create `src/data/sampleRentals.ts`: demo Treasure rental coordinates and addresses.
 - Create `scripts/build-access-data.mjs`: CSV-to-JSON generator.
+- Create `.github/workflows/deploy-pages.yml`: GitHub Pages production deployment workflow.
 - Create `tests/fixtures/beach_access_sample.csv`: small deterministic fixture.
 - Create `tests/accessScoring.test.ts`: scoring/category tests.
 - Create `tests/accessLookup.test.ts`: lookup/ranking/directions tests.
@@ -117,6 +118,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === "true" ? "/beach-access-topsail/" : "/",
   plugins: [react()],
   test: {
     environment: "jsdom",
@@ -2275,6 +2277,14 @@ npm run build
 npm run dev -- --port 5173
 ```
 
+## Shareable Deployment
+
+Default public prototype URL after deployment:
+
+`https://isaacbeachfun-ship-it.github.io/beach-access-topsail/`
+
+The app is deployed as a static GitHub Pages site from `.github/workflows/deploy-pages.yml`. The Vite production build uses the `/beach-access-topsail/` base path when `GITHUB_PAGES=true`. GitHub Actions builds from committed `src/data/accesses.json`; regenerate that file locally before committing when the source CSV changes.
+
 ## Media Policy
 
 Prototype media may include reference visuals, but every non-owned or non-official asset must be labeled as `prototype-only` or `needs-replacement` before public launch. Do not ship downloaded Google Street View screenshots or scraped copyrighted photos as owned assets. Use owned photography, official reusable imagery, generated placeholders, or properly attributed embeds/API surfaces for launch.
@@ -2306,8 +2316,156 @@ git add README.md
 git commit -m "docs: document beach access prototype"
 ```
 
+## Task 10: GitHub Pages Deployment
+
+**Files:**
+- Create: `.github/workflows/deploy-pages.yml`
+- Modify: `README.md`
+
+- [ ] **Step 1: Create GitHub Pages workflow**
+
+`.github/workflows/deploy-pages.yml`:
+
+```yaml
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: GITHUB_PAGES=true npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+- [ ] **Step 2: Update README with deployment status section**
+
+Add this section after `## Current Prototype Scope`:
+
+```md
+## Public URL
+
+GitHub Pages target:
+
+https://isaacbeachfun-ship-it.github.io/beach-access-topsail/
+
+If the URL is not live yet, push `main` to the GitHub repository and check the `Deploy GitHub Pages` workflow in GitHub Actions.
+```
+
+- [ ] **Step 3: Run local production build with GitHub Pages base**
+
+Run:
+
+```bash
+GITHUB_PAGES=true npm run build
+```
+
+Expected: Vite production build completes and generated asset URLs use the `/beach-access-topsail/` base path.
+
+- [ ] **Step 4: Commit deployment workflow**
+
+```bash
+git add .github/workflows/deploy-pages.yml README.md vite.config.ts
+git commit -m "ci: deploy beach access prototype to GitHub Pages"
+```
+
+- [ ] **Step 5: Create or connect the GitHub repository**
+
+Run:
+
+```bash
+gh auth status
+gh repo create isaacbeachfun-ship-it/beach-access-topsail --public --source=. --remote=origin --push
+```
+
+Expected:
+
+- `gh auth status` confirms an authenticated GitHub account with permission to create repos under `isaacbeachfun-ship-it`.
+- The repository `isaacbeachfun-ship-it/beach-access-topsail` exists.
+- Local remote `origin` points to that repository.
+- Branch `main` is pushed.
+
+If the repository already exists, run:
+
+```bash
+git remote add origin git@github.com:isaacbeachfun-ship-it/beach-access-topsail.git
+git push -u origin main
+```
+
+Expected: `main` is pushed to the existing repository.
+
+- [ ] **Step 6: Verify deployed page**
+
+Open:
+
+`https://isaacbeachfun-ship-it.github.io/beach-access-topsail/`
+
+Expected:
+
+- The Treasure hero loads.
+- The rental-detail beach access module loads.
+- The MapLibre/OpenStreetMap panel renders.
+- Prototype media labels are visible.
+- The finder section is usable.
+
+- [ ] **Step 7: Record deployment URL in final handoff**
+
+Final handoff must include:
+
+- Public URL: `https://isaacbeachfun-ship-it.github.io/beach-access-topsail/`
+- GitHub repo URL: `https://github.com/isaacbeachfun-ship-it/beach-access-topsail`
+- Last successful local verification commands.
+- Any GitHub Actions or Pages setup issue if deployment fails.
+
 ## Self-Review Checklist
 
-- Spec coverage: Tasks 2-4 cover data, scoring, lookup, and major access highlighting. Tasks 5-7 cover Treasure-branded rental detail, media labeling, and standalone finder. Task 8 covers browser/mobile verification. Task 9 covers handoff docs.
+- Spec coverage: Tasks 2-4 cover data, scoring, lookup, and major access highlighting. Tasks 5-7 cover Treasure-branded rental detail, media labeling, and standalone finder. Task 8 covers browser/mobile verification. Task 9 covers handoff docs. Task 10 covers public deployment and share URL verification.
 - No placeholders: The plan avoids forbidden placeholder language and gives exact file paths, commands, expected outputs, and code for each implementation step.
 - Type consistency: Core types are defined in `src/types/access.ts`; lookup and component tasks consume those same `BeachAccess`, `AccessMatch`, `AccessMedia`, and `RentalSample` names.
