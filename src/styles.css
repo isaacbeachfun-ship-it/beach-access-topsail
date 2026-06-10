@@ -484,12 +484,18 @@ html {
   box-shadow: var(--shadow);
 }
 
+.finder-search-shell {
+  position: relative;
+  max-width: 760px;
+  margin-bottom: 16px;
+}
+
 .finder-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
   max-width: 760px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .finder-form input {
@@ -510,6 +516,78 @@ html {
   font: inherit;
   font-weight: 800;
   cursor: pointer;
+}
+
+.address-index-note {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.address-suggestions {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 4px;
+  max-height: 330px;
+  margin-top: 8px;
+  padding: 8px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow);
+}
+
+.address-suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--ink);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.address-suggestion:hover,
+.address-suggestion.is-active,
+.address-suggestion[aria-selected="true"] {
+  border-color: var(--parrot-teal-strong);
+  background: var(--parrot-teal-soft);
+}
+
+.address-suggestion span {
+  min-width: 0;
+}
+
+.address-suggestion b,
+.address-suggestion small {
+  display: block;
+}
+
+.address-suggestion b {
+  color: var(--teal-dark);
+  font-size: 14px;
+}
+
+.address-suggestion small {
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.address-suggestion > small {
+  flex: 0 0 auto;
+  text-align: right;
 }
 
 .sample-addresses {
@@ -991,6 +1069,21 @@ html {
   .finder-form {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .address-suggestions {
+    position: static;
+    max-height: 290px;
+  }
+
+  .address-suggestion {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .address-suggestion > small {
+    text-align: left;
   }
 
   .sample-addresses {

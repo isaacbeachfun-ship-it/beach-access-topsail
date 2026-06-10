@@ -1,5 +1,12 @@
-import { type FormEvent, useMemo, useState } from "react";
+import {
+  type ChangeEvent,
+  type FormEvent,
+  type KeyboardEvent,
+  useMemo,
+  useState,
+} from "react";
 import accessesData from "../data/accesses.json";
+import propertyAddressesData from "../data/propertyAddresses.json";
 import { sampleRentals } from "../data/sampleRentals";
 import { geocodeTopsailAddress } from "../lib/geocode";
 import {
@@ -8,9 +15,17 @@ import {
   formatDistanceFeet,
   rankMajorAlternates,
 } from "../lib/accessLookup";
-import type { AccessMatch, BeachAccess } from "../types/access";
+import {
+  formatPropertyAddressLabel,
+  findExactPropertyAddress,
+  propertyToLookupPoint,
+  searchPropertyAddresses,
+} from "../lib/propertySearch";
+import type { AccessMatch, BeachAccess, PropertyAddress } from "../types/access";
 
 const accesses = accessesData as BeachAccess[];
+const propertyAddresses = propertyAddressesData as PropertyAddress[];
+const SUGGESTION_LIST_ID = "property-address-suggestions";
 
 function amenityTags(access: BeachAccess): string[] {
   const tags: string[] = [];
@@ -27,6 +42,10 @@ export function AccessFinderPage() {
   const [match, setMatch] = useState<AccessMatch | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [selectedProperty, setSelectedProperty] =
+    useState<PropertyAddress | null>(null);
+  const [isSuggestionOpen, setIsSuggestionOpen] = useState(false);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const majorAccesses = useMemo(
     () =>
       accesses
@@ -35,6 +54,20 @@ export function AccessFinderPage() {
         .slice(0, 8),
     [],
   );
+  const suggestions = useMemo(
+    () => searchPropertyAddresses(propertyAddresses, address, 8),
+    [address],
+  );
+  const showSuggestions =
+    isSuggestionOpen && address.trim().length > 0 && suggestions.length > 0;
+
+  function applyLookupPoint(point: {
+    address: string;
+    latitude: number;
+    longitude: number;
+  }) {
+    setMatch(findNearestAccess(point, accesses));
+  }
 
   async function runLookup(lookupAddress: string) {
     setError(null);
@@ -45,10 +78,22 @@ export function AccessFinderPage() {
       return;
     }
 
+    const propertyMatch =
+      selectedProperty &&
+      formatPropertyAddressLabel(selectedProperty) === lookupAddress
+        ? selectedProperty
+        : findExactPropertyAddress(propertyAddresses, lookupAddress);
+
+    if (propertyMatch) {
+      applyLookupPoint(propertyToLookupPoint(propertyMatch));
+      setIsSuggestionOpen(false);
+      return;
+    }
+
     setIsSearching(true);
     try {
       const point = await geocodeTopsailAddress(lookupAddress);
-      setMatch(findNearestAccess(point, accesses));
+      applyLookupPoint(point);
     } catch (lookupError) {
       setMatch(null);
       setError(
@@ -66,6 +111,45 @@ export function AccessFinderPage() {
     void runLookup(address);
   }
 
+  function handleAddressChange(event: ChangeEvent<HTMLInputElement>) {
+    setAddress(event.target.value);
+    setSelectedProperty(null);
+      setIsSuggestionOpen(true);
+    setActiveSuggestionIndex(-1);
+  }
+
+  function handleAddressKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (!showSuggestions) return;
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveSuggestionIndex((current) =>
+        current >= suggestions.length - 1 ? 0 : current + 1,
+      );
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveSuggestionIndex((current) =>
+        current <= 0 ? suggestions.length - 1 : current - 1,
+      );
+    } else if (event.key === "Enter" && activeSuggestionIndex >= 0) {
+      event.preventDefault();
+      selectProperty(suggestions[activeSuggestionIndex]);
+    } else if (event.key === "Escape") {
+      setIsSuggestionOpen(false);
+      setActiveSuggestionIndex(-1);
+    }
+  }
+
+  function selectProperty(property: PropertyAddress) {
+    const label = formatPropertyAddressLabel(property);
+    setAddress(label);
+    setSelectedProperty(property);
+    setIsSuggestionOpen(false);
+    setActiveSuggestionIndex(-1);
+    setError(null);
+    applyLookupPoint(propertyToLookupPoint(property));
+  }
+
   const alternates = match ? rankMajorAlternates(match.access, accesses, 3) : [];
   const matchAmenities = match ? amenityTags(match.access) : [];
 
@@ -80,20 +164,72 @@ export function AccessFinderPage() {
           parking and facilities.
         </p>
       </div>
-      <form className="finder-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
-          aria-label="Topsail address"
-          placeholder="305 S Shore Dr, Surf City, NC 28445"
-          autoComplete="street-address"
-          enterKeyHint="search"
-        />
-        <button type="submit" disabled={isSearching}>
-          {isSearching ? "Finding..." : "Find Access"}
-        </button>
-      </form>
+      <div className="finder-search-shell">
+        <form className="finder-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={address}
+            onChange={handleAddressChange}
+            onFocus={() => setIsSuggestionOpen(true)}
+            onKeyDown={handleAddressKeyDown}
+            aria-label="Topsail property address"
+            aria-autocomplete="list"
+            aria-controls={SUGGESTION_LIST_ID}
+            aria-expanded={showSuggestions}
+            aria-activedescendant={
+              activeSuggestionIndex >= 0
+                ? `${SUGGESTION_LIST_ID}-${suggestions[activeSuggestionIndex].id}`
+                : undefined
+            }
+            role="combobox"
+            placeholder="4444 Island Dr, North Topsail Beach"
+            autoComplete="off"
+            enterKeyHint="search"
+          />
+          <button type="submit" disabled={isSearching}>
+            {isSearching ? "Finding..." : "Find Access"}
+          </button>
+        </form>
+        <p className="address-index-note">
+          Search {propertyAddresses.length.toLocaleString()} main-island property
+          addresses from Onslow and Pender GIS.
+        </p>
+        {showSuggestions ? (
+          <div
+            className="address-suggestions"
+            id={SUGGESTION_LIST_ID}
+            role="listbox"
+            aria-label="Matching Topsail property addresses"
+          >
+            {suggestions.map((property, index) => (
+              <button
+                aria-selected={index === activeSuggestionIndex}
+                className={
+                  index === activeSuggestionIndex
+                    ? "address-suggestion is-active"
+                    : "address-suggestion"
+                }
+                id={`${SUGGESTION_LIST_ID}-${property.id}`}
+                key={property.id}
+                onClick={() => selectProperty(property)}
+                onMouseDown={(event) => event.preventDefault()}
+                role="option"
+                type="button"
+              >
+                <span>
+                  <b>{property.address}</b>
+                  <small>{property.town}</small>
+                </span>
+                <small>
+                  {property.parcelCount > 1
+                    ? `${property.parcelCount} parcels`
+                    : property.source}
+                </small>
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
       <div className="sample-addresses" aria-label="Sample rental addresses">
         <span className="sample-label">No address handy? Try a sample:</span>
         {sampleRentals.map((rental) => (
@@ -103,6 +239,8 @@ export function AccessFinderPage() {
             disabled={isSearching}
             onClick={() => {
               setAddress(rental.address);
+              setSelectedProperty(null);
+              setIsSuggestionOpen(false);
               void runLookup(rental.address);
             }}
           >

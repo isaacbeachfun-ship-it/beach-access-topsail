@@ -60,6 +60,17 @@ export interface RentalSample {
   heroImageUrl: string;
 }
 
+export interface PropertyAddress {
+  id: string;
+  address: string;
+  town: BeachAccess["town"];
+  county: "Onslow" | "Pender";
+  latitude: number;
+  longitude: number;
+  parcelCount: number;
+  source: string;
+}
+
 export interface AccessMatch {
   access: BeachAccess;
   distanceFeet: number;

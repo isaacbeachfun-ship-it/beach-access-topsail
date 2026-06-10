@@ -9,7 +9,8 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:watch": "vitest",
-    "data:build": "node scripts/build-access-data.mjs"
+    "data:build": "node scripts/build-access-data.mjs",
+    "data:build:properties": "node scripts/build-property-address-data.mjs"
   },
   "dependencies": {
     "maplibre-gl": "^4.7.1",
