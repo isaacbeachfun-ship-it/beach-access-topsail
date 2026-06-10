@@ -46,12 +46,21 @@ export function AccessFinderPage() {
       <div className="finder-copy">
         <p className="eyebrow">Beach Access Finder</p>
         <h2 id="finder-heading">Type an address. Treasure finds the beach path.</h2>
+        <p>
+          Use a house address or pick one of the sample rental addresses. Results
+          prioritize the closest public path, then nearby accesses with better
+          parking and facilities.
+        </p>
       </div>
       <form className="finder-form" onSubmit={handleSubmit}>
         <input
+          type="text"
           value={address}
           onChange={(event) => setAddress(event.target.value)}
           aria-label="Topsail address"
+          placeholder="Enter a Topsail Island address"
+          autoComplete="street-address"
+          enterKeyHint="search"
         />
         <button type="submit">Find Access</button>
       </form>
@@ -63,7 +72,13 @@ export function AccessFinderPage() {
             {formatDistanceFeet(match.distanceFeet)} estimated from this address
             - {match.estimatedWalkMinutes} min walk
           </p>
-          <a href={match.directionsUrl}>Open walking directions</a>
+          <a
+            href={match.directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open walking directions
+          </a>
           <div className="finder-alternates">
             {alternates.map((alternate) => (
               <span key={alternate.access.id}>{alternate.access.name}</span>

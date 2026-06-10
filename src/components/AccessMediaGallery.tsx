@@ -19,13 +19,25 @@ export function AccessMediaGallery({ media }: AccessMediaGalleryProps) {
       {primary ? (
         <>
           <div className="media-image-wrap">
-            <img src={primary.url} alt={primary.title} />
+            <img
+              src={primary.url}
+              alt={primary.title}
+              loading="lazy"
+              decoding="async"
+            />
             <span className={`media-status media-status-${primary.status}`}>
               {statusLabel(primary.status)}
             </span>
           </div>
           <p className="source-tag">
-            {primary.sourceLabel} - <a href={primary.sourceUrl}>source</a>
+            {primary.sourceLabel} -{" "}
+            <a
+              href={primary.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              source
+            </a>
           </p>
         </>
       ) : (

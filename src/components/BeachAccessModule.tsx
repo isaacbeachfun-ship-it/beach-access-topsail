@@ -59,7 +59,12 @@ export function BeachAccessModule({
               <span>parking spaces</span>
             </div>
           </div>
-          <a className="primary-action" href={closest.directionsUrl}>
+          <a
+            className="primary-action"
+            href={closest.directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Get walking directions
           </a>
           <p className="accuracy-note">

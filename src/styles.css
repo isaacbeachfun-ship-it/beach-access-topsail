@@ -19,6 +19,12 @@
     "Segoe UI", sans-serif;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -27,6 +33,21 @@ body {
 
 a {
   color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 3px solid var(--parrot-teal-strong);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 .app-shell {
@@ -78,6 +99,10 @@ a {
       center/cover;
 }
 
+.page-hero > * {
+  position: relative;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: var(--sand);
@@ -118,6 +143,11 @@ a {
   .nav-links {
     flex-wrap: wrap;
   }
+}
+
+.beach-module,
+.finder-page {
+  scroll-margin-top: 96px;
 }
 
 .beach-module {
@@ -341,6 +371,14 @@ a {
   font-size: clamp(30px, 5vw, 52px);
 }
 
+.finder-copy p:last-child {
+  max-width: 720px;
+  margin: -4px 0 18px;
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
 .map-legend {
   display: flex;
   flex-wrap: wrap;
@@ -474,7 +512,204 @@ a {
 }
 
 @media (max-width: 620px) {
+  .top-nav {
+    gap: 6px;
+    padding: 8px 16px;
+  }
+
+  .brand {
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    gap: 12px;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .page-hero {
+    min-height: 264px;
+    padding: 26px 16px;
+    background-position: center top;
+  }
+
+  .page-hero h1 {
+    max-width: 340px;
+    font-size: 42px;
+    line-height: 0.94;
+  }
+
+  .page-hero p:last-child {
+    max-width: 330px;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .beach-module,
+  .map-panel,
+  .finder-page {
+    padding: 24px 16px;
+  }
+
+  .module-copy {
+    margin-bottom: 16px;
+  }
+
+  .module-copy h2,
+  .finder-copy h2 {
+    font-size: 32px;
+    line-height: 1.02;
+  }
+
+  .module-copy p:last-child,
+  .finder-copy p:last-child {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .answer-card,
+  .media-panel,
+  .facts-panel,
+  .alternates-panel,
+  .finder-result,
+  .major-directory article {
+    box-shadow: 0 10px 26px rgba(26, 48, 52, 0.1);
+  }
+
+  .answer-card {
+    padding: 16px;
+  }
+
+  .answer-card h3,
+  .media-panel h3,
+  .facts-panel h3,
+  .alternates-panel h3,
+  .finder-result h3 {
+    font-size: 19px;
+    line-height: 1.15;
+  }
+
+  .metric-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin: 14px 0;
+  }
+
+  .metric-row div {
+    min-width: 0;
+    padding: 10px 8px;
+  }
+
+  .metric-row b {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .metric-row span {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 1.1;
+  }
+
+  .primary-action,
+  .finder-form button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .accuracy-note {
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .media-image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .facts-grid {
+    gap: 8px;
+  }
+
+  .fact {
+    padding: 11px;
+  }
+
+  .fact b {
+    font-size: 17px;
+  }
+
+  .fact span,
+  .fact small {
+    font-size: 12px;
+    line-height: 1.18;
+  }
+
+  .alternate-access {
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .alternate-access span {
+    font-size: 10px;
+  }
+
+  .alternate-access small {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .map-panel h3 {
+    font-size: 30px;
+    line-height: 1.05;
+  }
+
+  .island-map {
+    min-height: 286px;
+  }
+
   .finder-form {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .finder-form input {
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .finder-result {
+    padding: 16px;
+  }
+
+  .finder-result p {
+    line-height: 1.4;
+  }
+
+  .finder-alternates {
+    gap: 6px;
+  }
+
+  .major-directory {
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .major-directory article {
+    padding: 12px;
+  }
+
+  .major-directory b {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .major-directory span {
+    font-size: 12px;
+    line-height: 1.25;
   }
 }
