@@ -1,5 +1,9 @@
 import type { ReactNode } from "react";
-import { formatDistanceFeet, toAccessMatch } from "../lib/accessLookup";
+import {
+  formatAccessAddress,
+  formatDistanceFeet,
+  toAccessMatch,
+} from "../lib/accessLookup";
 import type { AccessMedia, BeachAccess, RentalSample } from "../types/access";
 import { AccessFacts } from "./AccessFacts";
 import { AccessMediaGallery } from "./AccessMediaGallery";
@@ -57,7 +61,7 @@ export function BeachAccessModule({
         <article className="answer-card">
           <p className="eyebrow">Nearest access</p>
           <h3>{closestAccess.name}</h3>
-          <p>{closestAccess.address || "Address not listed"}</p>
+          <p>{formatAccessAddress(closestAccess, "Address not listed")}</p>
           <div className="metric-row">
             <div>
               <b>{formatDistanceFeet(closest.distanceFeet)}</b>

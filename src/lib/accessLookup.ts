@@ -122,3 +122,11 @@ export function formatDistanceFeet(distance: number): string {
 
   return `${Math.round(distance).toLocaleString()} ft`;
 }
+
+export function formatAccessAddress(
+  access: Pick<BeachAccess, "address" | "town">,
+  fallback: string = access.town,
+): string {
+  const cleanedAddress = access.address?.replace(/\s*,+\s*$/, "").trim();
+  return cleanedAddress || fallback;
+}

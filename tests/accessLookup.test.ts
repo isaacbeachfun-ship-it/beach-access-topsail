@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildDirectionsUrl,
   findNearestAccess,
+  formatAccessAddress,
   formatDistanceFeet,
   rankMajorAlternates,
 } from "../src/lib/accessLookup";
@@ -115,6 +116,20 @@ describe("formatDistanceFeet", () => {
   it("formats short and long distances for guests", () => {
     expect(formatDistanceFeet(480)).toBe("480 ft");
     expect(formatDistanceFeet(5280)).toBe("1.0 mi");
+  });
+});
+
+describe("formatAccessAddress", () => {
+  it("cleans generated trailing commas and uses a fallback for missing addresses", () => {
+    expect(
+      formatAccessAddress({
+        address: "300 South Shore Drive,",
+        town: "Surf City",
+      }),
+    ).toBe("300 South Shore Drive");
+    expect(formatAccessAddress({ address: null, town: "Surf City" })).toBe(
+      "Surf City",
+    );
   });
 });
 

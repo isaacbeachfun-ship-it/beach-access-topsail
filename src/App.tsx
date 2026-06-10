@@ -46,6 +46,14 @@ export default function App() {
           the nearest public access, and spot the bigger nearby options with
           better parking and facilities.
         </p>
+        <div className="hero-actions">
+          <a className="hero-cta" href="#finder">
+            Start with your address
+          </a>
+          <span className="hero-fact">
+            {accesses.length} public accesses mapped across 3 island towns
+          </span>
+        </div>
       </section>
       <AccessFinderPage />
       <BeachAccessModule
