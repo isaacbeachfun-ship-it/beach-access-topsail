@@ -9,6 +9,7 @@ export interface LookupPoint {
 
 const FEET_PER_METER = 3.28084;
 const WALK_FEET_PER_MINUTE = 275;
+const NEARBY_ALTERNATE_RADIUS_FEET = 5280;
 
 export function distanceFeet(
   first: Pick<LookupPoint, "latitude" | "longitude">,
@@ -101,6 +102,11 @@ export function rankMajorAlternates(
         match.categories.includes("Facilities"),
     )
     .sort((a, b) => {
+      const distanceBucketDelta =
+        Number(a.distanceFeet > NEARBY_ALTERNATE_RADIUS_FEET) -
+        Number(b.distanceFeet > NEARBY_ALTERNATE_RADIUS_FEET);
+      if (distanceBucketDelta !== 0) return distanceBucketDelta;
+
       const scoreDelta =
         scoreAccessUsefulness(b.access) - scoreAccessUsefulness(a.access);
       if (scoreDelta !== 0) return scoreDelta;

@@ -77,6 +77,38 @@ describe("rankMajorAlternates", () => {
     expect(alternates[0].access.id).toBe("major");
     expect(alternates[0].categories).toContain("Major");
   });
+
+  it("keeps nearby major accesses ahead of far-away giant lots", () => {
+    const nearbyMajor = {
+      ...baseAccess,
+      id: "nearby-major",
+      name: "Nearby Major Access",
+      latitude: 34.44102,
+      longitude: -77.51845,
+      parkingSpots: 34,
+      restroom: true,
+      shower: true,
+    };
+    const farGiantLot = {
+      ...baseAccess,
+      id: "far-giant",
+      name: "Far Giant Lot",
+      latitude: 34.52,
+      longitude: -77.36,
+      parkingSpots: 250,
+      restroom: true,
+      shower: true,
+      handicapAccessible: true,
+    };
+
+    const alternates = rankMajorAlternates(
+      baseAccess,
+      [baseAccess, farGiantLot, nearbyMajor],
+      2,
+    );
+
+    expect(alternates[0].access.id).toBe("nearby-major");
+  });
 });
 
 describe("formatDistanceFeet", () => {
