@@ -1,0 +1,121 @@
+:root {
+  --ink: #1d3135;
+  --ink-soft: #42585d;
+  --teal: #245963;
+  --teal-dark: #163d45;
+  --parrot-teal: #88d8e8;
+  --parrot-teal-strong: #2d9aae;
+  --parrot-teal-soft: #dcf5f8;
+  --sand: #d7ad66;
+  --shell: #f7f3eb;
+  --foam: #e7f0ef;
+  --line: #d8d0c4;
+  --white: #fff;
+  --shadow: 0 18px 50px rgba(26, 48, 52, 0.16);
+  color: var(--ink);
+  background: var(--shell);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--shell);
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px clamp(18px, 4vw, 52px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  color: var(--teal-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.nav-links a {
+  text-underline-offset: 4px;
+}
+
+.page-hero {
+  display: grid;
+  align-content: end;
+  min-height: 340px;
+  padding: clamp(28px, 6vw, 72px);
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(22, 61, 69, 0.92), rgba(22, 61, 69, 0.44)),
+    url("https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/assets/town-cards/surf-city-pier-bridge.webp")
+      center/cover;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--sand);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-hero h1 {
+  max-width: 800px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 8vw, 86px);
+  line-height: 0.96;
+}
+
+.page-hero h1 span {
+  font-family: "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+  font-weight: 400;
+}
+
+.page-hero p:last-child {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  .top-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+}
