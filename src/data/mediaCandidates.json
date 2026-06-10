@@ -1,0 +1,32 @@
+[
+  {
+    "id": "surf-city-pier-reference",
+    "accessId": "surf-city-beach-access-18",
+    "title": "Surf City reference visual",
+    "url": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/assets/town-cards/surf-city-pier-bridge.webp",
+    "sourceLabel": "Treasure mockup asset",
+    "sourceUrl": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/",
+    "status": "prototype-only",
+    "kind": "photo"
+  },
+  {
+    "id": "north-topsail-reference",
+    "accessId": "north-topsail-beach-onslow-co-beach-access-2",
+    "title": "North Topsail reference visual",
+    "url": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/assets/town-cards/north-topsail-beach.jpg",
+    "sourceLabel": "Treasure mockup asset",
+    "sourceUrl": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/",
+    "status": "prototype-only",
+    "kind": "photo"
+  },
+  {
+    "id": "topsail-beach-reference",
+    "accessId": "topsail-beach-0-3",
+    "title": "Topsail Beach reference visual",
+    "url": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/assets/topsail-beach/island-overview.jpg",
+    "sourceLabel": "Treasure mockup asset",
+    "sourceUrl": "https://isaacbeachfun-ship-it.github.io/treasure-rentals-website-mockup/",
+    "status": "prototype-only",
+    "kind": "photo"
+  }
+]

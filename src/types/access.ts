@@ -46,6 +46,8 @@ export interface BeachAccess {
   sourceDetail: string;
   comments: string;
   mediaIds: string[];
+  categories?: AccessCategory[];
+  usefulnessScore?: number;
 }
 
 export interface RentalSample {
