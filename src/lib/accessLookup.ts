@@ -10,6 +10,31 @@ export interface LookupPoint {
 const FEET_PER_METER = 3.28084;
 const WALK_FEET_PER_MINUTE = 275;
 const NEARBY_ALTERNATE_RADIUS_FEET = 5280;
+const ROUTE_CANDIDATE_LIMIT = 8;
+const ROUTE_CANDIDATE_HARD_LIMIT = 24;
+const ROUTES_ENDPOINT =
+  "https://routes.googleapis.com/directions/v2:computeRoutes";
+
+type RoutesFetch = (url: string, init: RequestInit) => Promise<Response>;
+
+interface GoogleRoutesPayload {
+  routes?: Array<{
+    distanceMeters?: number;
+    duration?: string;
+  }>;
+}
+
+interface WalkingRouteDistance {
+  distanceFeet: number;
+  durationSeconds?: number;
+}
+
+interface WalkingRouteLookupOptions {
+  apiKey?: string;
+  candidateLimit?: number;
+  maxCandidates?: number;
+  fetcher?: RoutesFetch;
+}
 
 export function distanceFeet(
   first: Pick<LookupPoint, "latitude" | "longitude">,
@@ -55,7 +80,7 @@ export function buildDirectionsUrl(
 export function toAccessMatch(
   origin: LookupPoint,
   access: BeachAccess,
-  isExactSupabaseWalkDistance = false,
+  isRouteDistance = false,
 ): AccessMatch {
   const distance = distanceFeet(origin, access);
 
@@ -65,7 +90,7 @@ export function toAccessMatch(
     estimatedWalkMinutes: estimateWalkMinutes(distance),
     categories: classifyAccess(access),
     directionsUrl: buildDirectionsUrl(origin, access),
-    isExactSupabaseWalkDistance,
+    isRouteDistance,
   };
 }
 
@@ -80,6 +105,129 @@ export function findNearestAccess(
   return accesses
     .map((access) => toAccessMatch(origin, access))
     .sort((a, b) => a.distanceFeet - b.distanceFeet)[0];
+}
+
+export async function findNearestAccessByWalkingRoute(
+  origin: LookupPoint,
+  accesses: BeachAccess[],
+  options: WalkingRouteLookupOptions = {},
+): Promise<AccessMatch> {
+  if (accesses.length === 0) {
+    throw new Error("Cannot find nearest access without access data.");
+  }
+
+  const straightLineMatches = accesses
+    .map((access) => toAccessMatch(origin, access))
+    .sort((a, b) => a.distanceFeet - b.distanceFeet);
+  const fallback = straightLineMatches[0];
+  const apiKey = options.apiKey?.trim();
+
+  if (!apiKey) return fallback;
+
+  const batchSize = options.candidateLimit ?? ROUTE_CANDIDATE_LIMIT;
+  const maxCandidates = options.maxCandidates ?? ROUTE_CANDIDATE_HARD_LIMIT;
+  const fetcher = options.fetcher ?? fetch;
+  const candidateCount = Math.min(straightLineMatches.length, maxCandidates);
+  let best: AccessMatch | null = null;
+
+  for (let index = 0; index < candidateCount; index += batchSize) {
+    // A walking route can never be shorter than the straight line, so any
+    // candidate whose straight-line distance already exceeds the best
+    // measured route cannot win. This lets canal/cul-de-sac detour cases
+    // widen the search without paying for extra Routes calls normally.
+    const batch = straightLineMatches
+      .slice(index, index + batchSize)
+      .filter((match) => !best || match.distanceFeet < best.distanceFeet);
+    if (batch.length === 0) break;
+
+    const routeMatches = await Promise.all(
+      batch.map(async (match) => {
+        const route = await lookupGoogleWalkingRouteDistance(
+          origin,
+          match.access,
+          apiKey,
+          fetcher,
+        );
+
+        if (!route) return null;
+
+        return {
+          ...match,
+          distanceFeet: route.distanceFeet,
+          estimatedWalkMinutes: route.durationSeconds
+            ? Math.max(1, Math.round(route.durationSeconds / 60))
+            : estimateWalkMinutes(route.distanceFeet),
+          isRouteDistance: true,
+        };
+      }),
+    );
+
+    for (const match of routeMatches) {
+      if (match && (!best || match.distanceFeet < best.distanceFeet)) {
+        best = match;
+      }
+    }
+  }
+
+  return best ?? fallback;
+}
+
+async function lookupGoogleWalkingRouteDistance(
+  origin: LookupPoint,
+  access: BeachAccess,
+  apiKey: string,
+  fetcher: RoutesFetch,
+): Promise<WalkingRouteDistance | null> {
+  const url = new URL(ROUTES_ENDPOINT);
+  url.searchParams.set("key", apiKey);
+
+  try {
+    const response = await fetcher(url.toString(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-FieldMask": "routes.distanceMeters,routes.duration",
+      },
+      body: JSON.stringify({
+        origin: {
+          location: {
+            latLng: {
+              latitude: origin.latitude,
+              longitude: origin.longitude,
+            },
+          },
+        },
+        destination: {
+          location: {
+            latLng: {
+              latitude: access.latitude,
+              longitude: access.longitude,
+            },
+          },
+        },
+        travelMode: "WALK",
+      }),
+    });
+
+    if (!response.ok) return null;
+
+    const payload = (await response.json()) as GoogleRoutesPayload;
+    const route = payload.routes?.[0];
+    if (!route?.distanceMeters) return null;
+
+    return {
+      distanceFeet: Math.round(route.distanceMeters * FEET_PER_METER),
+      durationSeconds: parseGoogleDurationSeconds(route.duration),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function parseGoogleDurationSeconds(duration: string | undefined): number | undefined {
+  const match = duration?.match(/^(\d+(?:\.\d+)?)s$/);
+  if (!match) return undefined;
+  return Number(match[1]);
 }
 
 export function rankMajorAlternates(

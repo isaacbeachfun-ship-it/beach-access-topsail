@@ -25,4 +25,15 @@ describe("buildAccessDataFromCsv", () => {
     expect(quiet.categories).toEqual(["Quiet"]);
     expect(quiet.mediaIds).toEqual([]);
   });
+
+  it("keeps duplicate access names addressable with unique IDs", () => {
+    const rows = buildAccessDataFromCsv(
+      "tests/fixtures/beach_access_duplicates.csv",
+    );
+
+    expect(rows.map((row) => row.id)).toEqual([
+      "north-topsail-beach-beach-access-8-322-sea-shore-dr",
+      "north-topsail-beach-beach-access-8-540-ocean-drive",
+    ]);
+  });
 });

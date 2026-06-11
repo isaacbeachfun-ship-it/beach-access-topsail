@@ -1,13 +1,10 @@
 import type { LookupPoint } from "./accessLookup";
-import propertyAddressesData from "../data/propertyAddresses.json";
 import { sampleRentals } from "../data/sampleRentals";
+import { loadPropertyAddresses } from "./propertyAddressIndex";
 import {
   findExactPropertyAddress,
   propertyToLookupPoint,
 } from "./propertySearch";
-import type { PropertyAddress } from "../types/access";
-
-const propertyAddresses = propertyAddressesData as PropertyAddress[];
 
 const TOPSAIL_BOUNDS = {
   minLatitude: 34.33,
@@ -19,6 +16,7 @@ const TOPSAIL_BOUNDS = {
 export async function geocodeTopsailAddress(
   address: string,
 ): Promise<LookupPoint> {
+  const propertyAddresses = await loadPropertyAddresses();
   const propertyMatch = findExactPropertyAddress(propertyAddresses, address);
   if (propertyMatch) {
     return propertyToLookupPoint(propertyMatch);
@@ -72,6 +70,13 @@ async function queryNominatim(
   url.searchParams.set("q", query);
   url.searchParams.set("format", "jsonv2");
   url.searchParams.set("limit", "3");
+  // Constrain matches to the Topsail Island area so a bare street name does
+  // not resolve to a same-named street in another state.
+  url.searchParams.set(
+    "viewbox",
+    `${TOPSAIL_BOUNDS.minLongitude},${TOPSAIL_BOUNDS.maxLatitude},${TOPSAIL_BOUNDS.maxLongitude},${TOPSAIL_BOUNDS.minLatitude}`,
+  );
+  url.searchParams.set("bounded", "1");
 
   const response = await fetch(url);
   if (!response.ok) {

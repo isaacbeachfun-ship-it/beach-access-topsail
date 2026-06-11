@@ -74,7 +74,10 @@ describe("BeachAccessModule", () => {
       screen.getByRole("heading", { name: "Roland Avenue Access" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Prototype only")).toBeInTheDocument();
-    expect(screen.getByText("Restroom")).toBeInTheDocument();
+    expect(screen.getAllByLabelText("Restroom").length).toBeGreaterThan(0);
+    expect(screen.getAllByLabelText("32 parking spaces").length).toBeGreaterThan(
+      0,
+    );
     expect(screen.getByText("Bigger nearby accesses")).toBeInTheDocument();
   });
 });

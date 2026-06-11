@@ -60,6 +60,15 @@ export interface RentalSample {
   heroImageUrl: string;
 }
 
+export interface MapLocation {
+  id: string;
+  name: string;
+  address: string;
+  town?: BeachAccess["town"];
+  latitude: number;
+  longitude: number;
+}
+
 export interface PropertyAddress {
   id: string;
   address: string;
@@ -77,5 +86,5 @@ export interface AccessMatch {
   estimatedWalkMinutes: number;
   categories: AccessCategory[];
   directionsUrl: string;
-  isExactSupabaseWalkDistance: boolean;
+  isRouteDistance: boolean;
 }

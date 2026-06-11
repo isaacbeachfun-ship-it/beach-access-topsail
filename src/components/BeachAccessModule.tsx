@@ -6,6 +6,7 @@ import {
 } from "../lib/accessLookup";
 import type { AccessMedia, BeachAccess, RentalSample } from "../types/access";
 import { AccessFacts } from "./AccessFacts";
+import { AccessFeatureList } from "./AccessFeatureIcons";
 import { AccessMediaGallery } from "./AccessMediaGallery";
 
 interface BeachAccessModuleProps {
@@ -76,6 +77,10 @@ export function BeachAccessModule({
               <span>parking spaces</span>
             </div>
           </div>
+          <AccessFeatureList
+            access={closestAccess}
+            className="answer-feature-list"
+          />
           <a
             className="primary-action"
             href={closest.directionsUrl}
@@ -90,7 +95,7 @@ export function BeachAccessModule({
           </p>
         </article>
 
-        <AccessMediaGallery media={media} />
+        <AccessMediaGallery access={closestAccess} media={media} />
 
         <AccessFacts access={closestAccess} />
 
@@ -109,6 +114,12 @@ export function BeachAccessModule({
                   {access.restroom ? " - restroom" : ""}
                   {access.shower ? " - shower" : ""}
                 </small>
+                <AccessFeatureList
+                  access={access}
+                  limit={3}
+                  variant="compact"
+                  className="alternate-feature-list"
+                />
               </div>
             </article>
           ))}

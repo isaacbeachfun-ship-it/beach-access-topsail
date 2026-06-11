@@ -1,7 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   buildDirectionsUrl,
   findNearestAccess,
+  findNearestAccessByWalkingRoute,
   formatAccessAddress,
   formatDistanceFeet,
   rankMajorAlternates,
@@ -68,6 +69,161 @@ describe("findNearestAccess", () => {
     expect(match.distanceFeet).toBeLessThan(100);
     expect(match.estimatedWalkMinutes).toBeGreaterThanOrEqual(1);
     expect(match.directionsUrl).toContain("api=1");
+  });
+});
+
+describe("findNearestAccessByWalkingRoute", () => {
+  it("uses Google walking distance to avoid picking a closer point across blocked streets", async () => {
+    const closerByAir: BeachAccess = {
+      ...baseAccess,
+      id: "closer-by-air",
+      name: "Closer By Air",
+      latitude: 34.401769,
+      longitude: -77.5818,
+    };
+    const shorterWalk: BeachAccess = {
+      ...baseAccess,
+      id: "shorter-walk",
+      name: "Shorter Walk",
+      latitude: 34.405218,
+      longitude: -77.576792,
+    };
+
+    const match = await findNearestAccessByWalkingRoute(
+      {
+        latitude: 34.404606,
+        longitude: -77.581453,
+        address: "34 Oak Ct, Surf City, NC",
+      },
+      [closerByAir, shorterWalk],
+      {
+        apiKey: "test-key",
+        fetcher: async (url, init) => {
+          const destination = JSON.parse(String(init?.body)).destination.location
+            .latLng;
+          const distanceMeters =
+            destination.longitude === shorterWalk.longitude ? 553 : 858;
+
+          return new Response(
+            JSON.stringify({
+              routes: [{ distanceMeters, duration: `${distanceMeters}s` }],
+            }),
+            { status: 200 },
+          );
+        },
+      },
+    );
+
+    expect(match.access.id).toBe("shorter-walk");
+    expect(match.distanceFeet).toBe(1814);
+    expect(match.isRouteDistance).toBe(true);
+  });
+
+  it("falls back to a straight-line estimate without an API key", async () => {
+    const fetcher = vi.fn();
+    const match = await findNearestAccessByWalkingRoute(
+      { latitude: 34.4365, longitude: -77.5261, address: "Rental" },
+      accesses,
+      { apiKey: "", fetcher },
+    );
+
+    expect(match.access.id).toBe("quiet");
+    expect(match.isRouteDistance).toBe(false);
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+
+  it("widens the candidate pool when the closest-by-air accesses need long detours", async () => {
+    const origin = {
+      latitude: 34.43,
+      longitude: -77.53,
+      address: "Canal-side rental",
+    };
+    const acrossCanalA: BeachAccess = {
+      ...baseAccess,
+      id: "across-canal-a",
+      latitude: 34.4302,
+      longitude: -77.5295,
+    };
+    const acrossCanalB: BeachAccess = {
+      ...baseAccess,
+      id: "across-canal-b",
+      latitude: 34.4304,
+      longitude: -77.5293,
+    };
+    const aroundTheBlock: BeachAccess = {
+      ...baseAccess,
+      id: "around-the-block",
+      latitude: 34.431,
+      longitude: -77.5288,
+    };
+    const routeMetersById: Record<string, number> = {
+      "across-canal-a": 1600,
+      "across-canal-b": 1700,
+      "around-the-block": 220,
+    };
+
+    const match = await findNearestAccessByWalkingRoute(
+      origin,
+      [acrossCanalA, acrossCanalB, aroundTheBlock],
+      {
+        apiKey: "test-key",
+        candidateLimit: 2,
+        fetcher: async (_url, init) => {
+          const destination = JSON.parse(String(init?.body)).destination
+            .location.latLng;
+          const target = [acrossCanalA, acrossCanalB, aroundTheBlock].find(
+            (access) => access.longitude === destination.longitude,
+          );
+
+          return new Response(
+            JSON.stringify({
+              routes: [{ distanceMeters: routeMetersById[target!.id] }],
+            }),
+            { status: 200 },
+          );
+        },
+      },
+    );
+
+    expect(match.access.id).toBe("around-the-block");
+    expect(match.isRouteDistance).toBe(true);
+  });
+
+  it("stops querying once no remaining candidate can beat the best route", async () => {
+    const origin = {
+      latitude: 34.43,
+      longitude: -77.53,
+      address: "Oceanfront rental",
+    };
+    const nextDoor: BeachAccess = {
+      ...baseAccess,
+      id: "next-door",
+      latitude: 34.4301,
+      longitude: -77.5299,
+    };
+    const farAway: BeachAccess = {
+      ...baseAccess,
+      id: "far-away",
+      latitude: 34.45,
+      longitude: -77.5,
+    };
+
+    const fetcher = vi.fn(
+      async () =>
+        new Response(
+          JSON.stringify({ routes: [{ distanceMeters: 50 }] }),
+          { status: 200 },
+        ),
+    );
+
+    const match = await findNearestAccessByWalkingRoute(
+      origin,
+      [nextDoor, farAway],
+      { apiKey: "test-key", candidateLimit: 1, fetcher },
+    );
+
+    expect(match.access.id).toBe("next-door");
+    expect(fetcher).toHaveBeenCalledTimes(1);
   });
 });
 

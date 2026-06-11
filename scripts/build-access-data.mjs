@@ -123,12 +123,15 @@ function classifyAccess(access) {
 }
 
 export function buildAccessDataFromCsv(sourcePath = DEFAULT_SOURCE) {
-  return parseCsv(sourcePath)
+  const accesses = parseCsv(sourcePath)
     .filter((row) => TOPSAIL_TOWNS.has(row.place))
     .filter((row) => String(row.water_type ?? "").trim().toLowerCase() === "ocean")
     .map((row) => {
+      const baseId = `${slugify(row.place)}-${slugify(
+        row.access_name || row.address,
+      )}`;
       const access = {
-        id: `${slugify(row.place)}-${slugify(row.access_name || row.address)}`,
+        id: baseId,
         town: row.place,
         name: row.access_name || row.address || "Unnamed access",
         address: clean(row.address),
@@ -167,10 +170,38 @@ export function buildAccessDataFromCsv(sourcePath = DEFAULT_SOURCE) {
         categories: classifyAccess(access),
         usefulnessScore: scoreAccessUsefulness(access),
       };
+    });
+
+  const baseIdCounts = accesses.reduce((counts, access) => {
+    counts.set(access.id, (counts.get(access.id) ?? 0) + 1);
+    return counts;
+  }, new Map());
+  const finalIdCounts = new Map();
+
+  return accesses
+    .map((access) => {
+      const duplicateBaseId = (baseIdCounts.get(access.id) ?? 0) > 1;
+      const disambiguator = slugify(
+        access.address || `${access.latitude}-${access.longitude}`,
+      );
+      const preferredId = duplicateBaseId
+        ? `${access.id}-${disambiguator}`
+        : access.id;
+      const previousFinalIdCount = finalIdCounts.get(preferredId) ?? 0;
+      finalIdCounts.set(preferredId, previousFinalIdCount + 1);
+
+      return {
+        ...access,
+        id:
+          previousFinalIdCount > 0
+            ? `${preferredId}-${previousFinalIdCount + 1}`
+            : preferredId,
+      };
     })
     .sort((a, b) => {
       if (a.town !== b.town) return a.town.localeCompare(b.town);
-      return a.name.localeCompare(b.name);
+      if (a.name !== b.name) return a.name.localeCompare(b.name);
+      return (a.address ?? "").localeCompare(b.address ?? "");
     });
 }
 

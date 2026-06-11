@@ -23,6 +23,59 @@ npm run build
 npm run dev -- --port 5173
 ```
 
+## Google Maps Setup
+
+The app keeps the GIS address autocomplete as the source of truth. Google Maps is
+used only for the map/media layer when a browser-safe key is configured.
+
+Create `.env.local` from `.env.example` and set:
+
+```bash
+VITE_GOOGLE_MAPS_API_KEY=your_restricted_browser_key
+VITE_GOOGLE_MAPS_MAP_ID=your_javascript_map_id
+```
+
+Enable these Google Cloud APIs:
+
+- Maps JavaScript API
+- Geocoding API
+- Aerial View API if dynamic Google aerial media is enabled
+- Routes API for walking-route lines and route-aware nearest-access ranking
+- Places API only if Google Places fallback is added later
+- Street View Static API only if Street View thumbnails are added later
+
+Restrict the API key before putting it on GitHub Pages:
+
+- Application restriction: HTTP referrers
+- Referrers: `http://localhost/*`, `http://127.0.0.1/*`,
+  `https://isaacbeachfun-ship-it.github.io/*`, and the future Treasure domain
+- API restriction for this prototype: Maps JavaScript API, Geocoding API,
+  Aerial View API, and Routes API
+
+If `VITE_GOOGLE_MAPS_API_KEY` is missing or rejected, the app falls back to the
+existing MapLibre/OpenStreetMap panel. If `VITE_GOOGLE_MAPS_MAP_ID` is missing,
+the prototype uses Google's `DEMO_MAP_ID`, but launch should use a real
+JavaScript map ID from the same Cloud project.
+
+The Aerial View card only calls `lookupVideo` for the currently displayed
+access. It does not call `renderVideo`, download videos, store short-lived
+Google media URLs, or prefetch all access points. If Google has no rendered
+aerial video for an access, or if Aerial View API is disabled, the gallery falls
+back to the existing reference media or placeholder.
+
+To queue Google Aerial View renders for the most useful public accesses, run:
+
+```bash
+node scripts/render-aerial-videos.mjs --dry-run --limit=10
+node scripts/render-aerial-videos.mjs --limit=10
+```
+
+The script ranks ocean accesses by usefulness/parking/facilities, calls
+`renderVideo` only for missing records, writes an audit artifact under
+`artifacts/aerial-view/`, and stores only `videoId` plus status metadata in
+`src/data/aerialViewVideos.json`. Do not store returned video or thumbnail URLs;
+they are short-lived Google media URLs and should be requested at display time.
+
 ## Shareable Deployment
 
 Default public prototype URL after deployment:
@@ -39,7 +92,7 @@ Prototype media may include reference visuals, but every non-owned or non-offici
 
 - Rental-detail "Your Beach Path" module.
 - Major nearby access highlights.
-- MapLibre/OpenStreetMap island view.
+- Google Maps island view when configured, with MapLibre/OpenStreetMap fallback.
 - Standalone address finder with sample-rental fallback and Nominatim lookup.
 - Static generated data from the canonical CSV.
 - No Supabase writes.

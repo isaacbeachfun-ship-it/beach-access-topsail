@@ -10,9 +10,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "data:build": "node scripts/build-access-data.mjs",
-    "data:build:properties": "node scripts/build-property-address-data.mjs"
+    "data:build:properties": "node scripts/build-property-address-data.mjs",
+    "data:build:street-view": "node scripts/build-street-view-stills.mjs"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.1.1",
     "maplibre-gl": "^4.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -1,4 +1,5 @@
 import type { BeachAccess } from "../types/access";
+import { AccessFeatureList } from "./AccessFeatureIcons";
 
 interface AccessFactsProps {
   access: BeachAccess;
@@ -23,6 +24,7 @@ export function AccessFacts({ access }: AccessFactsProps) {
   return (
     <section className="facts-panel" aria-labelledby="facts-heading">
       <h3 id="facts-heading">Guest facts</h3>
+      <AccessFeatureList access={access} className="facts-feature-list" />
       <div className="facts-grid">
         <div className="fact">
           <b>Parking</b>

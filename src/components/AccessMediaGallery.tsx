@@ -1,8 +1,36 @@
-import type { AccessMedia } from "../types/access";
+import { useEffect, useState } from "react";
+import aerialViewVideos from "../data/aerialViewVideos.json";
+import streetViewStills from "../data/streetViewStills.json";
+import { lookupAerialView, type AerialViewResult } from "../lib/aerialView";
+import { getGoogleMapsApiKey } from "../lib/mapConfig";
+import {
+  buildStreetViewLocationStillUrl,
+  buildStreetViewStillUrl,
+  type StreetViewStill,
+} from "../lib/streetView";
+import type { AccessMedia, BeachAccess } from "../types/access";
 
 interface AccessMediaGalleryProps {
+  access: BeachAccess;
   media: AccessMedia[];
 }
+
+type AerialViewState = AerialViewResult | { state: "loading" };
+type AerialViewVideoRegistry = Record<
+  string,
+  {
+    state?: string;
+    videoId?: string;
+    addressSource?: string;
+    fallbackDistanceFeet?: number;
+  }
+>;
+type StreetViewStillRegistry = Record<string, StreetViewStill>;
+const FAILED_AERIAL_VIEW_STATES = new Set([
+  "FAILED",
+  "NOT_FOUND",
+  "PERMISSION_DENIED",
+]);
 
 function statusLabel(status: AccessMedia["status"]): string {
   if (status === "launch-safe") return "Launch safe";
@@ -10,13 +38,99 @@ function statusLabel(status: AccessMedia["status"]): string {
   return "Needs replacement";
 }
 
-export function AccessMediaGallery({ media }: AccessMediaGalleryProps) {
+export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
+  const [aerialView, setAerialView] = useState<AerialViewState>({
+    state: "unavailable",
+  });
   const primary = media[0];
+  const aerialRecord = (aerialViewVideos as AerialViewVideoRegistry)[access.id];
+  const streetViewStill = (streetViewStills as StreetViewStillRegistry)[access.id];
+  const apiKey = getGoogleMapsApiKey();
+  const hasApiKey = Boolean(apiKey);
+  const streetViewUrl = streetViewStill
+    ? buildStreetViewStillUrl(streetViewStill, apiKey)
+    : buildStreetViewLocationStillUrl(
+        { latitude: access.latitude, longitude: access.longitude },
+        apiKey,
+      );
+  const isNearbyAerialView = aerialRecord?.addressSource === "nearby-property";
+  const aerialBadge = isNearbyAerialView
+    ? "Nearby Google Aerial View"
+    : "Google Aerial View";
+  const aerialDescription = isNearbyAerialView
+    ? `Nearby photorealistic aerial view around ${access.name} provided by Google Maps.`
+    : `Photorealistic aerial view of ${access.name} provided by Google Maps.`;
+  const hasKnownFailedAerialView = FAILED_AERIAL_VIEW_STATES.has(
+    aerialRecord?.state ?? "",
+  );
+  const aerialVideoId = hasKnownFailedAerialView
+    ? undefined
+    : aerialRecord?.videoId;
+
+  useEffect(() => {
+    const currentApiKey = getGoogleMapsApiKey();
+    if (!currentApiKey || hasKnownFailedAerialView) {
+      setAerialView({ state: "unavailable" });
+      return;
+    }
+
+    let isCurrent = true;
+    setAerialView({ state: "loading" });
+
+    lookupAerialView(access, currentApiKey, fetch, {
+      videoId: aerialVideoId,
+    }).then((result) => {
+      if (isCurrent) setAerialView(result);
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [access, aerialVideoId, hasApiKey, hasKnownFailedAerialView]);
 
   return (
     <section className="media-panel" aria-labelledby="media-heading">
       <h3 id="media-heading">What it looks like</h3>
-      {primary ? (
+      {aerialView.state === "available" &&
+      (aerialView.thumbnailUrl || aerialView.videoUrl) ? (
+        <>
+          <div className="media-image-wrap aerial-view-wrap">
+            {aerialView.videoUrl ? (
+              <video
+                aria-label={aerialDescription}
+                controls
+                muted
+                playsInline
+                poster={aerialView.thumbnailUrl}
+                preload="metadata"
+                src={aerialView.videoUrl}
+              />
+            ) : (
+              <img
+                src={aerialView.thumbnailUrl}
+                alt={aerialDescription}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <span className="media-status media-status-launch-safe">
+              {aerialBadge}
+            </span>
+          </div>
+          <p className="source-tag aerial-source-tag">
+            {isNearbyAerialView
+              ? "Nearby Google Maps Aerial View"
+              : "Google Maps Aerial View"}
+            {isNearbyAerialView && aerialRecord?.fallbackDistanceFeet ? (
+              <span>{aerialRecord.fallbackDistanceFeet} ft from access</span>
+            ) : null}
+            {aerialView.captureLabel ? (
+              <span>Captured {aerialView.captureLabel}</span>
+            ) : null}
+            {aerialView.duration ? <span>{aerialView.duration}</span> : null}
+          </p>
+        </>
+      ) : primary ? (
         <>
           <div className="media-image-wrap">
             <img
@@ -40,6 +154,34 @@ export function AccessMediaGallery({ media }: AccessMediaGalleryProps) {
             </a>
           </p>
         </>
+      ) : streetViewUrl ? (
+        <>
+          <div className="media-image-wrap street-view-wrap">
+            <img
+              src={streetViewUrl}
+              alt={`Street View still facing ${access.name} from the nearest Google panorama.`}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="media-status media-status-launch-safe">
+              Google Street View
+            </span>
+          </div>
+          <p className="source-tag aerial-source-tag">
+            Google Maps Street View
+            {streetViewStill?.date ? (
+              <span>Captured {streetViewStill.date}</span>
+            ) : null}
+            {streetViewStill?.copyright ? (
+              <span>{streetViewStill.copyright}</span>
+            ) : null}
+          </p>
+        </>
+      ) : aerialView.state === "loading" ? (
+        <div className="media-placeholder">
+          <p>Checking Google aerial media.</p>
+          <span>Finding the best available view for this access.</span>
+        </div>
       ) : (
         <div className="media-placeholder">
           <p>No access-specific media yet.</p>

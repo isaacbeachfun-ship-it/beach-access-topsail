@@ -1,0 +1,167 @@
+import { render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, test, vi } from "vitest";
+import { AccessMediaGallery } from "../src/components/AccessMediaGallery";
+import type { BeachAccess } from "../src/types/access";
+
+const mocks = vi.hoisted(() => ({
+  lookupAerialView: vi.fn(async () => ({
+    state: "available",
+    thumbnailUrl: "https://example.com/aerial.jpg",
+    videoUrl: "https://example.com/aerial.mp4",
+    captureLabel: "Jul 3, 2025",
+    duration: "40s",
+  })),
+}));
+
+vi.mock("../src/lib/mapConfig", () => ({
+  getGoogleMapsApiKey: () => "test-key",
+}));
+
+vi.mock("../src/data/aerialViewVideos.json", () => ({
+  default: {
+    "access-with-video": {
+      videoId: "stored-video-id",
+      state: "ACTIVE",
+    },
+    "access-with-fallback-video": {
+      videoId: "stored-fallback-video-id",
+      state: "ACTIVE",
+      addressSource: "nearby-property",
+    },
+    "access-with-failed-video": {
+      videoId: "failed-video-id",
+      state: "NOT_FOUND",
+    },
+    "access-with-failed-video-no-still": {
+      videoId: "failed-video-id-no-still",
+      state: "NOT_FOUND",
+    },
+  },
+}));
+
+vi.mock("../src/data/streetViewStills.json", () => ({
+  default: {
+    "access-with-failed-video": {
+      state: "AVAILABLE",
+      panoId: "street-pano-123",
+      heading: 142,
+      pitch: 1,
+      fov: 68,
+      date: "2025-08",
+      copyright: "© Google",
+    },
+  },
+}));
+
+vi.mock("../src/lib/aerialView", async () => {
+  const actual =
+    await vi.importActual<typeof import("../src/lib/aerialView")>(
+      "../src/lib/aerialView",
+    );
+
+  return {
+    ...actual,
+    lookupAerialView: mocks.lookupAerialView,
+  };
+});
+
+const access = {
+  name: "Beach Access #33",
+  address: "232 New River Inlet Rd",
+  town: "North Topsail Beach",
+  latitude: 34.512,
+  longitude: -77.377,
+} as BeachAccess;
+
+describe("AccessMediaGallery", () => {
+  beforeEach(() => {
+    mocks.lookupAerialView.mockClear();
+  });
+
+  test("shows Google Aerial View media when it is available", async () => {
+    render(<AccessMediaGallery access={access} media={[]} />);
+
+    expect(await screen.findByText("Google Aerial View")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(
+        "Photorealistic aerial view of Beach Access #33 provided by Google Maps.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Captured Jul 3, 2025")).toBeInTheDocument();
+  });
+
+  test("looks up Aerial View media by stored video id when available", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-video" }}
+        media={[]}
+      />,
+    );
+
+    await screen.findByText("Google Aerial View");
+
+    expect(mocks.lookupAerialView).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "access-with-video" }),
+      "test-key",
+      expect.any(Function),
+      { videoId: "stored-video-id" },
+    );
+  });
+
+  test("labels nearby-property aerial records as nearby media", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-fallback-video" }}
+        media={[]}
+      />,
+    );
+
+    expect(
+      await screen.findByText("Nearby Google Aerial View"),
+    ).toBeInTheDocument();
+    expect(mocks.lookupAerialView).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "access-with-fallback-video" }),
+      "test-key",
+      expect.any(Function),
+      { videoId: "stored-fallback-video-id" },
+    );
+  });
+
+  test("does not recheck a known failed Aerial View record", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-failed-video" }}
+        media={[]}
+      />,
+    );
+
+    expect(await screen.findByText("Google Street View")).toBeInTheDocument();
+    expect(
+      screen.getByAltText(
+        "Street View still facing Beach Access #33 from the nearest Google panorama.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Captured 2025-08")).toBeInTheDocument();
+    expect(mocks.lookupAerialView).not.toHaveBeenCalled();
+  });
+
+  test("uses a coordinate-based Street View still when no cached panorama exists", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-failed-video-no-still" }}
+        media={[]}
+      />,
+    );
+
+    const image = await screen.findByAltText(
+      "Street View still facing Beach Access #33 from the nearest Google panorama.",
+    );
+
+    expect(image).toHaveAttribute(
+      "src",
+      expect.stringContaining("location=34.512%2C-77.377"),
+    );
+    expect(screen.getByText("Google Street View")).toBeInTheDocument();
+    expect(mocks.lookupAerialView).not.toHaveBeenCalled();
+  });
+});

@@ -1,7 +1,5 @@
 import { AccessFinderPage } from "./components/AccessFinderPage";
-import { AccessMap } from "./components/AccessMap";
 import { BeachAccessModule } from "./components/BeachAccessModule";
-import { MediaNotes } from "./components/MediaNotes";
 import accessesData from "./data/accesses.json";
 import mediaCandidates from "./data/mediaCandidates.json";
 import { sampleRentals } from "./data/sampleRentals";
@@ -33,7 +31,6 @@ export default function App() {
         <div className="nav-links">
           <a href="#finder">Find Access</a>
           <a href="#example-rental">Example Rental</a>
-          <a href="#media-notes">Media</a>
         </div>
       </nav>
       <section className="page-hero">
@@ -72,8 +69,6 @@ export default function App() {
         alternates={alternates.map((alternate) => alternate.access)}
         media={mediaForClosest}
       />
-      <AccessMap rental={rental} closest={closest} alternates={alternates} />
-      <MediaNotes />
     </main>
   );
 }
