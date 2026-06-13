@@ -5592,11 +5592,11 @@
     "hasVideo": true,
     "checkedAt": "2026-06-11T03:33:06.087Z"
   },
-  "north-topsail-beach-beach-access-28-3623-island-drive": {
+  "north-topsail-beach-beach-access-29": {
     "state": "RESOURCE_EXHAUSTED",
     "requestedAt": "2026-06-11T02:56:59.452Z",
     "address": "3648 Island Dr, North Topsail Beach, NC",
-    "name": "Beach Access #28",
+    "name": "Beach Access #29",
     "httpStatus": 429,
     "hasImage": false,
     "hasVideo": false,
@@ -5690,7 +5690,7 @@
     "hasVideo": true,
     "checkedAt": "2026-06-11T03:33:06.087Z"
   },
-  "north-topsail-beach-beach-access-28-518-topsal-rd-2nd-ave-and-topsail-rd": {
+  "north-topsail-beach-beach-access-28": {
     "state": "RESOURCE_EXHAUSTED",
     "requestedAt": "2026-06-11T02:56:59.452Z",
     "address": "503 Topsail Rd, North Topsail Beach, NC",

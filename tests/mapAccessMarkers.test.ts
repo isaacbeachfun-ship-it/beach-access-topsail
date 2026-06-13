@@ -17,7 +17,7 @@ describe("map access marker groups", () => {
   test("splits canonical Topsail accesses into prominent major markers and small other markers", () => {
     const groups = getMapAccessMarkerGroups(accesses);
 
-    expect(groups.major).toHaveLength(16);
+    expect(groups.major).toHaveLength(18);
     expect(groups.other).toHaveLength(accesses.length - groups.major.length);
     expect(groups.major.every(isMajorMapAccess)).toBe(true);
     expect(groups.other.every((access) => !isMajorMapAccess(access))).toBe(true);
