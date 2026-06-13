@@ -2,7 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  applyStreetViewOverride,
   metadataToStreetViewRecord,
+  pruneStreetViewStillRegistry,
   selectStreetViewStillTargets,
 } from "./street-view-stills-workflow.mjs";
 
@@ -12,6 +14,10 @@ const AERIAL_REGISTRY_PATH = path.join(ROOT, "src/data/aerialViewVideos.json");
 const STREET_VIEW_REGISTRY_PATH = path.join(
   ROOT,
   "src/data/streetViewStills.json",
+);
+const STREET_VIEW_OVERRIDES_PATH = path.join(
+  ROOT,
+  "src/data/streetViewOverrides.json",
 );
 const METADATA_URL = "https://maps.googleapis.com/maps/api/streetview/metadata";
 
@@ -85,11 +91,13 @@ async function main() {
     throw new Error("Missing VITE_GOOGLE_MAPS_API_KEY in .env.local");
   }
 
-  const [accesses, aerialRegistry, stillRegistry] = await Promise.all([
-    readJson(ACCESSES_PATH, []),
-    readJson(AERIAL_REGISTRY_PATH, {}),
-    readJson(STREET_VIEW_REGISTRY_PATH, {}),
-  ]);
+  const [accesses, aerialRegistry, stillRegistry, stillOverrides] =
+    await Promise.all([
+      readJson(ACCESSES_PATH, []),
+      readJson(AERIAL_REGISTRY_PATH, {}),
+      readJson(STREET_VIEW_REGISTRY_PATH, {}),
+      readJson(STREET_VIEW_OVERRIDES_PATH, {}),
+    ]);
 
   const targets = selectStreetViewStillTargets(
     accesses,
@@ -98,7 +106,7 @@ async function main() {
     { includeActive: options.includeActive },
   ).slice(0, options.limit);
 
-  const nextRegistry = { ...stillRegistry };
+  const nextRegistry = pruneStreetViewStillRegistry(stillRegistry, accesses);
   const checkedAt = new Date().toISOString();
 
   for (const access of targets) {
@@ -118,8 +126,17 @@ async function main() {
       access,
       body,
       checkedAt,
+      stillOverrides[access.id],
     );
     console.log(`${access.id}: ${nextRegistry[access.id].state}`);
+  }
+
+  for (const [accessId, override] of Object.entries(stillOverrides)) {
+    if (!nextRegistry[accessId]) continue;
+    nextRegistry[accessId] = applyStreetViewOverride(
+      nextRegistry[accessId],
+      override,
+    );
   }
 
   await fs.writeFile(

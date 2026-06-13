@@ -45,6 +45,24 @@ vi.mock("../src/data/aerialViewVideos.json", () => ({
 
 vi.mock("../src/data/streetViewStills.json", () => ({
   default: {
+    "access-with-video": {
+      state: "AVAILABLE",
+      panoId: "street-pano-video",
+      heading: 150,
+      pitch: 0,
+      fov: 70,
+      date: "2026-01",
+      copyright: "© Google",
+    },
+    "access-with-fallback-video": {
+      state: "AVAILABLE",
+      panoId: "street-pano-fallback-video",
+      heading: 152,
+      pitch: 0,
+      fov: 70,
+      date: "2026-01",
+      copyright: "© Google",
+    },
     "access-with-failed-video": {
       state: "AVAILABLE",
       panoId: "street-pano-123",
@@ -79,6 +97,7 @@ vi.mock("../src/lib/aerialView", async () => {
 });
 
 const access = {
+  id: "access-with-video",
   name: "Beach Access #33",
   address: "232 New River Inlet Rd",
   town: "North Topsail Beach",
@@ -185,7 +204,7 @@ describe("AccessMediaGallery", () => {
     expect(mocks.lookupAerialView).not.toHaveBeenCalled();
   });
 
-  test("uses a coordinate-based Street View still when no cached panorama exists", async () => {
+  test("does not show a coordinate-only Street View still when no cached panorama exists", async () => {
     render(
       <AccessMediaGallery
         access={{ ...access, id: "access-with-failed-video-no-still" }}
@@ -193,15 +212,10 @@ describe("AccessMediaGallery", () => {
       />,
     );
 
-    const image = await screen.findByAltText(
-      "Street View still facing Beach Access #33 from the nearest Google panorama.",
-    );
-
-    expect(image).toHaveAttribute(
-      "src",
-      expect.stringContaining("location=34.512%2C-77.377"),
-    );
-    expect(screen.getByText("Google Street View")).toBeInTheDocument();
+    expect(
+      await screen.findByText("No access-specific media yet."),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Google Street View")).not.toBeInTheDocument();
     expect(mocks.lookupAerialView).not.toHaveBeenCalled();
   });
 });

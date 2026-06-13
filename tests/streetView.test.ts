@@ -1,6 +1,5 @@
 import { describe, expect, test } from "vitest";
 import {
-  buildStreetViewLocationStillUrl,
   buildStreetViewStillUrl,
   headingFromPanoramaToAccess,
   type StreetViewStill,
@@ -46,19 +45,5 @@ describe("street view media helpers", () => {
     expect(url.searchParams.get("size")).toBe("640x400");
     expect(url.searchParams.get("source")).toBe("outdoor");
     expect(url.searchParams.get("key")).toBe("test-key");
-  });
-
-  test("builds a location-based Street View URL when no pano metadata is cached yet", () => {
-    const url = new URL(
-      buildStreetViewLocationStillUrl(
-        { latitude: 34.4479, longitude: -77.5081 },
-        "test-key",
-      ),
-    );
-
-    expect(url.searchParams.get("location")).toBe("34.4479,-77.5081");
-    expect(url.searchParams.get("radius")).toBe("120");
-    expect(url.searchParams.get("size")).toBe("640x400");
-    expect(url.searchParams.has("heading")).toBe(false);
   });
 });

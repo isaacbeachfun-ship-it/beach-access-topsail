@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   metadataToStreetViewRecord,
+  pruneStreetViewStillRegistry,
   selectStreetViewStillTargets,
 } from "../scripts/street-view-stills-workflow.mjs";
 
@@ -26,7 +27,7 @@ const accesses = [
 ];
 
 describe("street view still workflow", () => {
-  it("targets accesses without active aerial videos or existing available stills", () => {
+  it("targets accesses without existing available stills even when aerial videos are active", () => {
     const targets = selectStreetViewStillTargets(
       accesses,
       {
@@ -39,7 +40,22 @@ describe("street view still workflow", () => {
       },
     );
 
-    expect(targets.map((access) => access.id)).toEqual(["missing-video"]);
+    expect(targets.map((access) => access.id)).toEqual([
+      "active-video",
+      "missing-video",
+    ]);
+  });
+
+  it("drops stale still records for access ids no longer in the current inventory", () => {
+    const registry = pruneStreetViewStillRegistry(
+      {
+        "active-video": { state: "AVAILABLE", panoId: "pano-active" },
+        "stale-id": { state: "AVAILABLE", panoId: "pano-stale" },
+      },
+      accesses,
+    );
+
+    expect(Object.keys(registry)).toEqual(["active-video"]);
   });
 
   it("can include active aerial video accesses for a full refresh", () => {
@@ -88,5 +104,26 @@ describe("street view still workflow", () => {
       copyright: "© Google",
       checkedAt: "2026-06-11T00:00:00.000Z",
     });
+  });
+
+  it("applies reviewed heading overrides to generated pano records", () => {
+    const record = metadataToStreetViewRecord(
+      {
+        id: "missing-video",
+        latitude: 34.401,
+        longitude: -77.5,
+      },
+      {
+        status: "OK",
+        pano_id: "pano-123",
+        location: { lat: 34.4, lng: -77.5 },
+        date: "2025-06",
+        copyright: "© Google",
+      },
+      "2026-06-11T00:00:00.000Z",
+      { heading: 185 },
+    );
+
+    expect(record.heading).toBe(185);
   });
 });

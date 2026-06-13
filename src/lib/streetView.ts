@@ -62,21 +62,3 @@ export function buildStreetViewStillUrl(
 
   return url.toString();
 }
-
-export function buildStreetViewLocationStillUrl(
-  point: GeoPoint,
-  apiKey: string,
-): string {
-  if (!apiKey) return "";
-
-  const url = new URL(STREET_VIEW_STATIC_URL);
-  url.searchParams.set("size", "640x400");
-  url.searchParams.set("location", `${point.latitude},${point.longitude}`);
-  url.searchParams.set("radius", "120");
-  url.searchParams.set("pitch", "0");
-  url.searchParams.set("fov", "70");
-  url.searchParams.set("source", "outdoor");
-  url.searchParams.set("key", apiKey);
-
-  return url.toString();
-}

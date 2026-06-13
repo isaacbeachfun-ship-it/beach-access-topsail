@@ -4,7 +4,6 @@ import streetViewStills from "../data/streetViewStills.json";
 import { lookupAerialView, type AerialViewResult } from "../lib/aerialView";
 import { getGoogleMapsApiKey } from "../lib/mapConfig";
 import {
-  buildStreetViewLocationStillUrl,
   buildStreetViewStillUrl,
   type StreetViewStill,
 } from "../lib/streetView";
@@ -49,10 +48,7 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
   const hasApiKey = Boolean(apiKey);
   const streetViewUrl = streetViewStill
     ? buildStreetViewStillUrl(streetViewStill, apiKey)
-    : buildStreetViewLocationStillUrl(
-        { latitude: access.latitude, longitude: access.longitude },
-        apiKey,
-      );
+    : "";
   const isNearbyAerialView = aerialRecord?.addressSource === "nearby-property";
   const aerialBadge = isNearbyAerialView
     ? "Nearby Google Aerial View"

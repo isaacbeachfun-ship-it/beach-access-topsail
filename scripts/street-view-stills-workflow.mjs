@@ -12,20 +12,42 @@ export function selectStreetViewStillTargets(
 
     if (includeActive) return true;
 
-    const aerialState = aerialRegistry[access.id]?.state;
     const stillState = stillRegistry[access.id]?.state;
-    return aerialState !== "ACTIVE" && stillState !== "AVAILABLE";
+    return stillState !== "AVAILABLE";
   });
 }
 
-export function metadataToStreetViewRecord(access, metadata, checkedAt) {
+export function pruneStreetViewStillRegistry(stillRegistry = {}, accesses = []) {
+  const currentAccessIds = new Set(accesses.map((access) => access.id));
+  return Object.fromEntries(
+    Object.entries(stillRegistry).filter(([id]) => currentAccessIds.has(id)),
+  );
+}
+
+export function applyStreetViewOverride(record, override = {}) {
+  if (record.state !== "AVAILABLE") return record;
+
+  return {
+    ...record,
+    ...(Number.isFinite(override.heading) ? { heading: override.heading } : {}),
+    ...(Number.isFinite(override.pitch) ? { pitch: override.pitch } : {}),
+    ...(Number.isFinite(override.fov) ? { fov: override.fov } : {}),
+  };
+}
+
+export function metadataToStreetViewRecord(
+  access,
+  metadata,
+  checkedAt,
+  override = {},
+) {
   if (
     metadata.status === "OK" &&
     metadata.pano_id &&
     Number.isFinite(metadata.location?.lat) &&
     Number.isFinite(metadata.location?.lng)
   ) {
-    return {
+    const record = {
       state: "AVAILABLE",
       panoId: metadata.pano_id,
       latitude: metadata.location.lat,
@@ -46,6 +68,8 @@ export function metadataToStreetViewRecord(access, metadata, checkedAt) {
       copyright: metadata.copyright,
       checkedAt,
     };
+
+    return applyStreetViewOverride(record, override);
   }
 
   const state =
