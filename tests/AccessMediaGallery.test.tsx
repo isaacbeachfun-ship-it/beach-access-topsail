@@ -23,6 +23,10 @@ vi.mock("../src/data/aerialViewVideos.json", () => ({
       videoId: "stored-video-id",
       state: "ACTIVE",
     },
+    "access-with-video-and-street-view": {
+      videoId: "stored-video-id",
+      state: "ACTIVE",
+    },
     "access-with-fallback-video": {
       videoId: "stored-fallback-video-id",
       state: "ACTIVE",
@@ -48,6 +52,15 @@ vi.mock("../src/data/streetViewStills.json", () => ({
       pitch: 1,
       fov: 68,
       date: "2025-08",
+      copyright: "© Google",
+    },
+    "access-with-video-and-street-view": {
+      state: "AVAILABLE",
+      panoId: "street-pano-video-123",
+      heading: 128,
+      pitch: 0,
+      fov: 70,
+      date: "2026-02",
       copyright: "© Google",
     },
   },
@@ -78,16 +91,18 @@ describe("AccessMediaGallery", () => {
     mocks.lookupAerialView.mockClear();
   });
 
-  test("shows Google Aerial View media when it is available", async () => {
+  test("shows Street View with an aerial video link when Google aerial media is available", async () => {
     render(<AccessMediaGallery access={access} media={[]} />);
 
-    expect(await screen.findByText("Google Aerial View")).toBeInTheDocument();
+    expect(await screen.findByText("Google Street View")).toBeInTheDocument();
     expect(
-      screen.getByLabelText(
-        "Photorealistic aerial view of Beach Access #33 provided by Google Maps.",
+      screen.getByAltText(
+        "Street View still facing Beach Access #33 from the nearest Google panorama.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText("Captured Jul 3, 2025")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "View Google aerial video" }),
+    ).toHaveAttribute("href", "https://example.com/aerial.mp4");
   });
 
   test("looks up Aerial View media by stored video id when available", async () => {
@@ -98,7 +113,7 @@ describe("AccessMediaGallery", () => {
       />,
     );
 
-    await screen.findByText("Google Aerial View");
+    await screen.findByRole("link", { name: "View Google aerial video" });
 
     expect(mocks.lookupAerialView).toHaveBeenCalledWith(
       expect.objectContaining({ id: "access-with-video" }),
@@ -106,6 +121,29 @@ describe("AccessMediaGallery", () => {
       expect.any(Function),
       { videoId: "stored-video-id" },
     );
+  });
+
+  test("keeps Street View primary and links to aerial video when both are available", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-video-and-street-view" }}
+        media={[]}
+      />,
+    );
+
+    expect(await screen.findByText("Google Street View")).toBeInTheDocument();
+    expect(
+      screen.getByAltText(
+        "Street View still facing Beach Access #33 from the nearest Google panorama.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Captured 2026-02")).toBeInTheDocument();
+
+    const aerialLink = screen.getByRole("link", {
+      name: "View Google aerial video",
+    });
+    expect(aerialLink).toHaveAttribute("href", "https://example.com/aerial.mp4");
+    expect(screen.queryByText("Google Aerial View")).not.toBeInTheDocument();
   });
 
   test("labels nearby-property aerial records as nearby media", async () => {
@@ -117,8 +155,10 @@ describe("AccessMediaGallery", () => {
     );
 
     expect(
-      await screen.findByText("Nearby Google Aerial View"),
-    ).toBeInTheDocument();
+      await screen.findByRole("link", {
+        name: "View nearby Google aerial video",
+      }),
+    ).toHaveAttribute("href", "https://example.com/aerial.mp4");
     expect(mocks.lookupAerialView).toHaveBeenCalledWith(
       expect.objectContaining({ id: "access-with-fallback-video" }),
       "test-key",

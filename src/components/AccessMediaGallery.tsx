@@ -57,6 +57,9 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
   const aerialBadge = isNearbyAerialView
     ? "Nearby Google Aerial View"
     : "Google Aerial View";
+  const aerialLinkLabel = isNearbyAerialView
+    ? "View nearby Google aerial video"
+    : "View Google aerial video";
   const aerialDescription = isNearbyAerialView
     ? `Nearby photorealistic aerial view around ${access.name} provided by Google Maps.`
     : `Photorealistic aerial view of ${access.name} provided by Google Maps.`;
@@ -66,6 +69,11 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
   const aerialVideoId = hasKnownFailedAerialView
     ? undefined
     : aerialRecord?.videoId;
+  const hasAerialMedia =
+    aerialView.state === "available" &&
+    Boolean(aerialView.thumbnailUrl || aerialView.videoUrl);
+  const aerialVideoUrl =
+    aerialView.state === "available" ? aerialView.videoUrl : undefined;
 
   useEffect(() => {
     const currentApiKey = getGoogleMapsApiKey();
@@ -91,8 +99,66 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
   return (
     <section className="media-panel" aria-labelledby="media-heading">
       <h3 id="media-heading">What it looks like</h3>
-      {aerialView.state === "available" &&
-      (aerialView.thumbnailUrl || aerialView.videoUrl) ? (
+      {primary ? (
+        <>
+          <div className="media-image-wrap">
+            <img
+              src={primary.url}
+              alt={primary.title}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className={`media-status media-status-${primary.status}`}>
+              {statusLabel(primary.status)}
+            </span>
+          </div>
+          <p className="source-tag">
+            {primary.sourceLabel} -{" "}
+            <a
+              href={primary.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              source
+            </a>
+          </p>
+        </>
+      ) : streetViewUrl ? (
+        <>
+          <div className="media-image-wrap street-view-wrap">
+            <img
+              src={streetViewUrl}
+              alt={`Street View still facing ${access.name} from the nearest Google panorama.`}
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="media-overlay-actions">
+              <span className="media-status media-status-launch-safe">
+                Google Street View
+              </span>
+              {aerialVideoUrl ? (
+                <a
+                  className="media-aerial-link"
+                  href={aerialVideoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {aerialLinkLabel}
+                </a>
+              ) : null}
+            </div>
+          </div>
+          <p className="source-tag aerial-source-tag">
+            Google Maps Street View
+            {streetViewStill?.date ? (
+              <span>Captured {streetViewStill.date}</span>
+            ) : null}
+            {streetViewStill?.copyright ? (
+              <span>{streetViewStill.copyright}</span>
+            ) : null}
+          </p>
+        </>
+      ) : hasAerialMedia ? (
         <>
           <div className="media-image-wrap aerial-view-wrap">
             {aerialView.videoUrl ? (
@@ -128,53 +194,6 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
               <span>Captured {aerialView.captureLabel}</span>
             ) : null}
             {aerialView.duration ? <span>{aerialView.duration}</span> : null}
-          </p>
-        </>
-      ) : primary ? (
-        <>
-          <div className="media-image-wrap">
-            <img
-              src={primary.url}
-              alt={primary.title}
-              loading="lazy"
-              decoding="async"
-            />
-            <span className={`media-status media-status-${primary.status}`}>
-              {statusLabel(primary.status)}
-            </span>
-          </div>
-          <p className="source-tag">
-            {primary.sourceLabel} -{" "}
-            <a
-              href={primary.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              source
-            </a>
-          </p>
-        </>
-      ) : streetViewUrl ? (
-        <>
-          <div className="media-image-wrap street-view-wrap">
-            <img
-              src={streetViewUrl}
-              alt={`Street View still facing ${access.name} from the nearest Google panorama.`}
-              loading="lazy"
-              decoding="async"
-            />
-            <span className="media-status media-status-launch-safe">
-              Google Street View
-            </span>
-          </div>
-          <p className="source-tag aerial-source-tag">
-            Google Maps Street View
-            {streetViewStill?.date ? (
-              <span>Captured {streetViewStill.date}</span>
-            ) : null}
-            {streetViewStill?.copyright ? (
-              <span>{streetViewStill.copyright}</span>
-            ) : null}
           </p>
         </>
       ) : aerialView.state === "loading" ? (

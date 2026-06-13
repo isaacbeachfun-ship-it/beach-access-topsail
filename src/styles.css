@@ -401,6 +401,17 @@ html {
   color: var(--ink-soft);
 }
 
+.media-overlay-actions {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
 .media-status {
   position: absolute;
   left: 10px;
@@ -411,6 +422,30 @@ html {
   color: var(--teal-dark);
   font-size: 12px;
   font-weight: 800;
+}
+
+.media-overlay-actions .media-status {
+  position: static;
+}
+
+.media-aerial-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 18px rgba(23, 67, 74, 0.22);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.media-aerial-link:hover {
+  background: var(--white);
+  transform: translateY(-1px);
 }
 
 .media-status-prototype-only {
