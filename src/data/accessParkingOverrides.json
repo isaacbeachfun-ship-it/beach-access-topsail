@@ -1,13 +1,6 @@
 [
   {
     "id": "north-topsail-beach-beach-access-1",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #1",
-    "address": "1798 New River Inlet Rd",
-    "latitude": 34.518273,
-    "longitude": -77.365011,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 30,
     "handicapSpots": 2,
     "parkingOptions": "Onsite Parking",
@@ -27,23 +20,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Onslow County Parks & Rec",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Onslow County free public beach access lot.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 106
+    "comments": "Onslow County free public beach access lot."
   },
   {
     "id": "north-topsail-beach-beach-access-10",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #10",
-    "address": "590 Ocean Dr",
-    "latitude": 34.457517,
-    "longitude": -77.490404,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 20,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -63,22 +43,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 28
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-11",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #11",
-    "address": "636 Ocean Dr",
-    "latitude": 34.45839,
-    "longitude": -77.488839,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -98,22 +66,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-12",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #12",
-    "address": "3058 Island Dr",
-    "latitude": 34.463028,
-    "longitude": -77.481769,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -133,22 +89,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-13",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #13",
-    "address": "124 Topsail Rd",
-    "latitude": 34.463682,
-    "longitude": -77.479975,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -168,22 +112,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 20
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-14",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #14",
-    "address": "198 Topsail Rd",
-    "latitude": 34.464793,
-    "longitude": -77.477291,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -203,22 +135,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-15",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #15",
-    "address": "252 Topsail Rd",
-    "latitude": 34.465805,
-    "longitude": -77.475198,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -238,22 +158,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-16",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #16",
-    "address": "278 Topsail Rd",
-    "latitude": 34.466175,
-    "longitude": -77.474478,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -273,22 +181,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-17",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #17",
-    "address": "296 Topsail Rd",
-    "latitude": 34.466544,
-    "longitude": -77.473702,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -308,22 +204,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town parking guide lists NTB17 at 13th Avenue / 296 Topsail Road with 12 spaces.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 20
+    "comments": "Town parking guide lists NTB17 at 13th Avenue / 296 Topsail Road with 12 spaces."
   },
   {
     "id": "north-topsail-beach-beach-access-18",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #18",
-    "address": "316 Topsail Rd",
-    "latitude": 34.466896,
-    "longitude": -77.473031,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -343,22 +227,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-19",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #19",
-    "address": "338 Topsail Rd",
-    "latitude": 34.467209,
-    "longitude": -77.472349,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -378,22 +250,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-2",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #2",
-    "address": "2950 Island Dr",
-    "latitude": 34.460815,
-    "longitude": -77.485012,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 250,
     "handicapSpots": 2,
     "parkingOptions": "Onsite Parking",
@@ -413,23 +273,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Onslow County Parks & Rec",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Onslow County free public beach access lot.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 326
+    "comments": "Onslow County free public beach access lot."
   },
   {
     "id": "north-topsail-beach-beach-access-20",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #20",
-    "address": "352 Topsail Rd",
-    "latitude": 34.467579,
-    "longitude": -77.471665,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -449,22 +296,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-21",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #21",
-    "address": "378 Topsail Rd",
-    "latitude": 34.467925,
-    "longitude": -77.470962,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -484,22 +319,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-22",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #22",
-    "address": "394 Topsail Rd",
-    "latitude": 34.468215,
-    "longitude": -77.470287,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -519,22 +342,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-23",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #23",
-    "address": "418 Topsail Rd",
-    "latitude": 34.468603,
-    "longitude": -77.469612,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -554,22 +365,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-24",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #24",
-    "address": "430 Topsail Rd",
-    "latitude": 34.468957,
-    "longitude": -77.468915,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -589,22 +388,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-25",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #25",
-    "address": "460 Topsail Rd",
-    "latitude": 34.469291,
-    "longitude": -77.468242,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -624,22 +411,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-26",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #26",
-    "address": "466 Topsail Rd",
-    "latitude": 34.469694,
-    "longitude": -77.467605,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -659,22 +434,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-27",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #27",
-    "address": "494 Topsail Rd",
-    "latitude": 34.470024,
-    "longitude": -77.46695,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -694,22 +457,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-28",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #28",
-    "address": "518 Topsail Rd",
-    "latitude": 34.47034,
-    "longitude": -77.466222,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -729,22 +480,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-29",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #29",
-    "address": "3623 Island Dr",
-    "latitude": 34.473587,
-    "longitude": -77.461427,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 14,
     "handicapSpots": 0,
     "parkingOptions": "Parking off-site",
@@ -764,22 +503,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 22
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-3",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #3",
-    "address": "4000 River Rd Extension",
-    "latitude": 34.528932,
-    "longitude": -77.344703,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 30,
     "handicapSpots": 0,
     "parkingOptions": "4x4 Drive-On Area / Paved Lot",
@@ -799,22 +526,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "4x4 access pass required year-round; paved lot available before drive-on area.",
-    "mediaIds": [],
-    "categories": [
-      "Major"
-    ],
-    "usefulnessScore": 38
+    "comments": "4x4 access pass required year-round; paved lot available before drive-on area."
   },
   {
     "id": "north-topsail-beach-beach-access-30",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #30",
-    "address": "1 Myrtle Dr",
-    "latitude": 34.475846,
-    "longitude": -77.455868,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 15,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -834,22 +549,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 23
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-31",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #31",
-    "address": "4030 Island Dr",
-    "latitude": 34.480117,
-    "longitude": -77.446497,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 150,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -869,22 +572,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Major"
-    ],
-    "usefulnessScore": 158
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-32",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #32",
-    "address": "4106 Island Dr",
-    "latitude": 34.480804,
-    "longitude": -77.444649,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -904,22 +595,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-33",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #33",
-    "address": "232 New River Inlet Rd",
-    "latitude": 34.491673,
-    "longitude": -77.421119,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 100,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -939,23 +618,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "NC DCM survey lists 100 spaces; NTB 2023 guide lists 80 spaces for Jeffries #1, so count should be rechecked with town if precision is critical.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 126
+    "comments": "NC DCM survey lists 100 spaces; NTB 2023 guide lists 80 spaces for Jeffries #1, so count should be rechecked with town if precision is critical."
   },
   {
     "id": "north-topsail-beach-beach-access-34",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #34",
-    "address": "272 New River Inlet Rd",
-    "latitude": 34.492529,
-    "longitude": -77.419664,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 217,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -975,23 +641,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 243
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-35",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #35",
-    "address": "316 New River Inlet Rd",
-    "latitude": 34.4925,
-    "longitude": -77.418194,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 217,
     "handicapSpots": null,
     "parkingOptions": "Onsite Parking",
@@ -1011,22 +664,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Mapped as New Jeffries parking in prior dataset; official sources conflict on whether this belongs to #34 or #35.",
-    "mediaIds": [],
-    "categories": [
-      "Major"
-    ],
-    "usefulnessScore": 225
+    "comments": "Mapped as New Jeffries parking in prior dataset; official sources conflict on whether this belongs to #34 or #35."
   },
   {
     "id": "north-topsail-beach-beach-access-36",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #36",
-    "address": "404 New River Inlet Rd",
-    "latitude": 34.495014,
-    "longitude": -77.415091,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1046,22 +687,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-37",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #37",
-    "address": "596 New River Inlet Rd",
-    "latitude": 34.498594,
-    "longitude": -77.408091,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1081,22 +710,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-38",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #38",
-    "address": "658 New River Inlet Rd",
-    "latitude": 34.499351,
-    "longitude": -77.405739,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1116,22 +733,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-39",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #39",
-    "address": "800 New River Inlet Rd",
-    "latitude": 34.502488,
-    "longitude": -77.400241,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1151,22 +756,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-4",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #4",
-    "address": "484 New River Inlet Rd",
-    "latitude": 34.49616,
-    "longitude": -77.412075,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 150,
     "handicapSpots": 2,
     "parkingOptions": "Onsite Parking",
@@ -1186,23 +779,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Onslow County Parks & Rec",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Onslow County free public beach access lot.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 226
+    "comments": "Onslow County free public beach access lot."
   },
   {
     "id": "north-topsail-beach-beach-access-40",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #40",
-    "address": "1262 New River Inlet Rd",
-    "latitude": 34.50905,
-    "longitude": -77.38327,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1222,22 +802,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-41",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #41",
-    "address": "1294 New River Inlet Rd",
-    "latitude": 34.510206,
-    "longitude": -77.3815,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 20,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -1257,23 +825,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 46
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-42",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #42",
-    "address": "1574 New River Inlet Rd",
-    "latitude": 34.514105,
-    "longitude": -77.37231,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -1293,22 +848,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 20
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-43",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #43",
-    "address": "1618 New River Inlet Rd",
-    "latitude": 34.514957,
-    "longitude": -77.370477,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -1328,22 +871,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 20
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-44",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #44",
-    "address": "1690 New River Inlet Rd",
-    "latitude": 34.515969,
-    "longitude": -77.368025,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1363,22 +894,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-45",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #45",
-    "address": "30-1 Porpoise Place",
-    "latitude": 34.522528,
-    "longitude": -77.35335,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1398,22 +917,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 26
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-46",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #46",
-    "address": "2288 New River Inlet Rd",
-    "latitude": 34.5245,
-    "longitude": -77.3483,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": null,
     "parkingOptions": "No Parking",
@@ -1433,22 +940,10 @@
     "duneWalkover": true,
     "source": "SaltChef + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 0
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-5",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #5",
-    "address": "2234 Island Dr",
-    "latitude": 34.447664,
-    "longitude": -77.509363,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1468,22 +963,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-6",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #6",
-    "address": "182 Sea Shore Dr",
-    "latitude": 34.456,
-    "longitude": -77.4937,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": null,
     "parkingOptions": "No Parking",
@@ -1503,22 +986,10 @@
     "duneWalkover": true,
     "source": "SaltChef + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 0
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-7",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #7",
-    "address": "226 Sea Shore Dr",
-    "latitude": 34.448428,
-    "longitude": -77.506552,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1538,22 +1009,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "north-topsail-beach-beach-access-8",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #8",
-    "address": "322 Sea Shore Dr",
-    "latitude": 34.450339,
-    "longitude": -77.503316,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 10,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -1573,22 +1032,10 @@
     "duneWalkover": true,
     "source": "Town of NTB + NC DCM",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 18
+    "comments": "Town-controlled paid parking area; on-street/right-of-way parking is not permitted."
   },
   {
     "id": "north-topsail-beach-beach-access-9",
-    "town": "North Topsail Beach",
-    "name": "Beach Access #9",
-    "address": "540 Ocean Dr",
-    "latitude": 34.456691,
-    "longitude": -77.492012,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1608,22 +1055,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of NTB",
     "sourceDetail": "NTB beach access list + NTB paid parking guide + NC DCM access survey",
-    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated public parking listed for this access; NTB prohibits on-street/right-of-way parking."
   },
   {
     "id": "surf-city-beach-access-1",
-    "town": "Surf City",
-    "name": "Beach Access #1",
-    "address": "2100 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4453241,
-    "longitude": -77.5115204,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 25,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1643,23 +1078,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-1 18 all-day; B-33 3 on-street; A-GOLF 4 golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 63
+    "comments": "Official GIS linked parking: B-1 18 all-day; B-33 3 on-street; A-GOLF 4 golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-10",
-    "town": "Surf City",
-    "name": "Beach Access #10",
-    "address": "1100 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4356637,
-    "longitude": -77.5279198,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -1679,22 +1101,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 38
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-11",
-    "town": "Surf City",
-    "name": "Beach Access #11",
-    "address": "624 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4319574,
-    "longitude": -77.5339374,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 35,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1714,22 +1124,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-6 14; A-7 4; A-7 17. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major"
-    ],
-    "usefulnessScore": 43
+    "comments": "Official GIS linked parking: B-6 14; A-7 4; A-7 17. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-12",
-    "town": "Surf City",
-    "name": "Beach Access #12",
-    "address": "520A North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4308463,
-    "longitude": -77.5358998,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 9,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1749,22 +1147,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-8 5; A-8 4 golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 17
+    "comments": "Official GIS linked parking: B-8 5; A-8 4 golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-13",
-    "town": "Surf City",
-    "name": "Beach Access #13",
-    "address": "510 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.430438,
-    "longitude": -77.5364302,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 26,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1784,23 +1170,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-9 12; A-9 14. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 64
+    "comments": "Official GIS linked parking: B-9 12; A-9 14. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-14",
-    "town": "Surf City",
-    "name": "Beach Access #14",
-    "address": "500 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4302513,
-    "longitude": -77.5373291,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 26,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1820,23 +1193,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: FREE 14 at 423 Wilmington Ave; A-10 12 paid all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 64
+    "comments": "Official GIS linked parking: FREE 14 at 423 Wilmington Ave; A-10 12 paid all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-15",
-    "town": "Surf City",
-    "name": "Beach Access #15",
-    "address": "400 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4291111,
-    "longitude": -77.5392542,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 25,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1856,23 +1216,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-29 10; A-11 15. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 83
+    "comments": "Official GIS linked parking: B-29 10; A-11 15. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-16",
-    "town": "Surf City",
-    "name": "Beach Access #16",
-    "address": "300 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4276614,
-    "longitude": -77.541721,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 102,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1892,23 +1239,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-12 19; A-40 40; A-39 7; A-38 2; A-43 30; A-14 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 140
+    "comments": "Official GIS linked parking: A-12 19; A-40 40; A-39 7; A-38 2; A-43 30; A-14 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-17",
-    "town": "Surf City",
-    "name": "Beach Access #17",
-    "address": "200 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4268316,
-    "longitude": -77.5426668,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 62,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -1928,23 +1262,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-23 18; A-13 18; A-19 6; A-18 2; A-15 5; A-20 6; A-36 5; A-42 2. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 100
+    "comments": "Official GIS linked parking: A-23 18; A-13 18; A-19 6; A-18 2; A-15 5; A-20 6; A-36 5; A-42 2. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-18",
-    "town": "Surf City",
-    "name": "Beach Access #18",
-    "address": "100 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4257164,
-    "longitude": -77.5445283,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 127,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -1964,23 +1285,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-17 50 two-hour; B-16 50 two-hour; A-24 27 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 185
+    "comments": "Official GIS linked parking: B-17 50 two-hour; B-16 50 two-hour; A-24 27 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-19",
-    "town": "Surf City",
-    "name": "Beach Access #19",
-    "address": "200 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4248979,
-    "longitude": -77.5463901,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 140,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -2000,23 +1308,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-28 26; A-25 90; A-27 14; A-37 10. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 198
+    "comments": "Official GIS linked parking: B-28 26; A-25 90; A-27 14; A-37 10. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-2",
-    "town": "Surf City",
-    "name": "Beach Access #2",
-    "address": "2000 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4443163,
-    "longitude": -77.5130516,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -2036,22 +1331,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-2 3 on-street; A-1 3 beach-access/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 44
+    "comments": "Official GIS linked parking: B-2 3 on-street; A-1 3 beach-access/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-20",
-    "town": "Surf City",
-    "name": "Beach Access #20",
-    "address": "300 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4238985,
-    "longitude": -77.5473748,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 32,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -2071,23 +1354,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-28 8; A-21 18 two-hour; A-33 3; A-34 3. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 70
+    "comments": "Official GIS linked parking: A-28 8; A-21 18 two-hour; A-33 3; A-34 3. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-21",
-    "town": "Surf City",
-    "name": "Beach Access #21",
-    "address": "400 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4236074,
-    "longitude": -77.5485352,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 5,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -2107,22 +1377,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-29 5 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 43
+    "comments": "Official GIS linked parking: A-29 5 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-22",
-    "town": "Surf City",
-    "name": "Beach Access #22",
-    "address": "500 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4225891,
-    "longitude": -77.5496034,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 16,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -2142,23 +1400,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-30 16 all-day/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 54
+    "comments": "Official GIS linked parking: A-30 16 all-day/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-23",
-    "town": "Surf City",
-    "name": "Beach Access #23",
-    "address": "600 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4218684,
-    "longitude": -77.5507822,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 31,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -2178,23 +1423,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-21 9; A-31 22. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 69
+    "comments": "Official GIS linked parking: B-21 9; A-31 22. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-24",
-    "town": "Surf City",
-    "name": "Beach Access #24",
-    "address": "1034 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.417668,
-    "longitude": -77.5575999,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 15,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2214,22 +1446,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-22 11; B-23 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 23
+    "comments": "Official GIS linked parking: B-22 11; B-23 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-25",
-    "town": "Surf City",
-    "name": "Beach Access #25",
-    "address": "1138A South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4159528,
-    "longitude": -77.5602627,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 30,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -2249,22 +1469,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-24 12; A-22 18. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major"
-    ],
-    "usefulnessScore": 38
+    "comments": "Official GIS linked parking: B-24 12; A-22 18. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-26",
-    "town": "Surf City",
-    "name": "Beach Access #26",
-    "address": "1316 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4141523,
-    "longitude": -77.5631737,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2284,22 +1492,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-27",
-    "town": "Surf City",
-    "name": "Beach Access #27",
-    "address": "1526 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4105659,
-    "longitude": -77.5688601,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2319,22 +1515,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-28",
-    "town": "Surf City",
-    "name": "Beach Access #28",
-    "address": "1600 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4097829,
-    "longitude": -77.5699292,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 28,
     "handicapSpots": null,
     "parkingOptions": "Onsite Parking",
@@ -2354,22 +1538,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-16 28 leased all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 28
+    "comments": "Official GIS linked parking: A-16 28 leased all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-29",
-    "town": "Surf City",
-    "name": "Beach Access #29",
-    "address": "1700 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.408603,
-    "longitude": -77.5717221,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": null,
     "parkingOptions": "No Parking",
@@ -2389,22 +1561,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 0
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-3",
-    "town": "Surf City",
-    "name": "Beach Access #3",
-    "address": "1902 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4436674,
-    "longitude": -77.514154,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 56,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2424,23 +1584,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-30 3; B-31 4; B-32 9; A-2 40. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 94
+    "comments": "Official GIS linked parking: B-30 3; B-31 4; B-32 9; A-2 40. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-30",
-    "town": "Surf City",
-    "name": "Beach Access #30",
-    "address": "1800 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.407667,
-    "longitude": -77.5730641,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 10,
     "handicapSpots": null,
     "parkingOptions": "Onsite Parking",
@@ -2460,22 +1607,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-25 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 10
+    "comments": "Official GIS linked parking: B-25 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-31",
-    "town": "Surf City",
-    "name": "Beach Access #31",
-    "address": "1900 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4065978,
-    "longitude": -77.574998,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2495,22 +1630,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-32",
-    "town": "Surf City",
-    "name": "Beach Access #32",
-    "address": "2000 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.405218,
-    "longitude": -77.576792,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2530,22 +1653,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 38
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-33",
-    "town": "Surf City",
-    "name": "Beach Access #33",
-    "address": "2100 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.404354,
-    "longitude": -77.578039,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2565,22 +1676,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 38
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-34",
-    "town": "Surf City",
-    "name": "Beach Access #34",
-    "address": "2200 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.403429,
-    "longitude": -77.579322,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2600,22 +1699,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-35",
-    "town": "Surf City",
-    "name": "Beach Access #35",
-    "address": "2318 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4017105,
-    "longitude": -77.5816933,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 10,
     "handicapSpots": 0,
     "parkingOptions": "Onsite Parking",
@@ -2635,22 +1722,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-26 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 48
+    "comments": "Official GIS linked parking: B-26 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-36",
-    "town": "Surf City",
-    "name": "Beach Access #36",
-    "address": "2328 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.401279,
-    "longitude": -77.582306,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2670,22 +1745,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 38
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-37",
-    "town": "Surf City",
-    "name": "Beach Access #37",
-    "address": "2410A South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4008411,
-    "longitude": -77.5830086,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 10,
     "handicapSpots": null,
     "parkingOptions": "Onsite Parking",
@@ -2705,22 +1768,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-27 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 10
+    "comments": "Official GIS linked parking: B-27 10 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-38",
-    "town": "Surf City",
-    "name": "Beach Access #38",
-    "address": "2808 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.3952441,
-    "longitude": -77.5901303,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2740,22 +1791,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-39",
-    "town": "Surf City",
-    "name": "Beach Access #39",
-    "address": "3016 South Shore Drive, Surf City, NC 28445",
-    "latitude": 34.3929031,
-    "longitude": -77.5934956,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2775,23 +1814,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-32 12 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 50
+    "comments": "Official GIS linked parking: A-32 12 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-4",
-    "town": "Surf City",
-    "name": "Beach Access #4",
-    "address": "1800 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4420539,
-    "longitude": -77.5168064,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 12,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2811,22 +1837,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-3 12 all-day/golf-cart at 1804-1808 N Shore Dr. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 12
+    "comments": "Official GIS linked parking: A-3 12 all-day/golf-cart at 1804-1808 N Shore Dr. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-5",
-    "town": "Surf City",
-    "name": "Beach Access #5",
-    "address": "1700 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4410204,
-    "longitude": -77.5184505,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 34,
     "handicapSpots": 2,
     "parkingOptions": "Onsite Parking",
@@ -2846,23 +1860,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-4 34 all-day/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Major",
-      "Facilities"
-    ],
-    "usefulnessScore": 104
+    "comments": "Official GIS linked parking: A-4 34 all-day/golf-cart. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-6",
-    "town": "Surf City",
-    "name": "Beach Access #6",
-    "address": "1500 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4397793,
-    "longitude": -77.5208652,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -2882,22 +1883,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "No designated parking linked in Surf City GIS parking map."
   },
   {
     "id": "surf-city-beach-access-7",
-    "town": "Surf City",
-    "name": "Beach Access #7",
-    "address": "1400 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4386494,
-    "longitude": -77.5228287,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 8,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2917,22 +1906,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-5 8 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 16
+    "comments": "Official GIS linked parking: A-5 8 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-8",
-    "town": "Surf City",
-    "name": "Beach Access #8",
-    "address": "1228 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.437541,
-    "longitude": -77.5241654,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 2,
     "handicapSpots": 1,
     "parkingOptions": "On-Street Parking",
@@ -2952,22 +1929,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: A-6 2 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 10
+    "comments": "Official GIS linked parking: A-6 2 all-day. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "surf-city-beach-access-9",
-    "town": "Surf City",
-    "name": "Beach Access #9",
-    "address": "1200 North Shore Drive, Surf City, NC 28445",
-    "latitude": 34.4365257,
-    "longitude": -77.5260762,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 11,
     "handicapSpots": 0,
     "parkingOptions": "On-Street Parking",
@@ -2987,22 +1952,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "Official GIS linked parking: B-3 3; B-4 4; B-5 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 19
+    "comments": "Official GIS linked parking: B-3 3; B-4 4; B-5 4. Visitor paid parking runs Mar 1-Oct 31, 9am-6pm."
   },
   {
     "id": "topsail-beach-beach-access-1",
-    "town": "Topsail Beach",
-    "name": "Beach Access #1",
-    "address": "Between 403 & 405 N Anderson Blvd",
-    "latitude": 34.390747,
-    "longitude": -77.596527,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3022,22 +1975,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-10",
-    "town": "Topsail Beach",
-    "name": "Beach Access #10",
-    "address": "Crews Ave at Ocean Blvd",
-    "latitude": 34.364825,
-    "longitude": -77.62958,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3057,22 +1998,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 34
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-11",
-    "town": "Topsail Beach",
-    "name": "Beach Access #11",
-    "address": "Hines Ave at Ocean Blvd",
-    "latitude": 34.363147,
-    "longitude": -77.631669,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3092,22 +2021,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 32
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-12",
-    "town": "Topsail Beach",
-    "name": "Beach Access #12",
-    "address": "Scott Ave at Ocean Blvd",
-    "latitude": 34.360796,
-    "longitude": -77.634429,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3127,22 +2044,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 14
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-13",
-    "town": "Topsail Beach",
-    "name": "Beach Access #13",
-    "address": "Crocker Ave at Ocean Blvd",
-    "latitude": 34.35951,
-    "longitude": -77.636265,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3162,22 +2067,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 14
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-14",
-    "town": "Topsail Beach",
-    "name": "Beach Access #14",
-    "address": "Darden Ave at Ocean Blvd",
-    "latitude": 34.357984,
-    "longitude": -77.638053,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3197,22 +2090,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 32
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-15",
-    "town": "Topsail Beach",
-    "name": "Beach Access #15",
-    "address": "Smith Ave at Ocean Blvd",
-    "latitude": 34.35584,
-    "longitude": -77.640582,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3232,22 +2113,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 14
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-16",
-    "town": "Topsail Beach",
-    "name": "Beach Access #16",
-    "address": "Sea Vista at Ocean Blvd",
-    "latitude": 34.35279,
-    "longitude": -77.644213,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3267,22 +2136,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 56
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-17",
-    "town": "Topsail Beach",
-    "name": "Beach Access #17",
-    "address": "Trout Ave at Ocean Blvd",
-    "latitude": 34.351021,
-    "longitude": -77.645744,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3302,22 +2159,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-18",
-    "town": "Topsail Beach",
-    "name": "Beach Access #18",
-    "address": "Boryk Ave at Ocean Blvd",
-    "latitude": 34.350631,
-    "longitude": -77.646775,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3337,22 +2182,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 26
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-19",
-    "town": "Topsail Beach",
-    "name": "Beach Access #19",
-    "address": "McLeod Ave at Ocean Blvd",
-    "latitude": 34.349836,
-    "longitude": -77.647732,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3372,22 +2205,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-1a",
-    "town": "Topsail Beach",
-    "name": "Beach Access #1A",
-    "address": "Catherine Ave at N Anderson Blvd",
-    "latitude": 34.390825,
-    "longitude": -77.596006,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 2,
     "handicapSpots": null,
     "parkingOptions": "On-Street Parking",
@@ -3407,22 +2228,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Town access list shows parking; NC DCM survey lists 2 on-street spaces. Not in the town paid-parking access range.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 20
+    "comments": "Town access list shows parking; NC DCM survey lists 2 on-street spaces. Not in the town paid-parking access range."
   },
   {
     "id": "topsail-beach-beach-access-2",
-    "town": "Topsail Beach",
-    "name": "Beach Access #2",
-    "address": "Between 509 & 511 N Anderson Blvd",
-    "latitude": 34.387,
-    "longitude": -77.602,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": null,
     "parkingOptions": "No Parking",
@@ -3442,22 +2251,10 @@
     "duneWalkover": true,
     "source": "SaltChef + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 0
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-20",
-    "town": "Topsail Beach",
-    "name": "Beach Access #20",
-    "address": "Godwin Ave at Ocean Blvd",
-    "latitude": 34.349194,
-    "longitude": -77.64891,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3477,22 +2274,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-2a",
-    "town": "Topsail Beach",
-    "name": "Beach Access #2A",
-    "address": "Between 799 & 801 N Anderson Blvd",
-    "latitude": 34.383702,
-    "longitude": -77.606368,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3512,22 +2297,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-3",
-    "town": "Topsail Beach",
-    "name": "Beach Access #3",
-    "address": "Between 915 N Anderson & Bldg F Queens Grant",
-    "latitude": 34.381424,
-    "longitude": -77.609241,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3547,22 +2320,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-4",
-    "town": "Topsail Beach",
-    "name": "Beach Access #4",
-    "address": "Gaye Ave at N Anderson Blvd",
-    "latitude": 34.379738,
-    "longitude": -77.611428,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 0,
     "handicapSpots": 0,
     "parkingOptions": "No Parking",
@@ -3582,22 +2343,10 @@
     "duneWalkover": true,
     "source": "NC DCM + Town of Topsail Beach",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 8
+    "comments": "Not listed in the town paid-parking access range; no counted public parking spaces in NC DCM survey."
   },
   {
     "id": "topsail-beach-beach-access-5",
-    "town": "Topsail Beach",
-    "name": "Beach Access #5",
-    "address": "Barwick Ave at N Anderson Blvd",
-    "latitude": 34.373231,
-    "longitude": -77.620091,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3617,22 +2366,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 14
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-6",
-    "town": "Topsail Beach",
-    "name": "Beach Access #6",
-    "address": "Rocky Mount Ave at N Anderson Blvd",
-    "latitude": 34.371962,
-    "longitude": -77.6213,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 5,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3652,22 +2389,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 13
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-7",
-    "town": "Topsail Beach",
-    "name": "Beach Access #7",
-    "address": "Empie Ave at N Anderson Blvd",
-    "latitude": 34.370863,
-    "longitude": -77.62281,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 4,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3687,22 +2412,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 12
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-8",
-    "town": "Topsail Beach",
-    "name": "Beach Access #8",
-    "address": "Haywood Ave at N Anderson Blvd",
-    "latitude": 34.368991,
-    "longitude": -77.625021,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 5,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3722,22 +2435,10 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Quiet"
-    ],
-    "usefulnessScore": 13
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   },
   {
     "id": "topsail-beach-beach-access-9",
-    "town": "Topsail Beach",
-    "name": "Beach Access #9",
-    "address": "Davis Ave at Ocean Blvd",
-    "latitude": 34.36705,
-    "longitude": -77.62679,
-    "waterType": "Ocean",
-    "accessType": "Beach",
     "parkingSpots": 6,
     "handicapSpots": 0,
     "parkingOptions": "Both Parking Options",
@@ -3757,11 +2458,6 @@
     "duneWalkover": true,
     "source": "Town of Topsail Beach + NC DCM",
     "sourceDetail": "Town public accesses page + NC DCM access survey + Topsail Beach paid parking page",
-    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available.",
-    "mediaIds": [],
-    "categories": [
-      "Facilities"
-    ],
-    "usefulnessScore": 64
+    "comments": "Paid oceanfront lot/access, enforced Mar 1-Oct 31 from 9am-5pm. NC DCM parking count used where town list only says parking is available."
   }
 ]

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "surf-city-beach-access-18",
+    "parkingSpots": 127,
+    "parkingFee": true,
+    "hourlyRate": "$3.00",
+    "dailyRate": "$20.00",
+    "weeklyRate": "$60.00",
+    "seasonalRate": "$300.00 standard season pass",
+    "source": "Town of Surf City",
+    "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
+    "comments": "Official GIS linked parking override fixture."
+  }
+]

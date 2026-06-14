@@ -6,10 +6,36 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_SOURCE =
   "/Users/isaac/Projects/topsail-scrape/data/beach_access/beach_access_master.csv";
 const DEFAULT_OUTPUT = path.resolve(__dirname, "../src/data/accesses.json");
+const DEFAULT_PARKING_OVERRIDES = path.resolve(
+  __dirname,
+  "../src/data/accessParkingOverrides.json",
+);
 const TOPSAIL_TOWNS = new Set([
   "North Topsail Beach",
   "Surf City",
   "Topsail Beach",
+]);
+const PARKING_OVERRIDE_FIELDS = new Set([
+  "parkingSpots",
+  "handicapSpots",
+  "parkingOptions",
+  "parkingFee",
+  "hourlyRate",
+  "dailyRate",
+  "weeklyRate",
+  "seasonalRate",
+  "restroom",
+  "shower",
+  "lifeguards",
+  "beachWheelchair",
+  "beachMat",
+  "mobiMat",
+  "handicapAccessible",
+  "vehicleAccess",
+  "duneWalkover",
+  "source",
+  "sourceDetail",
+  "comments",
 ]);
 
 function parseCsvLine(line) {
@@ -87,6 +113,41 @@ function clean(value) {
   return normalized.length > 0 ? normalized : null;
 }
 
+function loadParkingOverrides(overridesPath) {
+  if (!overridesPath || !fs.existsSync(overridesPath)) return new Map();
+
+  const overrides = JSON.parse(fs.readFileSync(overridesPath, "utf8"));
+  if (!Array.isArray(overrides)) {
+    throw new Error(`Parking overrides must be an array: ${overridesPath}`);
+  }
+
+  return new Map(
+    overrides.map((override) => {
+      if (!override.id) {
+        throw new Error(`Parking override is missing an id: ${overridesPath}`);
+      }
+      return [override.id, override];
+    }),
+  );
+}
+
+function applyParkingOverride(access, override) {
+  if (!override) return access;
+
+  const next = { ...access };
+  for (const [field, value] of Object.entries(override)) {
+    if (PARKING_OVERRIDE_FIELDS.has(field)) {
+      next[field] = value;
+    }
+  }
+
+  return {
+    ...next,
+    categories: classifyAccess(next),
+    usefulnessScore: scoreAccessUsefulness(next),
+  };
+}
+
 function scoreAccessUsefulness(access) {
   return (
     access.parkingSpots +
@@ -122,7 +183,11 @@ function classifyAccess(access) {
   return categories.length > 0 ? categories : ["Quiet"];
 }
 
-export function buildAccessDataFromCsv(sourcePath = DEFAULT_SOURCE) {
+export function buildAccessDataFromCsv(
+  sourcePath = DEFAULT_SOURCE,
+  parkingOverridesPath = DEFAULT_PARKING_OVERRIDES,
+) {
+  const parkingOverrides = loadParkingOverrides(parkingOverridesPath);
   const accesses = parseCsv(sourcePath)
     .filter((row) => TOPSAIL_TOWNS.has(row.place))
     .filter((row) => String(row.water_type ?? "").trim().toLowerCase() === "ocean")
@@ -165,11 +230,7 @@ export function buildAccessDataFromCsv(sourcePath = DEFAULT_SOURCE) {
         mediaIds: [],
       };
 
-      return {
-        ...access,
-        categories: classifyAccess(access),
-        usefulnessScore: scoreAccessUsefulness(access),
-      };
+      return access;
     });
 
   const baseIdCounts = accesses.reduce((counts, access) => {
@@ -196,6 +257,18 @@ export function buildAccessDataFromCsv(sourcePath = DEFAULT_SOURCE) {
           previousFinalIdCount > 0
             ? `${preferredId}-${previousFinalIdCount + 1}`
             : preferredId,
+      };
+    })
+    .map((access) => {
+      const accessWithOverride = applyParkingOverride(
+        access,
+        parkingOverrides.get(access.id),
+      );
+
+      return {
+        ...accessWithOverride,
+        categories: classifyAccess(accessWithOverride),
+        usefulnessScore: scoreAccessUsefulness(accessWithOverride),
       };
     })
     .sort((a, b) => {

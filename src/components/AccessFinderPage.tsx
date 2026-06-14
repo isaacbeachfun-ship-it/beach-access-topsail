@@ -25,6 +25,7 @@ import {
   propertyToLookupPoint,
   searchPropertyAddresses,
 } from "../lib/propertySearch";
+import { formatParkingRateSummary } from "../lib/parkingRates";
 import type {
   AccessMatch,
   AccessMedia,
@@ -189,6 +190,9 @@ export function AccessFinderPage() {
   }
 
   const alternates = match ? rankMajorAlternates(match.access, accesses, 3) : [];
+  const parkingRateSummary = match
+    ? formatParkingRateSummary(match.access)
+    : null;
   const mediaForMatch = match
     ? media.filter((item) => item.accessId === match.access.id)
     : [];
@@ -345,6 +349,9 @@ export function AccessFinderPage() {
                 access={match.access}
                 className="finder-amenities"
               />
+              {parkingRateSummary ? (
+                <p className="parking-rate-note">{parkingRateSummary}</p>
+              ) : null}
               <a
                 className="primary-action"
                 href={match.directionsUrl}

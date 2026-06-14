@@ -1,4 +1,5 @@
 import type { BeachAccess } from "../types/access";
+import { formatParkingRateSummary } from "../lib/parkingRates";
 import { AccessFeatureList } from "./AccessFeatureIcons";
 
 interface AccessFactsProps {
@@ -14,12 +15,7 @@ export function AccessFacts({ access }: AccessFactsProps) {
     access.parkingSpots > 0
       ? `${access.parkingSpots} spaces`
       : access.parkingOptions || "No listed parking";
-  const fee =
-    access.parkingFee === true
-      ? "Paid parking"
-      : access.parkingFee === false
-        ? "No listed parking fee"
-        : "Fee unknown";
+  const rateSummary = formatParkingRateSummary(access);
 
   return (
     <section className="facts-panel" aria-labelledby="facts-heading">
@@ -29,7 +25,7 @@ export function AccessFacts({ access }: AccessFactsProps) {
         <div className="fact">
           <b>Parking</b>
           <span>{parking}</span>
-          <small>{fee}</small>
+          {rateSummary ? <small>{rateSummary}</small> : null}
         </div>
         <div className="fact">
           <b>Facilities</b>

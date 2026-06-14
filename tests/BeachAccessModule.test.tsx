@@ -26,10 +26,10 @@ const closest: BeachAccess = {
   handicapSpots: 0,
   parkingOptions: "Onsite Parking",
   parkingFee: true,
-  hourlyRate: null,
-  dailyRate: null,
-  weeklyRate: null,
-  seasonalRate: null,
+  hourlyRate: "$3.00",
+  dailyRate: "$20.00",
+  weeklyRate: "$60.00",
+  seasonalRate: "$300.00 standard season pass",
   restroom: true,
   shower: true,
   lifeguards: false,
@@ -78,6 +78,11 @@ describe("BeachAccessModule", () => {
     expect(screen.getAllByLabelText("32 parking spaces").length).toBeGreaterThan(
       0,
     );
+    expect(
+      screen.getByText(
+        "Rates: $3.00/hr, $20.00/day, $60.00/week, $300.00 standard season pass",
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByText("Bigger nearby accesses")).toBeInTheDocument();
   });
 });

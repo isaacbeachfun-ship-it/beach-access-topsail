@@ -36,4 +36,23 @@ describe("buildAccessDataFromCsv", () => {
       "north-topsail-beach-beach-access-8-540-ocean-drive",
     ]);
   });
+
+  it("applies tracked parking overrides after generating stable access IDs", () => {
+    const rows = buildAccessDataFromCsv(
+      "tests/fixtures/beach_access_sample.csv",
+      "tests/fixtures/access_parking_overrides.json",
+    );
+    const access = rows.find((row) => row.id === "surf-city-beach-access-18");
+
+    expect(access).toMatchObject({
+      parkingSpots: 127,
+      parkingFee: true,
+      hourlyRate: "$3.00",
+      dailyRate: "$20.00",
+      weeklyRate: "$60.00",
+      source: "Town of Surf City",
+      categories: ["Major", "Facilities"],
+      usefulnessScore: 185,
+    });
+  });
 });

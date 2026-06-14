@@ -346,6 +346,14 @@ html {
   margin-top: 2px;
 }
 
+.parking-rate-note {
+  margin: 10px 0 14px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .primary-action {
   display: inline-flex;
   align-items: center;

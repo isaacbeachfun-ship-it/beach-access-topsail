@@ -79,4 +79,18 @@ describe("AccessFinderPage", () => {
       screen.getByRole("heading", { name: "Topsail Beach beach accesses" }),
     ).toBeInTheDocument();
   });
+
+  test("shows parking rate details for a selected paid access", async () => {
+    render(<AccessFinderPage />);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: /Surf City305 S Shore Dr/i }),
+    );
+
+    expect(
+      await screen.findByText(
+        "Rates: $3.00/hr, $20.00/day, $60.00/week, $300.00 standard season pass; $270.00 senior/military/ETJ; $100.00 apartment/mobile-home. Timing: Mar 1-Oct 31, 9am-6pm",
+      ),
+    ).toBeInTheDocument();
+  });
 });
