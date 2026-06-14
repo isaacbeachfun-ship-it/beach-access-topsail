@@ -2787,11 +2787,11 @@
     "longitude": -77.5168064,
     "waterType": "Ocean",
     "accessType": "Beach",
-    "parkingSpots": 0,
-    "handicapSpots": null,
-    "parkingOptions": null,
-    "parkingFee": null,
-    "hourlyRate": null,
+    "parkingSpots": 12,
+    "handicapSpots": 0,
+    "parkingOptions": "On-Street Parking",
+    "parkingFee": true,
+    "hourlyRate": "$5/hr (Mar-Oct 9am-6pm)",
     "dailyRate": null,
     "weeklyRate": null,
     "seasonalRate": null,
@@ -2805,13 +2805,13 @@
     "vehicleAccess": false,
     "duneWalkover": true,
     "source": "Town of Surf City",
-    "sourceDetail": "Official public beach access list",
-    "comments": "",
+    "sourceDetail": "Official public beach access list + interactive parking map",
+    "comments": "Parking map layer Parking Lots A lists Beach Access Number 4 at 1804-1808 N Shore Dr with 12 spaces.",
     "mediaIds": [],
     "categories": [
       "Quiet"
     ],
-    "usefulnessScore": 0
+    "usefulnessScore": 12
   },
   {
     "id": "surf-city-beach-access-5",
