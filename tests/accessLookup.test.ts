@@ -132,6 +132,52 @@ describe("findNearestAccessByWalkingRoute", () => {
     expect(fetcher).not.toHaveBeenCalled();
   });
 
+  it("measures Google walking routes to the official access point while linking directions to the beach-path target", async () => {
+    let requestedDestination: { latitude: number; longitude: number } | null =
+      null;
+
+    const match = await findNearestAccessByWalkingRoute(
+      {
+        latitude: 34.435709,
+        longitude: -77.531968,
+        address: "204a Mandalay Ct",
+      },
+      [
+        {
+          ...baseAccess,
+          id: "surf-city-beach-access-10",
+          latitude: 34.4356637,
+          longitude: -77.5279198,
+          routeLatitude: 34.4352826,
+          routeLongitude: -77.5274577,
+        },
+      ],
+      {
+        apiKey: "test-key",
+        fetcher: async (_url, init) => {
+          requestedDestination = JSON.parse(String(init?.body)).destination
+            .location.latLng;
+
+          return new Response(
+            JSON.stringify({
+              routes: [{ distanceMeters: 512 }],
+            }),
+            { status: 200 },
+          );
+        },
+      },
+    );
+
+    expect(requestedDestination).toEqual({
+      latitude: 34.4356637,
+      longitude: -77.5279198,
+    });
+    expect(match.distanceFeet).toBe(1680);
+    expect(match.directionsUrl).toContain(
+      "destination=34.4352826%2C-77.5274577",
+    );
+  });
+
   it("widens the candidate pool when the closest-by-air accesses need long detours", async () => {
     const origin = {
       latitude: 34.43,
@@ -298,6 +344,21 @@ describe("buildDirectionsUrl", () => {
       ),
     ).toBe(
       "https://www.google.com/maps/dir/?api=1&origin=34.43%2C-77.53&destination=34.436526%2C-77.526076&travelmode=walking",
+    );
+  });
+
+  it("uses the guest route target when an access has a beach-path endpoint", () => {
+    expect(
+      buildDirectionsUrl(
+        { latitude: 34.43, longitude: -77.53, address: "Rental" },
+        {
+          ...baseAccess,
+          routeLatitude: 34.4352826,
+          routeLongitude: -77.5274577,
+        },
+      ),
+    ).toBe(
+      "https://www.google.com/maps/dir/?api=1&origin=34.43%2C-77.53&destination=34.4352826%2C-77.5274577&travelmode=walking",
     );
   });
 });

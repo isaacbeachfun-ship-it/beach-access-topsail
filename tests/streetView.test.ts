@@ -46,4 +46,28 @@ describe("street view media helpers", () => {
     expect(url.searchParams.get("source")).toBe("outdoor");
     expect(url.searchParams.get("key")).toBe("test-key");
   });
+
+  test("aims Street View stills at a beach-path target when one is available", () => {
+    const still: StreetViewStill = {
+      state: "AVAILABLE",
+      panoId: "pano-123",
+      latitude: 34.43564986719081,
+      longitude: -77.5279434365982,
+      heading: 55,
+      pitch: 0,
+      fov: 70,
+    };
+
+    const url = new URL(
+      buildStreetViewStillUrl(still, "test-key", {
+        latitude: 34.4356637,
+        longitude: -77.5279198,
+        routeLatitude: 34.4352826,
+        routeLongitude: -77.5274577,
+      }),
+    );
+
+    expect(Number(url.searchParams.get("heading"))).toBeGreaterThan(120);
+    expect(Number(url.searchParams.get("heading"))).toBeLessThan(150);
+  });
 });

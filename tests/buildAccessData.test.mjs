@@ -50,6 +50,8 @@ describe("buildAccessDataFromCsv", () => {
       hourlyRate: "$3.00",
       dailyRate: "$20.00",
       weeklyRate: "$60.00",
+      routeLatitude: 34.4352826,
+      routeLongitude: -77.5274577,
       source: "Town of Surf City",
       categories: ["Major", "Facilities"],
       usefulnessScore: 185,

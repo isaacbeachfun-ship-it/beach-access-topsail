@@ -8,6 +8,7 @@ import {
   getMapMarkerFeatures,
   type AccessFeature,
 } from "../lib/accessFeatures";
+import { getAccessRoutePoint } from "../lib/accessPoint";
 import type {
   AccessMatch,
   BeachAccess,
@@ -29,6 +30,11 @@ interface AccessMapProps {
 }
 
 const TOPSAIL_CENTER = { latitude: 34.449, longitude: -77.516 };
+
+function toLngLat(access: BeachAccess): [number, number] {
+  const target = getAccessRoutePoint(access);
+  return [target.longitude, target.latitude];
+}
 
 function createFeatureToken(feature: AccessFeature): HTMLSpanElement {
   const token = document.createElement("span");
@@ -139,7 +145,7 @@ export function AccessMap({
               getMapMarkerFeatures(access, 2),
             ),
           })
-            .setLngLat([access.longitude, access.latitude])
+            .setLngLat(toLngLat(access))
             .setPopup(new maplibregl.Popup().setText(access.name))
             .addTo(activeMap),
         );
@@ -154,7 +160,7 @@ export function AccessMap({
               getMapMarkerFeatures(access),
             ),
           })
-            .setLngLat([access.longitude, access.latitude])
+            .setLngLat(toLngLat(access))
             .setPopup(new maplibregl.Popup().setText(`Major: ${access.name}`))
             .addTo(activeMap),
         );
@@ -172,7 +178,7 @@ export function AccessMap({
       if (closest) {
         markers.push(
           new maplibregl.Marker({ color: "#2d9aae" })
-            .setLngLat([closest.access.longitude, closest.access.latitude])
+            .setLngLat(toLngLat(closest.access))
             .setPopup(
               new maplibregl.Popup().setText(`Closest: ${closest.access.name}`),
             )
@@ -183,7 +189,7 @@ export function AccessMap({
       markers.push(
         ...alternates.map((alternate) =>
           new maplibregl.Marker({ color: "#d99a2b" })
-            .setLngLat([alternate.access.longitude, alternate.access.latitude])
+            .setLngLat(toLngLat(alternate.access))
             .setPopup(
               new maplibregl.Popup().setText(`Major: ${alternate.access.name}`),
             )
@@ -197,7 +203,7 @@ export function AccessMap({
       } else if (activeMapView === "other") {
         const bounds = new maplibregl.LngLatBounds();
         accesses.forEach((access) =>
-          bounds.extend([access.longitude, access.latitude]),
+          bounds.extend(toLngLat(access)),
         );
         if (accesses.length > 0) {
           activeMap.fitBounds(bounds, { padding: 54, maxZoom: 11 });
@@ -214,12 +220,9 @@ export function AccessMap({
           bounds.extend([activeOrigin.longitude, activeOrigin.latitude]);
         }
         if (selectedRouteAccess) {
-          bounds.extend([
-            selectedRouteAccess.longitude,
-            selectedRouteAccess.latitude,
-          ]);
+          bounds.extend(toLngLat(selectedRouteAccess));
         } else if (closest) {
-          bounds.extend([closest.access.longitude, closest.access.latitude]);
+          bounds.extend(toLngLat(closest.access));
         }
         const boundAccesses = getCameraFitAccesses(
           accesses,
@@ -227,7 +230,7 @@ export function AccessMap({
           alternates,
         );
         boundAccesses.forEach((access) =>
-          bounds.extend([access.longitude, access.latitude]),
+          bounds.extend(toLngLat(access)),
         );
         activeMap.fitBounds(bounds, { padding: 58, maxZoom: 17 });
       }

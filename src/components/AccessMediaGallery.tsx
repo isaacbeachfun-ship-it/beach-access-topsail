@@ -47,7 +47,7 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
   const apiKey = getGoogleMapsApiKey();
   const hasApiKey = Boolean(apiKey);
   const streetViewUrl = streetViewStill
-    ? buildStreetViewStillUrl(streetViewStill, apiKey)
+    ? buildStreetViewStillUrl(streetViewStill, apiKey, access)
     : "";
   const isNearbyAerialView = aerialRecord?.addressSource === "nearby-property";
   const aerialBadge = isNearbyAerialView

@@ -5,6 +5,10 @@ import {
   formatDistanceFeet,
 } from "../lib/accessLookup";
 import {
+  getAccessRoutePoint,
+  type AccessPointInput,
+} from "../lib/accessPoint";
+import {
   getCameraFitAccesses,
   getMapAccessMarkerGroups,
 } from "../lib/mapAccessMarkers";
@@ -129,11 +133,9 @@ function createInfoContent(
   return wrapper;
 }
 
-function toLatLngLiteral(point: {
-  latitude: number;
-  longitude: number;
-}): google.maps.LatLngLiteral {
-  return { lat: point.latitude, lng: point.longitude };
+function toLatLngLiteral(point: AccessPointInput): google.maps.LatLngLiteral {
+  const target = getAccessRoutePoint(point);
+  return { lat: target.latitude, lng: target.longitude };
 }
 
 export function GoogleAccessMap({

@@ -23,6 +23,8 @@ export interface BeachAccess {
   address: string | null;
   latitude: number;
   longitude: number;
+  routeLatitude?: number | null;
+  routeLongitude?: number | null;
   waterType: string;
   accessType: string;
   parkingSpots: number;

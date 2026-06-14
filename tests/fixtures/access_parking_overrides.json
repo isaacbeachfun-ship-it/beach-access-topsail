@@ -7,6 +7,8 @@
     "dailyRate": "$20.00",
     "weeklyRate": "$60.00",
     "seasonalRate": "$300.00 standard season pass",
+    "routeLatitude": 34.4352826,
+    "routeLongitude": -77.5274577,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
     "comments": "Official GIS linked parking override fixture."

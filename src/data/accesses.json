@@ -1679,8 +1679,10 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map.",
+    "comments": "No designated parking linked in Surf City GIS parking map. Guest route/photo target adjusted toward the beach-path endpoint instead of the street-side inventory point.",
     "mediaIds": [],
+    "routeLatitude": 34.4352826,
+    "routeLongitude": -77.5274577,
     "categories": [
       "Facilities"
     ],

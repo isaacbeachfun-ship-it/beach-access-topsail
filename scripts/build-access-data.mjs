@@ -24,6 +24,8 @@ const PARKING_OVERRIDE_FIELDS = new Set([
   "dailyRate",
   "weeklyRate",
   "seasonalRate",
+  "routeLatitude",
+  "routeLongitude",
   "restroom",
   "shower",
   "lifeguards",

@@ -1090,6 +1090,8 @@
     "dailyRate": null,
     "weeklyRate": null,
     "seasonalRate": null,
+    "routeLatitude": 34.4352826,
+    "routeLongitude": -77.5274577,
     "restroom": true,
     "shower": false,
     "lifeguards": false,
@@ -1101,7 +1103,7 @@
     "duneWalkover": true,
     "source": "Town of Surf City",
     "sourceDetail": "Town public access list + Surf City GIS parking map + 2026 visitor/season parking pages",
-    "comments": "No designated parking linked in Surf City GIS parking map."
+    "comments": "No designated parking linked in Surf City GIS parking map. Guest route/photo target adjusted toward the beach-path endpoint instead of the street-side inventory point."
   },
   {
     "id": "surf-city-beach-access-11",

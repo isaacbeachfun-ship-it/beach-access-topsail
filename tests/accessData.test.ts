@@ -111,6 +111,21 @@ describe("access data", () => {
     }
   });
 
+  it("routes Surf City Beach Access #10 to the beach path instead of the road-side inventory point", () => {
+    const access = accesses.find(
+      (row) => row.id === "surf-city-beach-access-10",
+    );
+
+    expect(access).toMatchObject({
+      latitude: 34.4356637,
+      longitude: -77.5279198,
+      routeLatitude: 34.4352826,
+      routeLongitude: -77.5274577,
+    });
+    expect(access!.routeLatitude).toBeLessThan(access!.latitude);
+    expect(access!.routeLongitude).toBeGreaterThan(access!.longitude);
+  });
+
   it("keeps Topsail Beach paid parking limited to the official oceanfront paid accesses", () => {
     const paidAccessNumbers = new Set([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
 

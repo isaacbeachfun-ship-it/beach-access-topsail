@@ -1,4 +1,5 @@
 import { classifyAccess, scoreAccessUsefulness } from "./accessScoring";
+import { getAccessRoutePoint } from "./accessPoint";
 import type { AccessMatch, BeachAccess } from "../types/access";
 
 export interface LookupPoint {
@@ -67,10 +68,11 @@ export function buildDirectionsUrl(
   origin: LookupPoint,
   access: BeachAccess,
 ): string {
+  const destination = getAccessRoutePoint(access);
   const params = new URLSearchParams({
     api: "1",
     origin: `${origin.latitude},${origin.longitude}`,
-    destination: `${access.latitude},${access.longitude}`,
+    destination: `${destination.latitude},${destination.longitude}`,
     travelmode: "walking",
   });
 
@@ -82,7 +84,7 @@ export function toAccessMatch(
   access: BeachAccess,
   isRouteDistance = false,
 ): AccessMatch {
-  const distance = distanceFeet(origin, access);
+  const distance = distanceFeet(origin, getAccessRoutePoint(access));
 
   return {
     access,
@@ -235,9 +237,10 @@ export function rankMajorAlternates(
   accesses: BeachAccess[],
   limit = 3,
 ): AccessMatch[] {
+  const nearestRoutePoint = getAccessRoutePoint(nearest);
   const origin = {
-    latitude: nearest.latitude,
-    longitude: nearest.longitude,
+    latitude: nearestRoutePoint.latitude,
+    longitude: nearestRoutePoint.longitude,
     address: nearest.address || nearest.name,
   };
 
