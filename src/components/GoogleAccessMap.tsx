@@ -55,6 +55,31 @@ interface GoogleAccessMapProps {
 const TOPSAIL_CENTER = { lat: 34.449, lng: -77.516 };
 
 let configuredGoogleMapsKey: string | null = null;
+const googleMapsAuthFailureSubscribers = new Set<() => void>();
+let originalGoogleMapsAuthFailure: (() => void) | undefined;
+
+function dispatchGoogleMapsAuthFailure() {
+  [...googleMapsAuthFailureSubscribers].forEach((subscriber) => subscriber());
+}
+
+function subscribeToGoogleMapsAuthFailure(subscriber: () => void) {
+  if (googleMapsAuthFailureSubscribers.size === 0) {
+    originalGoogleMapsAuthFailure = window.gm_authFailure;
+    window.gm_authFailure = dispatchGoogleMapsAuthFailure;
+  }
+
+  googleMapsAuthFailureSubscribers.add(subscriber);
+
+  return () => {
+    googleMapsAuthFailureSubscribers.delete(subscriber);
+    if (googleMapsAuthFailureSubscribers.size > 0) return;
+
+    if (window.gm_authFailure === dispatchGoogleMapsAuthFailure) {
+      window.gm_authFailure = originalGoogleMapsAuthFailure;
+    }
+    originalGoogleMapsAuthFailure = undefined;
+  };
+}
 
 export function getGoogleMapsLoadErrorMessage(_error: unknown) {
   return "Google Maps could not load for this site.";
@@ -207,7 +232,6 @@ export function GoogleAccessMap({
     let infoWindow: google.maps.InfoWindow | null = null;
     const routeOverlays: GoogleRouteOverlay[] = [];
     const markers: google.maps.marker.AdvancedMarkerElement[] = [];
-    const previousAuthFailure = window.gm_authFailure;
     const handleAuthFailure = () => {
       if (!isMounted) return;
       hasAuthFailed = true;
@@ -220,19 +244,17 @@ export function GoogleAccessMap({
       setRouteStatus(null);
       setIsLoading(false);
     };
+    const unsubscribeAuthFailure =
+      subscribeToGoogleMapsAuthFailure(handleAuthFailure);
     const cleanup = () => {
       isMounted = false;
-      if (window.gm_authFailure === handleAuthFailure) {
-        window.gm_authFailure = previousAuthFailure;
-      }
+      unsubscribeAuthFailure();
       infoWindow?.close();
       markers.forEach((marker) => {
         marker.map = null;
       });
       routeOverlays.forEach((overlay) => overlay.setMap(null));
     };
-
-    window.gm_authFailure = handleAuthFailure;
 
     if (import.meta.env.MODE === "test") {
       setIsLoading(false);
