@@ -1,47 +1,34 @@
 import { AccessFinderPage } from "./components/AccessFinderPage";
-import { BeachAccessModule } from "./components/BeachAccessModule";
 import accessesData from "./data/accesses.json";
-import mediaCandidates from "./data/mediaCandidates.json";
-import { sampleRentals } from "./data/sampleRentals";
-import { findNearestAccess, rankMajorAlternates } from "./lib/accessLookup";
-import type { AccessMedia, BeachAccess } from "./types/access";
+import type { BeachAccess } from "./types/access";
 
 const accesses = accessesData as BeachAccess[];
-const media = mediaCandidates as AccessMedia[];
 
 export default function App() {
-  const rental = sampleRentals[0];
-  const closest = findNearestAccess(
-    {
-      latitude: rental.latitude,
-      longitude: rental.longitude,
-      address: rental.address,
-    },
-    accesses,
-  );
-  const alternates = rankMajorAlternates(closest.access, accesses, 3);
-  const mediaForClosest = media.filter((item) => item.accessId === closest.access.id);
-
   return (
     <main className="app-shell">
-      <nav className="top-nav" aria-label="Treasure demo navigation">
+      <nav className="top-nav" aria-label="Topsail Beach Access navigation">
         <a className="brand" href="#finder">
-          Treasure Vacation Rentals
+          Topsail Beach Access
         </a>
         <div className="nav-links">
           <a href="#finder">Find Access</a>
-          <a href="#example-rental">Example Rental</a>
+          <a href="https://carolinacoastpricing.com">Carolina Coast Pricing</a>
         </div>
       </nav>
       <section className="page-hero">
-        <p className="eyebrow">Topsail Island, North Carolina</p>
+        <a
+          className="eyebrow brand-attribution"
+          href="https://carolinacoastpricing.com"
+        >
+          A free tool from Carolina Coast Pricing
+        </a>
         <h1>
           Find the beach access closest to your <span>Topsail stay.</span>
         </h1>
         <p>
-          A Treasure-branded prototype for helping guests type an address, see
-          the nearest public access, and spot the bigger nearby options with
-          better parking and facilities.
+          Search any Topsail Island address, see the closest public beach access,
+          and compare larger nearby options with parking and facilities.
         </p>
         <div className="hero-actions">
           <a className="hero-cta" href="#finder">
@@ -53,22 +40,6 @@ export default function App() {
         </div>
       </section>
       <AccessFinderPage />
-      <BeachAccessModule
-        sectionId="example-rental"
-        eyebrow="Example rental detail"
-        heading="Example: Your Beach Path"
-        intro={
-          <>
-            This sample uses <strong>{rental.name}</strong> only to show how the
-            feature can live on a Treasure listing page. Guests starting from
-            the standalone page should use the address finder above.
-          </>
-        }
-        rental={rental}
-        closestAccess={closest.access}
-        alternates={alternates.map((alternate) => alternate.access)}
-        media={mediaForClosest}
-      />
     </main>
   );
 }

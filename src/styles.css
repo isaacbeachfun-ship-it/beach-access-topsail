@@ -112,6 +112,17 @@ html {
   text-transform: uppercase;
 }
 
+.brand-attribution {
+  display: inline-flex;
+  width: fit-content;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 4px;
+}
+
+.brand-attribution:hover {
+  color: var(--parrot-teal);
+}
+
 .page-hero h1 {
   max-width: 800px;
   margin: 0;
