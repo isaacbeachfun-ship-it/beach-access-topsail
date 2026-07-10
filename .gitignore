@@ -1,5 +1,6 @@
 .superpowers/
 .worktrees/
+.vercel/
 artifacts/
 dist/
 node_modules/
