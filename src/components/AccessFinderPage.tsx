@@ -38,7 +38,9 @@ import { AccessMapSection } from "./AccessMapSection";
 import { AccessMediaGallery } from "./AccessMediaGallery";
 
 const accesses = accessesData as BeachAccess[];
-const media = mediaCandidatesData as AccessMedia[];
+const media = (mediaCandidatesData as AccessMedia[]).filter(
+  (item) => item.status !== "prototype-only",
+);
 const SUGGESTION_LIST_ID = "property-address-suggestions";
 const townAccessCounts = accesses.reduce<Record<BeachAccess["town"], number>>(
   (counts, access) => {
@@ -216,12 +218,12 @@ export function AccessFinderPage() {
           <div className="finder-copy">
             <p className="eyebrow">Beach Access Finder</p>
             <h2 id="finder-heading">
-              Type an address. Treasure finds the beach path.
+              Type an address. We&rsquo;ll find the beach path.
             </h2>
             <p>
-              Use a house address or pick one of the sample rental addresses.
-              Results prioritize the closest public path, then nearby accesses
-              with better parking and facilities.
+              Use a house address or pick one of the sample addresses. Results
+              prioritize the closest public path, then nearby accesses with
+              better parking and facilities.
             </p>
           </div>
           <div className="finder-search-shell">
@@ -437,9 +439,9 @@ export function AccessFinderPage() {
             <p>
               North Topsail Beach has{" "}
               {townAccessCounts["North Topsail Beach"].toLocaleString()} mapped
-              public ocean accesses in this prototype, including quiet Island
-              Drive walkovers and larger county-style parking options such as
-              Onslow Co. Beach Access #2.
+              public ocean accesses, including quiet Island Drive walkovers and
+              larger county-style parking options such as Onslow Co. Beach
+              Access #2.
             </p>
           </article>
           <article>
@@ -456,9 +458,9 @@ export function AccessFinderPage() {
             <p>
               Topsail Beach has{" "}
               {townAccessCounts["Topsail Beach"].toLocaleString()} mapped public
-              ocean accesses in this prototype, useful for visitors comparing
-              North Anderson Boulevard walkovers, small lots, and the closest
-              route from a rental address.
+              ocean accesses, useful for visitors comparing North Anderson
+              Boulevard walkovers, small lots, and the closest route from a
+              rental address.
             </p>
           </article>
         </div>

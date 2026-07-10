@@ -4,7 +4,7 @@ import App from "../src/App";
 
 describe("App", () => {
   it("renders the public Topsail Beach Access shell", () => {
-    render(<App />);
+    const { container } = render(<App />);
 
     expect(
       screen.getByRole("navigation", {
@@ -24,10 +24,8 @@ describe("App", () => {
         name: "Find the beach access closest to your Topsail stay.",
       }),
     ).toBeInTheDocument();
-    expect(
-      screen.queryByText("Treasure Vacation Rentals"),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText("prototype")).not.toBeInTheDocument();
-    expect(screen.queryByText("Example Rental")).not.toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/Treasure Vacation Rentals/i);
+    expect(container.textContent).not.toMatch(/prototype/i);
+    expect(container.textContent).not.toMatch(/Example Rental/i);
   });
 });

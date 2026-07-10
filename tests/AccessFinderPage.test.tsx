@@ -3,6 +3,19 @@ import { describe, expect, test } from "vitest";
 import { AccessFinderPage } from "../src/components/AccessFinderPage";
 
 describe("AccessFinderPage", () => {
+  test("uses public launch copy and excludes prototype-only media", () => {
+    const { container } = render(<AccessFinderPage />);
+
+    expect(
+      screen.getByRole("heading", {
+        name: "Type an address. We’ll find the beach path.",
+      }),
+    ).toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/Treasure/i);
+    expect(container.textContent).not.toMatch(/prototype/i);
+    expect(container.textContent).not.toMatch(/Prototype only/i);
+  });
+
   test("uses a non-oceanfront-style property prompt instead of 4444 Island Drive", () => {
     render(<AccessFinderPage />);
 
