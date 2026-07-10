@@ -199,10 +199,10 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
         </div>
       ) : (
         <div className="media-placeholder">
-          <p>No access-specific media yet.</p>
+          <p>Street-level imagery is not available for this access yet.</p>
           <span>
-            Use official, owned, embedded, or replacement-ready media before
-            launch.
+            Use the interactive map or open walking directions to preview the
+            route before you go.
           </span>
         </div>
       )}

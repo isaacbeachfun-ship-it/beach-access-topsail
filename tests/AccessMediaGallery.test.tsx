@@ -213,9 +213,36 @@ describe("AccessMediaGallery", () => {
     );
 
     expect(
-      await screen.findByText("No access-specific media yet."),
+      await screen.findByText(
+        "Street-level imagery is not available for this access yet.",
+      ),
     ).toBeInTheDocument();
     expect(screen.queryByText("Google Street View")).not.toBeInTheDocument();
     expect(mocks.lookupAerialView).not.toHaveBeenCalled();
+  });
+
+  test("shows guest-facing guidance instead of internal launch copy when no media is available", async () => {
+    render(
+      <AccessMediaGallery
+        access={{ ...access, id: "access-with-failed-video-no-still" }}
+        media={[]}
+      />,
+    );
+
+    expect(
+      await screen.findByText(
+        "Street-level imagery is not available for this access yet.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Use the interactive map or open walking directions to preview the route before you go.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/before launch/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/replacement-ready/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("No access-specific media yet."),
+    ).not.toBeInTheDocument();
   });
 });
