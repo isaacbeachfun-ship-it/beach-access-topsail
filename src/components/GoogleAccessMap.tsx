@@ -34,6 +34,12 @@ import type {
 import { AccessFeatureLegend } from "./AccessFeatureIcons";
 import { MapViewControls, type MapViewMode } from "./MapViewControls";
 
+declare global {
+  interface Window {
+    gm_authFailure?: () => void;
+  }
+}
+
 interface GoogleAccessMapProps {
   rental?: RentalSample;
   origin?: MapLocation;
@@ -190,16 +196,44 @@ export function GoogleAccessMap({
 
   useEffect(() => {
     if (!mapNode.current) return;
-    if (import.meta.env.MODE === "test") {
-      setIsLoading(false);
-      return;
-    }
 
     let isMounted = true;
+    let hasAuthFailed = false;
     let map: google.maps.Map | null = null;
     let infoWindow: google.maps.InfoWindow | null = null;
     const routeOverlays: GoogleRouteOverlay[] = [];
     const markers: google.maps.marker.AdvancedMarkerElement[] = [];
+    const previousAuthFailure = window.gm_authFailure;
+    const handleAuthFailure = () => {
+      if (!isMounted) return;
+      hasAuthFailed = true;
+      infoWindow?.close();
+      markers.forEach((marker) => {
+        marker.map = null;
+      });
+      routeOverlays.forEach((overlay) => overlay.setMap(null));
+      setLoadError("Google Maps authentication failed for this site.");
+      setRouteStatus(null);
+      setIsLoading(false);
+    };
+    const cleanup = () => {
+      isMounted = false;
+      if (window.gm_authFailure === handleAuthFailure) {
+        window.gm_authFailure = previousAuthFailure;
+      }
+      infoWindow?.close();
+      markers.forEach((marker) => {
+        marker.map = null;
+      });
+      routeOverlays.forEach((overlay) => overlay.setMap(null));
+    };
+
+    window.gm_authFailure = handleAuthFailure;
+
+    if (import.meta.env.MODE === "test") {
+      setIsLoading(false);
+      return cleanup;
+    }
 
     async function initializeMap() {
       const apiKey = getGoogleMapsApiKey();
@@ -229,7 +263,7 @@ export function GoogleAccessMap({
           importLibrary("routes"),
         ]);
 
-        if (!isMounted || !mapNode.current) return;
+        if (!isMounted || hasAuthFailed || !mapNode.current) return;
 
         map = new Map(mapNode.current, {
           center: activeOrigin ? toLatLngLiteral(activeOrigin) : TOPSAIL_CENTER,
@@ -393,9 +427,9 @@ export function GoogleAccessMap({
             routesLibrary: routesLibrary as google.maps.RoutesLibrary,
           });
           routeOverlays.push(...routeResult.overlays);
-          if (!isMounted) {
-            // The effect was torn down while the route request was in
-            // flight; remove the late-drawn overlays so they cannot linger.
+          if (!isMounted || hasAuthFailed) {
+            // The effect was torn down or authentication failed while the
+            // route request was in flight; remove late-drawn overlays.
             routeOverlays.forEach((overlay) => overlay.setMap(null));
             return;
           }
@@ -435,9 +469,9 @@ export function GoogleAccessMap({
           map.fitBounds(bounds, window.innerWidth < 640 ? 46 : 68);
         }
 
-        if (isMounted) setIsLoading(false);
+        if (isMounted && !hasAuthFailed) setIsLoading(false);
       } catch (error) {
-        if (!isMounted) return;
+        if (!isMounted || hasAuthFailed) return;
         setLoadError(
           error instanceof Error
             ? error.message
@@ -450,14 +484,7 @@ export function GoogleAccessMap({
 
     void initializeMap();
 
-    return () => {
-      isMounted = false;
-      infoWindow?.close();
-      markers.forEach((marker) => {
-        marker.map = null;
-      });
-      routeOverlays.forEach((overlay) => overlay.setMap(null));
-    };
+    return cleanup;
   }, [
     accesses,
     activeMapView,
