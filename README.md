@@ -1,6 +1,9 @@
-# Treasure Beach Access Finder
+# Topsail Beach Access
 
-Treasure Vacation Rentals prototype for showing Topsail Island guests the closest public beach access, bigger nearby alternatives, parking, amenities, accessibility, directions, and clearly labeled prototype media.
+Public Topsail Island beach-access finder from Carolina Coast Pricing. Guests can
+search a Topsail stay address, find the closest public access, compare larger
+nearby options, and open walking directions. The page is intentionally
+password-free and is served directly from TopsailPricing.com.
 
 ## Data Sources
 
@@ -44,18 +47,18 @@ Enable these Google Cloud APIs:
 - Places API only if Google Places fallback is added later
 - Street View Static API only if Street View thumbnails are added later
 
-Restrict the API key before putting it on GitHub Pages:
+Restrict the API key before using it in production:
 
 - Application restriction: HTTP referrers
 - Referrers: `http://localhost/*`, `http://127.0.0.1/*`,
-  `https://isaacbeachfun-ship-it.github.io/*`, and the future Treasure domain
-- API restriction for this prototype: Maps JavaScript API, Geocoding API,
+  `https://topsailpricing.com/*`, and `https://www.topsailpricing.com/*`
+- API restriction for this deployment: Maps JavaScript API, Geocoding API,
   Aerial View API, and Routes API
 
 If `VITE_GOOGLE_MAPS_API_KEY` is missing or rejected, the app falls back to the
-existing MapLibre/OpenStreetMap panel. If `VITE_GOOGLE_MAPS_MAP_ID` is missing,
-the prototype uses Google's `DEMO_MAP_ID`, but launch should use a real
-JavaScript map ID from the same Cloud project.
+MapLibre/OpenStreetMap panel. This fallback is also used when Google rejects a
+browser referrer or otherwise reports a Maps authentication failure, so the
+finder remains usable without a Google map.
 
 The Aerial View card only calls `lookupVideo` for the currently displayed
 access. It does not call `renderVideo`, download videos, store short-lived
@@ -78,29 +81,42 @@ they are short-lived Google media URLs and should be requested at display time.
 
 ## Shareable Deployment
 
-Default public prototype URL after deployment:
+Production is live at [https://topsailpricing.com/](https://topsailpricing.com/).
+The `www.topsailpricing.com` host serves the same public finder. Both hosts are
+attached to the dedicated Vercel project `topsail-beach-access`; there is no
+login or password wall.
 
-https://isaacbeachfun-ship-it.github.io/beach-access-topsail/
+The current production deployment is `dpl_FkJLG1wQh8mxQc3t7tUfjMuAVHVV`.
+CarolinaCoastPricing.com remains on its separate pricing application and was
+not changed. The previous deployment remains the rollback target:
 
-The app is deployed as a static GitHub Pages site from the `gh-pages` branch because the available GitHub credential does not have `workflow` scope for Actions-based deployment. The Vite production build uses the `/beach-access-topsail/` base path when `GITHUB_PAGES=true`. The deployed branch is built from committed `src/data/accesses.json`; regenerate that file locally before committing when the source CSV changes.
+`https://topsail-pricing-p92vzptn6-isaacbeachfun-9768s-projects.vercel.app`
+
+The repository's GitHub Pages deployment is retained only as a historical
+fallback. The Vite production build uses the `/beach-access-topsail/` base path
+when `GITHUB_PAGES=true`. Regenerate `src/data/accesses.json` locally before
+committing source CSV changes.
 
 ## Media Policy
 
-Prototype media may include reference visuals, but every non-owned or non-official asset must be labeled as `prototype-only` or `needs-replacement` before public launch. Do not ship downloaded Google Street View screenshots or scraped copyrighted photos as owned assets. Use owned photography, official reusable imagery, generated placeholders, or properly attributed embeds/API surfaces for launch.
+Every non-owned or non-official reference asset remains labeled as
+`prototype-only` or `needs-replacement`. Do not ship downloaded Google Street
+View screenshots or scraped copyrighted photos as owned assets. Use owned
+photography, official reusable imagery, generated placeholders, or properly
+attributed API surfaces for the public experience.
 
-## Current Prototype Scope
+## Public Scope
 
-- Rental-detail "Your Beach Path" module.
-- Major nearby access highlights.
-- Google Maps island view when configured, with MapLibre/OpenStreetMap fallback.
-- Standalone address finder with sample-rental fallback and Nominatim lookup.
+- Address-first public beach-access finder.
+- Closest and major nearby access highlights.
+- Google Maps when configured, with a MapLibre/OpenStreetMap fallback for
+  missing or rejected Google authentication.
+- Walking directions, parking, facilities, accessibility, and route context.
 - Static generated data from the canonical CSV.
 - No Supabase writes.
 
-## Public URL
+## Launch Verification
 
-GitHub Pages target:
-
-https://isaacbeachfun-ship-it.github.io/beach-access-topsail/
-
-If the URL is not live yet, rebuild with `GITHUB_PAGES=true npm run build`, publish `dist/` to the `gh-pages` branch, and confirm the repository Pages source is set to `gh-pages` `/`.
+The public launch was verified with 22 test files and 98 tests, plus a passing
+Vite production build. Desktop and mobile checks covered the public shell,
+address lookup, map fallback, and the three Topsail towns.
