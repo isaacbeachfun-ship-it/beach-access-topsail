@@ -1,8 +1,40 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import { AccessFinderPage } from "../src/components/AccessFinderPage";
+import styles from "../src/styles.css?raw";
+import {
+  AccessFinderPage,
+  isLaunchSafeMedia,
+} from "../src/components/AccessFinderPage";
+import type { AccessMedia } from "../src/types/access";
+
+function createMedia(status: AccessMedia["status"]): AccessMedia {
+  return {
+    id: `media-${status}`,
+    accessId: "test-access",
+    title: "Test media",
+    url: "https://example.com/media.jpg",
+    sourceLabel: "Test source",
+    sourceUrl: "https://example.com",
+    status,
+    kind: "photo",
+  };
+}
 
 describe("AccessFinderPage", () => {
+  test("accepts launch-safe media", () => {
+    expect(isLaunchSafeMedia(createMedia("launch-safe"))).toBe(true);
+  });
+
+  test("rejects media that is not launch-safe", () => {
+    expect(isLaunchSafeMedia(createMedia("prototype-only"))).toBe(false);
+    expect(isLaunchSafeMedia(createMedia("needs-replacement"))).toBe(false);
+  });
+
+  test("does not hotlink prototype Treasure media in the page hero", () => {
+    expect(styles).not.toContain("treasure-rentals-website-mockup");
+    expect(styles).not.toContain("isaacbeachfun-ship-it.github.io");
+  });
+
   test("uses public launch copy and excludes prototype-only media", () => {
     const { container } = render(<AccessFinderPage />);
 

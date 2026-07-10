@@ -38,9 +38,12 @@ import { AccessMapSection } from "./AccessMapSection";
 import { AccessMediaGallery } from "./AccessMediaGallery";
 
 const accesses = accessesData as BeachAccess[];
-const media = (mediaCandidatesData as AccessMedia[]).filter(
-  (item) => item.status !== "prototype-only",
-);
+
+export function isLaunchSafeMedia(item: AccessMedia) {
+  return item.status === "launch-safe";
+}
+
+const media = (mediaCandidatesData as AccessMedia[]).filter(isLaunchSafeMedia);
 const SUGGESTION_LIST_ID = "property-address-suggestions";
 const townAccessCounts = accesses.reduce<Record<BeachAccess["town"], number>>(
   (counts, access) => {
