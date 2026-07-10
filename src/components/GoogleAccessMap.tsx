@@ -56,6 +56,10 @@ const TOPSAIL_CENTER = { lat: 34.449, lng: -77.516 };
 
 let configuredGoogleMapsKey: string | null = null;
 
+export function getGoogleMapsLoadErrorMessage(_error: unknown) {
+  return "Google Maps could not load for this site.";
+}
+
 function configureGoogleMaps(apiKey: string, mapId: string) {
   if (configuredGoogleMapsKey) {
     if (configuredGoogleMapsKey !== apiKey) {
@@ -472,11 +476,7 @@ export function GoogleAccessMap({
         if (isMounted && !hasAuthFailed) setIsLoading(false);
       } catch (error) {
         if (!isMounted || hasAuthFailed) return;
-        setLoadError(
-          error instanceof Error
-            ? error.message
-            : "Google Maps could not load.",
-        );
+        setLoadError(getGoogleMapsLoadErrorMessage(error));
         setRouteStatus(null);
         setIsLoading(false);
       }

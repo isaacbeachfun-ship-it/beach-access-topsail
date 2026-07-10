@@ -1,6 +1,9 @@
 import { act, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
-import { GoogleAccessMap } from "../src/components/GoogleAccessMap";
+import {
+  getGoogleMapsLoadErrorMessage,
+  GoogleAccessMap,
+} from "../src/components/GoogleAccessMap";
 
 type GoogleAuthWindow = Window & {
   gm_authFailure?: () => void;
@@ -11,6 +14,14 @@ const authWindow = window as GoogleAuthWindow;
 describe("GoogleAccessMap", () => {
   afterEach(() => {
     delete authWindow.gm_authFailure;
+  });
+
+  test("does not expose provider error details in the public load message", () => {
+    const providerDetail = "RefererNotAllowed for key FAKE-SECRET-API-KEY";
+    const message = getGoogleMapsLoadErrorMessage(new Error(providerDetail));
+
+    expect(message).toBe("Google Maps could not load for this site.");
+    expect(message).not.toContain(providerDetail);
   });
 
   test("shows the fallback on Google authentication failure and restores the previous callback", () => {
