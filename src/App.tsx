@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AccessFinderPage } from "./components/AccessFinderPage";
 import accessesData from "./data/accesses.json";
 import type { BeachAccess } from "./types/access";
@@ -5,6 +6,42 @@ import type { BeachAccess } from "./types/access";
 const accesses = accessesData as BeachAccess[];
 
 export default function App() {
+  const isTreasureEmbed =
+    new URLSearchParams(window.location.search).get("embed") === "treasure";
+
+  useEffect(() => {
+    if (!isTreasureEmbed) return;
+
+    const reportHeight = () => {
+      window.parent.postMessage(
+        {
+          type: "topsail-beach-access:height",
+          height: document.documentElement.scrollHeight,
+        },
+        "https://treasurerentals.com",
+      );
+    };
+    reportHeight();
+
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", reportHeight);
+      return () => window.removeEventListener("resize", reportHeight);
+    }
+
+    const observer = new ResizeObserver(reportHeight);
+    observer.observe(document.documentElement);
+
+    return () => observer.disconnect();
+  }, [isTreasureEmbed]);
+
+  if (isTreasureEmbed) {
+    return (
+      <main className="app-shell is-treasure-embed">
+        <AccessFinderPage embedded />
+      </main>
+    );
+  }
+
   return (
     <main className="app-shell">
       <nav className="top-nav" aria-label="Topsail Beach Access navigation">

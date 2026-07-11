@@ -54,6 +54,16 @@ html {
   min-height: 100vh;
 }
 
+.app-shell.is-treasure-embed {
+  min-height: 0;
+  overflow-x: clip;
+  background: var(--shell);
+}
+
+.is-treasure-embed .finder-page {
+  padding-top: clamp(12px, 2vw, 24px);
+}
+
 .top-nav {
   position: sticky;
   top: 0;

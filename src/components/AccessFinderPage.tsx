@@ -57,7 +57,11 @@ const townAccessCounts = accesses.reduce<Record<BeachAccess["town"], number>>(
   },
 );
 
-export function AccessFinderPage() {
+interface AccessFinderPageProps {
+  embedded?: boolean;
+}
+
+export function AccessFinderPage({ embedded = false }: AccessFinderPageProps) {
   const [address, setAddress] = useState("");
   const [match, setMatch] = useState<AccessMatch | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -403,80 +407,84 @@ export function AccessFinderPage() {
           heading="Explore every Topsail Island access"
         />
       </div>
-      <div className="major-heading">
-        <p className="eyebrow">Guest favorites</p>
-        <h3>Bigger accesses with real parking</h3>
-        <p>
-          When the closest walkover is tight, these larger public accesses
-          across the island have the most parking and the best facilities.
-        </p>
-      </div>
-      <div className="major-directory">
-        {majorAccesses.map((access) => (
-          <article key={access.id}>
-            <b>{access.name}</b>
-            <span className="major-town">{access.town}</span>
-            <div className="major-tags">
-              <AccessFeatureList
-                access={access}
-                limit={5}
-                variant="compact"
-              />
+      {!embedded ? (
+        <>
+          <div className="major-heading">
+            <p className="eyebrow">Guest favorites</p>
+            <h3>Bigger accesses with real parking</h3>
+            <p>
+              When the closest walkover is tight, these larger public accesses
+              across the island have the most parking and the best facilities.
+            </p>
+          </div>
+          <div className="major-directory">
+            {majorAccesses.map((access) => (
+              <article key={access.id}>
+                <b>{access.name}</b>
+                <span className="major-town">{access.town}</span>
+                <div className="major-tags">
+                  <AccessFeatureList
+                    access={access}
+                    limit={5}
+                    variant="compact"
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+          <section className="seo-guide" aria-labelledby="topsail-access-guide">
+            <p className="eyebrow">Topsail Island beach access guide</p>
+            <h2 id="topsail-access-guide">
+              Find public beach access in North Topsail Beach, Surf City, and
+              Topsail Beach
+            </h2>
+            <p>
+              Search a Topsail Island address to find the nearest public beach
+              access, compare parking and restroom options, and open walking
+              directions. This guide is built for guests looking for North
+              Topsail Beach beach accesses, Surf City beach accesses, Topsail
+              Beach beach accesses, public beach walkovers, ADA beach access,
+              and beach parking before they leave the house.
+            </p>
+            <div className="seo-town-grid">
+              <article>
+                <h3>North Topsail Beach beach accesses</h3>
+                <p>
+                  North Topsail Beach has{" "}
+                  {townAccessCounts["North Topsail Beach"].toLocaleString()} mapped
+                  public ocean accesses, including quiet Island Drive walkovers
+                  and larger county-style parking options such as Onslow Co.
+                  Beach Access #2.
+                </p>
+              </article>
+              <article>
+                <h3>Surf City beach accesses</h3>
+                <p>
+                  Surf City has {townAccessCounts["Surf City"].toLocaleString()}{" "}
+                  mapped public ocean accesses here, with practical guest choices
+                  around Broadway Avenue, Roland Avenue, restrooms, showers, and
+                  paid seasonal parking.
+                </p>
+              </article>
+              <article>
+                <h3>Topsail Beach beach accesses</h3>
+                <p>
+                  Topsail Beach has{" "}
+                  {townAccessCounts["Topsail Beach"].toLocaleString()} mapped
+                  public ocean accesses, useful for visitors comparing North
+                  Anderson Boulevard walkovers, small lots, and the closest
+                  route from a rental address.
+                </p>
+              </article>
             </div>
-          </article>
-        ))}
-      </div>
-      <section className="seo-guide" aria-labelledby="topsail-access-guide">
-        <p className="eyebrow">Topsail Island beach access guide</p>
-        <h2 id="topsail-access-guide">
-          Find public beach access in North Topsail Beach, Surf City, and
-          Topsail Beach
-        </h2>
-        <p>
-          Search a Topsail Island address to find the nearest public beach
-          access, compare parking and restroom options, and open walking
-          directions. This guide is built for guests looking for North Topsail
-          Beach beach accesses, Surf City beach accesses, Topsail Beach beach
-          accesses, public beach walkovers, ADA beach access, and beach parking
-          before they leave the house.
-        </p>
-        <div className="seo-town-grid">
-          <article>
-            <h3>North Topsail Beach beach accesses</h3>
-            <p>
-              North Topsail Beach has{" "}
-              {townAccessCounts["North Topsail Beach"].toLocaleString()} mapped
-              public ocean accesses, including quiet Island Drive walkovers and
-              larger county-style parking options such as Onslow Co. Beach
-              Access #2.
+            <p className="seo-disclaimer">
+              Parking rules, seasonal fees, ADA mats, and restroom availability
+              can change. Use posted town and county signage as the final
+              authority when you arrive.
             </p>
-          </article>
-          <article>
-            <h3>Surf City beach accesses</h3>
-            <p>
-              Surf City has {townAccessCounts["Surf City"].toLocaleString()}{" "}
-              mapped public ocean accesses here, with practical guest choices
-              around Broadway Avenue, Roland Avenue, restrooms, showers, and
-              paid seasonal parking.
-            </p>
-          </article>
-          <article>
-            <h3>Topsail Beach beach accesses</h3>
-            <p>
-              Topsail Beach has{" "}
-              {townAccessCounts["Topsail Beach"].toLocaleString()} mapped public
-              ocean accesses, useful for visitors comparing North Anderson
-              Boulevard walkovers, small lots, and the closest route from a
-              rental address.
-            </p>
-          </article>
-        </div>
-        <p className="seo-disclaimer">
-          Parking rules, seasonal fees, ADA mats, and restroom availability can
-          change. Use posted town and county signage as the final authority when
-          you arrive.
-        </p>
-      </section>
+          </section>
+        </>
+      ) : null}
     </section>
   );
 }

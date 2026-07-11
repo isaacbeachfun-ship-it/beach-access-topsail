@@ -26,6 +26,21 @@ function createMedia(status: AccessMedia["status"]): AccessMedia {
 }
 
 describe("AccessFinderPage", () => {
+  test("keeps the finder and map but omits standalone sections when embedded", () => {
+    render(<AccessFinderPage embedded />);
+
+    expect(
+      screen.getByRole("combobox", { name: "Topsail property address" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Explore every Topsail Island access" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Guest favorites")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Topsail Island beach access guide"),
+    ).not.toBeInTheDocument();
+  });
+
   test("accepts launch-safe media", () => {
     expect(isLaunchSafeMedia(createMedia("launch-safe"))).toBe(true);
   });
