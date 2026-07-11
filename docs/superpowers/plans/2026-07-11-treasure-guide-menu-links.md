@@ -16,11 +16,11 @@
 - Read only: live WordPress primary navigation menu
 - Reference: `docs/superpowers/specs/2026-07-11-treasure-beach-access-menu-link-design.md`
 
-- [ ] **Step 1: Open the primary menu editor**
+- [x] **Step 1: Open the primary menu editor**
 
 Open `https://treasurerentals.com/wp-admin/nav-menus.php` in the authenticated browser session and select the menu assigned to the primary navigation location.
 
-- [ ] **Step 2: Record the existing Plan Your Stay children**
+- [x] **Step 2: Record the existing Plan Your Stay children**
 
 Confirm the existing child order is exactly:
 
@@ -37,7 +37,7 @@ If the live order differs, stop before writing and report the drift.
 **Files:**
 - Modify: live WordPress primary navigation menu only
 
-- [ ] **Step 1: Add the custom links**
+- [x] **Step 1: Add the custom links**
 
 Create these exact custom-link items:
 
@@ -47,7 +47,7 @@ Topsail Restaurants         | /restaurants-topsail-islan/
 Topsail After Dark          | /nightlife-topsail-island/
 ```
 
-- [ ] **Step 2: Nest and order the items**
+- [x] **Step 2: Nest and order the items**
 
 Place all three beneath Plan Your Stay so the complete child order is:
 
@@ -60,9 +60,11 @@ Guest Portal
 Blog
 ```
 
-- [ ] **Step 3: Save once**
+- [x] **Step 3: Save once**
 
 Save the menu once after confirming that no existing item label, URL, parent, or order changed.
+
+Execution note: WordPress hid the first two newly added pending rows in the admin interface. The items were saved once to make all three rows visible, then the exact parent/order values were applied and saved again. The final saved hierarchy was read back from WordPress before public verification.
 
 ### Task 3: Verify the public result
 
@@ -70,15 +72,15 @@ Save the menu once after confirming that no existing item label, URL, parent, or
 - Read only: `https://treasurerentals.com/`
 - Read only: the three linked destination pages
 
-- [ ] **Step 1: Verify public desktop navigation**
+- [x] **Step 1: Verify public desktop navigation**
 
 Reload the public home page, open Plan Your Stay, and confirm all six child items appear once in the approved order.
 
-- [ ] **Step 2: Verify public mobile navigation**
+- [x] **Step 2: Verify public mobile navigation**
 
 At a 390-pixel viewport, open the mobile menu and Plan Your Stay. Confirm the same six items appear once in the same order and all three new items are tappable.
 
-- [ ] **Step 3: Verify destination responses**
+- [x] **Step 3: Verify destination responses**
 
 Run:
 
@@ -90,7 +92,7 @@ curl -I -L https://treasurerentals.com/nightlife-topsail-island/
 
 Expected: each final response is HTTP 200.
 
-- [ ] **Step 4: Verify no duplicate or sibling drift**
+- [x] **Step 4: Verify no duplicate or sibling drift**
 
 Inspect the public menu markup and confirm each new label appears exactly once beneath Plan Your Stay, while FAQ, Guest Portal, and Blog retain their original destinations and relative order.
 
@@ -99,11 +101,11 @@ Inspect the public menu markup and confirm each new label appears exactly once b
 **Files:**
 - Modify: this plan file only to mark completed checkboxes after fresh verification
 
-- [ ] **Step 1: Mark verified steps complete**
+- [x] **Step 1: Mark verified steps complete**
 
 Change only completed checklist markers from `[ ]` to `[x]` after the corresponding production evidence has been observed.
 
-- [ ] **Step 2: Commit the completed plan record**
+- [x] **Step 2: Commit the completed plan record**
 
 Run:
 
