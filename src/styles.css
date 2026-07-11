@@ -954,6 +954,22 @@ html {
   min-width: 0;
 }
 
+.public-access-notice {
+  max-width: 760px;
+  margin: 14px 0 18px;
+  padding: 12px 14px;
+  border: 1px solid rgba(217, 154, 43, 0.34);
+  border-radius: 8px;
+  color: var(--ink-soft);
+  background: #fff8e7;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.public-access-notice strong {
+  color: var(--teal-dark);
+}
+
 .finder-search-shell {
   position: relative;
   max-width: 760px;
@@ -1403,6 +1419,12 @@ html {
   .finder-workspace {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .public-access-notice {
+    margin: 12px 0 16px;
+    padding: 11px 12px;
+    font-size: 12px;
   }
 
   .finder-map-panel {

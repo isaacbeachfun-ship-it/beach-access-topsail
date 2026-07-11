@@ -41,6 +41,16 @@ describe("AccessFinderPage", () => {
     ).not.toBeInTheDocument();
   });
 
+  test("states that the finder covers public access only", () => {
+    render(<AccessFinderPage embedded />);
+
+    expect(
+      screen.getByRole("note", { name: "Public access only" }),
+    ).toHaveTextContent(
+      "This finder includes public beach access points only. It does not identify or authorize private, HOA, neighborhood, or property-owner access. Always follow posted signs and local rules.",
+    );
+  });
+
   test("accepts launch-safe media", () => {
     expect(isLaunchSafeMedia(createMedia("launch-safe"))).toBe(true);
   });

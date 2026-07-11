@@ -242,6 +242,16 @@ export function AccessFinderPage({ embedded = false }: AccessFinderPageProps) {
               better parking and facilities.
             </p>
           </div>
+          <aside
+            aria-label="Public access only"
+            className="public-access-notice"
+            role="note"
+          >
+            <strong>Public access only:</strong>{" "}
+            This finder includes public beach access points only. It does not
+            identify or authorize private, HOA, neighborhood, or property-owner
+            access. Always follow posted signs and local rules.
+          </aside>
           <div className="finder-search-shell">
             <form className="finder-form" onSubmit={handleSubmit}>
               <input
