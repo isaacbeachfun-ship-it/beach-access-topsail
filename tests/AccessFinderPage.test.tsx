@@ -1,11 +1,16 @@
+/// <reference types="node" />
+
 import { fireEvent, render, screen } from "@testing-library/react";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, test } from "vitest";
-import styles from "../src/styles.css?raw";
 import {
   AccessFinderPage,
   isLaunchSafeMedia,
 } from "../src/components/AccessFinderPage";
 import type { AccessMedia } from "../src/types/access";
+
+const styles = readFileSync(resolve(process.cwd(), "src/styles.css"), "utf8");
 
 function createMedia(status: AccessMedia["status"]): AccessMedia {
   return {
@@ -33,6 +38,37 @@ describe("AccessFinderPage", () => {
   test("does not hotlink prototype Treasure media in the page hero", () => {
     expect(styles).not.toContain("treasure-rentals-website-mockup");
     expect(styles).not.toContain("isaacbeachfun-ship-it.github.io");
+  });
+
+  test("keeps MapLibre markers out of document flow", () => {
+    expect(styles).toMatch(
+      /\.maplibre-access-marker\s*\{[^}]*position:\s*absolute;/s,
+    );
+    expect(styles).not.toMatch(
+      /\.google-map-marker,\s*\.maplibre-access-marker\s*\{[^}]*position:\s*relative;/s,
+    );
+  });
+
+  test("bounds the map and tightens the hero on mobile", () => {
+    const mobileStyles = styles.slice(styles.indexOf("@media (max-width: 620px)"));
+
+    expect(mobileStyles).toMatch(
+      /\.finder-map-panel \.island-map\s*\{[^}]*height:\s*340px;/s,
+    );
+    expect(mobileStyles).toMatch(
+      /\.page-hero h1\s*\{[^}]*font-size:\s*38px;/s,
+    );
+  });
+
+  test("uses a swipeable guest-favorites row on mobile", () => {
+    const mobileStyles = styles.slice(styles.indexOf("@media (max-width: 620px)"));
+
+    expect(mobileStyles).toMatch(
+      /\.major-directory\s*\{[^}]*grid-auto-flow:\s*column;[^}]*overflow-x:\s*auto;[^}]*scroll-snap-type:\s*x mandatory;/s,
+    );
+    expect(mobileStyles).toMatch(
+      /\.major-directory article\s*\{[^}]*scroll-snap-align:\s*start;/s,
+    );
   });
 
   test("uses public launch copy and excludes prototype-only media", () => {

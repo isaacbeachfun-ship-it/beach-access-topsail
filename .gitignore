@@ -1,4 +1,5 @@
 .superpowers/
+.playwright-cli/
 .worktrees/
 .vercel/
 artifacts/

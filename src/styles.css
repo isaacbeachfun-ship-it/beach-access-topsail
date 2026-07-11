@@ -797,7 +797,6 @@ html {
 
 .google-map-marker,
 .maplibre-access-marker {
-  position: relative;
   display: grid;
   place-items: center;
   border: 2px solid var(--shell);
@@ -807,6 +806,7 @@ html {
 }
 
 .google-map-marker {
+  position: relative;
   min-width: 18px;
   min-height: 18px;
   border-radius: 999px;
@@ -919,6 +919,7 @@ html {
 }
 
 .maplibre-access-marker {
+  position: absolute;
   width: 11px;
   height: 11px;
   border-radius: 999px;
@@ -1357,8 +1358,8 @@ html {
 
   .page-hero h1 {
     max-width: 340px;
-    font-size: 42px;
-    line-height: 0.94;
+    font-size: 38px;
+    line-height: 0.98;
   }
 
   .page-hero p:not(.eyebrow) {
@@ -1398,6 +1399,7 @@ html {
   }
 
   .finder-map-panel .island-map {
+    height: 340px;
     min-height: 340px;
   }
 
@@ -1595,12 +1597,21 @@ html {
   }
 
   .major-directory {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(240px, 82vw);
+    grid-auto-flow: column;
     gap: 8px;
     margin-top: 14px;
+    padding: 0 2px 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
   }
 
   .major-directory article {
     padding: 12px;
+    scroll-snap-align: start;
   }
 
   .major-directory b {
