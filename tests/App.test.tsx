@@ -2,7 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "../src/App";
 
+const originalParent = window.parent;
+
 afterEach(() => {
+  Object.defineProperty(window, "parent", {
+    configurable: true,
+    value: originalParent,
+  });
   window.history.replaceState({}, "", "/");
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
@@ -61,9 +67,29 @@ describe("App", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("does not send resize messages when the embed URL is opened directly", () => {
+    window.history.replaceState({}, "", "/?embed=treasure");
+    const postMessage = vi.spyOn(window, "postMessage");
+    const observe = vi.fn();
+    class MockResizeObserver {
+      observe = observe;
+      disconnect = vi.fn();
+    }
+    vi.stubGlobal("ResizeObserver", MockResizeObserver);
+
+    render(<App />);
+
+    expect(postMessage).not.toHaveBeenCalled();
+    expect(observe).not.toHaveBeenCalled();
+  });
+
   it("sends Treasure only the embedded document height", () => {
     window.history.replaceState({}, "", "/?embed=treasure");
-    const postMessage = vi.spyOn(window.parent, "postMessage");
+    const postMessage = vi.fn();
+    Object.defineProperty(window, "parent", {
+      configurable: true,
+      value: { postMessage },
+    });
     const observe = vi.fn();
     const disconnect = vi.fn();
     class MockResizeObserver {

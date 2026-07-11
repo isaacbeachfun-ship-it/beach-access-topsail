@@ -10,7 +10,7 @@ export default function App() {
     new URLSearchParams(window.location.search).get("embed") === "treasure";
 
   useEffect(() => {
-    if (!isTreasureEmbed) return;
+    if (!isTreasureEmbed || window.parent === window) return;
 
     const reportHeight = () => {
       window.parent.postMessage(
