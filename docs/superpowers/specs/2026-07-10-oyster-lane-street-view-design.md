@@ -11,21 +11,26 @@ Beach.
 
 ## Approach
 
-Use the finder’s existing Google Street View Static API integration. Query the
-nearest outdoor panorama to the reviewed Oyster Lane access coordinates, aim
-the camera at the street-end beach path, and visually review the result before
-publishing it.
+Use Google Maps' official Street View embed for the reviewed panorama at the
+Oyster Lane access. The panorama was captured in September 2019 by
+Southeastern Unmanned Aerial Solutions at `34.5247442,-77.3477368`; a heading
+of 133 degrees faces the street-end beach path between the houses.
+
+The checked-in environment has no Google Maps API key, and the key currently
+served by the production app is rejected for `topsailpricing.com`. A Static API
+image would therefore be broken. The official Google embed works without
+copying or rehosting imagery and retains Google attribution.
 
 Store only Google panorama metadata in `src/data/streetViewStills.json`:
 
 - access ID: `north-topsail-beach-oyster-lane-access`
-- panorama ID and panorama coordinates
+- panorama ID, panorama coordinates, and official Google embed URL
 - reviewed heading, pitch, and field of view
 - imagery date, copyright, and check timestamp when supplied by Google
 
 Do not download, rehost, or commit a copied Google image. The application will
-continue generating the image URL at runtime through the licensed Street View
-Static API path already used by other accesses.
+render the official embed for this access while retaining the existing Static
+API path for accesses whose reviewed records already use it.
 
 ## Accuracy Gate
 
@@ -47,8 +52,8 @@ a misleading picture.
 
 ## Verification
 
-1. Confirm Google metadata resolves an outdoor panorama near the Oyster Lane
-   access.
+1. Confirm the official Google Maps embed loads the reviewed panorama at the
+   Oyster Lane access.
 2. Review the rendered still and adjust camera heading only if needed to face
    the path.
 3. Run the Street View and media-gallery tests plus the full test suite and
