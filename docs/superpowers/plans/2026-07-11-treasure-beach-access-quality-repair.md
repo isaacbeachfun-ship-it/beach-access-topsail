@@ -52,11 +52,11 @@ gcloud services api-keys update \
 
 Expected: completed operation with all seven referrers and all five API targets retained. Do not use `--clear-restrictions`.
 
-- [ ] **Step 3: Read back and minimally test the repaired key**
+- [ ] **Step 3: Read back the repaired key and verify its real API targets**
 
-Describe the key again and confirm the exact referrer/API-target lists. Then request a small Static Maps image from each production host using its HTTP `Referer` header without printing the key string.
+Describe the key again and confirm the exact referrer/API-target lists. Do not use Static Maps as a proxy because this key intentionally does not include the Static Maps API. After propagation, use the live production app to verify the Maps JavaScript API, Routes API, and Aerial View API no longer return referrer-related authentication errors.
 
-Expected: each request returns `200 image/png`.
+Expected: the read-back contains all seven referrers and the same five API targets; the final Playwright audit shows the Google map and no referrer-related `403` responses.
 
 ### Task 2: Add the finder public-access notice with TDD
 
