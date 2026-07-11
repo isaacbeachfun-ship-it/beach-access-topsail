@@ -15,6 +15,43 @@ const ROUTE_CANDIDATE_LIMIT = 8;
 const ROUTE_CANDIDATE_HARD_LIMIT = 24;
 const ROUTES_ENDPOINT =
   "https://routes.googleapis.com/directions/v2:computeRoutes";
+const OYSTER_LANE_ADDRESS = /\boyster\s+(?:lane|ln)\b/i;
+const NORTH_TOPSAIL_BEACH_ADDRESS = /\bnorth topsail beach\b/i;
+
+const OYSTER_LANE_ACCESS: BeachAccess = {
+  id: "north-topsail-beach-oyster-lane-access",
+  town: "North Topsail Beach",
+  name: "Oyster Lane Beach Access",
+  address: "End of Oyster Lane",
+  latitude: 34.5247222,
+  longitude: -77.3477083,
+  waterType: "Ocean",
+  accessType: "Neighborhood Beach Access",
+  parkingSpots: 0,
+  handicapSpots: null,
+  parkingOptions: "No Parking",
+  parkingFee: null,
+  hourlyRate: null,
+  dailyRate: null,
+  weeklyRate: null,
+  seasonalRate: null,
+  restroom: false,
+  shower: false,
+  lifeguards: false,
+  beachWheelchair: false,
+  beachMat: false,
+  mobiMat: false,
+  handicapAccessible: false,
+  vehicleAccess: false,
+  duneWalkover: false,
+  source: "Local access correction + SaltChef",
+  sourceDetail: "Oyster Lane street-end easement and reviewed GPS point",
+  comments:
+    "Neighborhood beach path at the end of Oyster Lane; no parking is listed for this path.",
+  mediaIds: [],
+  categories: ["Quiet"],
+  usefulnessScore: 0,
+};
 
 type RoutesFetch = (url: string, init: RequestInit) => Promise<Response>;
 
@@ -35,6 +72,13 @@ interface WalkingRouteLookupOptions {
   candidateLimit?: number;
   maxCandidates?: number;
   fetcher?: RoutesFetch;
+}
+
+function getAddressAccessOverride(origin: LookupPoint): BeachAccess | null {
+  return OYSTER_LANE_ADDRESS.test(origin.address) &&
+    NORTH_TOPSAIL_BEACH_ADDRESS.test(origin.address)
+    ? OYSTER_LANE_ACCESS
+    : null;
 }
 
 export function distanceFeet(
@@ -104,6 +148,9 @@ export function findNearestAccess(
     throw new Error("Cannot find nearest access without access data.");
   }
 
+  const addressOverride = getAddressAccessOverride(origin);
+  if (addressOverride) return toAccessMatch(origin, addressOverride);
+
   return accesses
     .map((access) => toAccessMatch(origin, access))
     .sort((a, b) => a.distanceFeet - b.distanceFeet)[0];
@@ -118,17 +165,41 @@ export async function findNearestAccessByWalkingRoute(
     throw new Error("Cannot find nearest access without access data.");
   }
 
+  const apiKey = options.apiKey?.trim();
+  const fetcher = options.fetcher ?? fetch;
+  const addressOverride = getAddressAccessOverride(origin);
+
+  if (addressOverride) {
+    const fallback = toAccessMatch(origin, addressOverride);
+    if (!apiKey) return fallback;
+
+    const route = await lookupGoogleWalkingRouteDistance(
+      origin,
+      addressOverride,
+      apiKey,
+      fetcher,
+    );
+    if (!route) return fallback;
+
+    return {
+      ...fallback,
+      distanceFeet: route.distanceFeet,
+      estimatedWalkMinutes: route.durationSeconds
+        ? Math.max(1, Math.round(route.durationSeconds / 60))
+        : estimateWalkMinutes(route.distanceFeet),
+      isRouteDistance: true,
+    };
+  }
+
   const straightLineMatches = accesses
     .map((access) => toAccessMatch(origin, access))
     .sort((a, b) => a.distanceFeet - b.distanceFeet);
   const fallback = straightLineMatches[0];
-  const apiKey = options.apiKey?.trim();
 
   if (!apiKey) return fallback;
 
   const batchSize = options.candidateLimit ?? ROUTE_CANDIDATE_LIMIT;
   const maxCandidates = options.maxCandidates ?? ROUTE_CANDIDATE_HARD_LIMIT;
-  const fetcher = options.fetcher ?? fetch;
   const candidateCount = Math.min(straightLineMatches.length, maxCandidates);
   let best: AccessMatch | null = null;
 

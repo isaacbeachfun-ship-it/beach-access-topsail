@@ -327,7 +327,11 @@ export function AccessFinderPage() {
           ) : null}
           {match ? (
             <article className="finder-result" aria-live="polite">
-              <p className="eyebrow">Closest public access</p>
+              <p className="eyebrow">
+                {match.access.accessType === "Neighborhood Beach Access"
+                  ? "Neighborhood beach access"
+                  : "Closest public access"}
+              </p>
               <h3>{match.access.name}</h3>
               <p className="finder-result-address">
                 {formatAccessAddress(match.access)}

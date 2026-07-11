@@ -174,4 +174,24 @@ describe("AccessFinderPage", () => {
       ),
     ).toBeInTheDocument();
   });
+
+  test("shows the Oyster Lane neighborhood access at the end of the street", async () => {
+    render(<AccessFinderPage />);
+
+    const input = screen.getByRole("combobox", {
+      name: "Topsail property address",
+    });
+    fireEvent.change(input, { target: { value: "200 Oyster Ln" } });
+    fireEvent.click(
+      await screen.findByRole("option", { name: /200 Oyster Ln/i }),
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: "Oyster Lane Beach Access",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Neighborhood beach access")).toBeInTheDocument();
+    expect(screen.getByText("End of Oyster Lane")).toBeInTheDocument();
+  });
 });

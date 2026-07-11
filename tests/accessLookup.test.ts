@@ -8,6 +8,8 @@ import {
   rankMajorAlternates,
 } from "../src/lib/accessLookup";
 import type { BeachAccess } from "../src/types/access";
+import productionAccesses from "../src/data/accesses.json";
+import propertyAddresses from "../src/data/propertyAddresses.json";
 
 const baseAccess: BeachAccess = {
   id: "quiet",
@@ -70,9 +72,89 @@ describe("findNearestAccess", () => {
     expect(match.estimatedWalkMinutes).toBeGreaterThanOrEqual(1);
     expect(match.directionsUrl).toContain("api=1");
   });
+
+  it("routes every Oyster Lane property to the access at the end of the street", () => {
+    const oysterLaneProperties = propertyAddresses.filter((property) =>
+      / Oyster Ln$/.test(property.address),
+    );
+
+    expect(oysterLaneProperties).toHaveLength(24);
+
+    for (const property of oysterLaneProperties) {
+      const match = findNearestAccess(
+        {
+          latitude: property.latitude,
+          longitude: property.longitude,
+          address: `${property.address}, ${property.town}, NC`,
+        },
+        productionAccesses as BeachAccess[],
+      );
+
+      expect(match.access, property.address).toMatchObject({
+        id: "north-topsail-beach-oyster-lane-access",
+        name: "Oyster Lane Beach Access",
+        address: "End of Oyster Lane",
+        accessType: "Neighborhood Beach Access",
+      });
+      expect(match.directionsUrl, property.address).toContain(
+        "destination=34.5247222%2C-77.3477083",
+      );
+    }
+  });
+
+  it("does not apply the Oyster Lane override outside North Topsail Beach", () => {
+    const match = findNearestAccess(
+      {
+        latitude: 34.4365,
+        longitude: -77.5261,
+        address: "1 Oyster Lane, Surf City, NC",
+      },
+      accesses,
+    );
+
+    expect(match.access.id).toBe("quiet");
+  });
 });
 
 describe("findNearestAccessByWalkingRoute", () => {
+  it("measures only the Oyster Lane street-end route for Oyster Lane properties", async () => {
+    const requestedDestinations: Array<{
+      latitude: number;
+      longitude: number;
+    }> = [];
+
+    const match = await findNearestAccessByWalkingRoute(
+      {
+        latitude: 34.52567,
+        longitude: -77.348761,
+        address: "215 Oyster Lane, North Topsail Beach, NC",
+      },
+      productionAccesses as BeachAccess[],
+      {
+        apiKey: "test-key",
+        fetcher: async (_url, init) => {
+          requestedDestinations.push(
+            JSON.parse(String(init?.body)).destination.location.latLng,
+          );
+          return new Response(
+            JSON.stringify({
+              routes: [{ distanceMeters: 145, duration: "120s" }],
+            }),
+            { status: 200 },
+          );
+        },
+      },
+    );
+
+    expect(requestedDestinations).toEqual([
+      { latitude: 34.5247222, longitude: -77.3477083 },
+    ]);
+    expect(match.access.id).toBe("north-topsail-beach-oyster-lane-access");
+    expect(match.distanceFeet).toBe(476);
+    expect(match.estimatedWalkMinutes).toBe(2);
+    expect(match.isRouteDistance).toBe(true);
+  });
+
   it("uses Google walking distance to avoid picking a closer point across blocked streets", async () => {
     const closerByAir: BeachAccess = {
       ...baseAccess,
