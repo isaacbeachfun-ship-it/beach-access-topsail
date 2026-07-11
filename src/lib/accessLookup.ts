@@ -16,6 +16,7 @@ const ROUTE_CANDIDATE_HARD_LIMIT = 24;
 const ROUTES_ENDPOINT =
   "https://routes.googleapis.com/directions/v2:computeRoutes";
 const OYSTER_LANE_ADDRESS = /\boyster\s+(?:lane|ln)\b/i;
+const PORT_DRIVE_ADDRESS = /\bport\s+(?:drive|dr)\b/i;
 const NORTH_TOPSAIL_BEACH_ADDRESS = /\bnorth topsail beach\b/i;
 
 const OYSTER_LANE_ACCESS: BeachAccess = {
@@ -53,6 +54,46 @@ const OYSTER_LANE_ACCESS: BeachAccess = {
   usefulnessScore: 0,
 };
 
+const PORT_DRIVE_ACCESS: BeachAccess = {
+  id: "north-topsail-beach-port-drive-access",
+  town: "North Topsail Beach",
+  name: "Port Drive Beach Access",
+  address: "End of Port Drive",
+  latitude: 34.5251417,
+  longitude: -77.3466111,
+  waterType: "Ocean",
+  accessType: "Neighborhood Beach Access",
+  parkingSpots: 0,
+  handicapSpots: null,
+  parkingOptions: "No Parking",
+  parkingFee: null,
+  hourlyRate: null,
+  dailyRate: null,
+  weeklyRate: null,
+  seasonalRate: null,
+  restroom: false,
+  shower: false,
+  lifeguards: false,
+  beachWheelchair: false,
+  beachMat: false,
+  mobiMat: false,
+  handicapAccessible: false,
+  vehicleAccess: false,
+  duneWalkover: false,
+  source: "NC DCM review + SaltChef",
+  sourceDetail: "Port Drive street-end easement and reviewed BA-48 GPS point",
+  comments:
+    "Neighborhood beach path at the end of Port Drive; no parking is listed for this path.",
+  mediaIds: [],
+  categories: ["Quiet"],
+  usefulnessScore: 0,
+};
+
+const ADDRESS_ACCESS_OVERRIDES = [
+  { addressPattern: OYSTER_LANE_ADDRESS, access: OYSTER_LANE_ACCESS },
+  { addressPattern: PORT_DRIVE_ADDRESS, access: PORT_DRIVE_ACCESS },
+];
+
 type RoutesFetch = (url: string, init: RequestInit) => Promise<Response>;
 
 interface GoogleRoutesPayload {
@@ -75,10 +116,13 @@ interface WalkingRouteLookupOptions {
 }
 
 function getAddressAccessOverride(origin: LookupPoint): BeachAccess | null {
-  return OYSTER_LANE_ADDRESS.test(origin.address) &&
-    NORTH_TOPSAIL_BEACH_ADDRESS.test(origin.address)
-    ? OYSTER_LANE_ACCESS
-    : null;
+  if (!NORTH_TOPSAIL_BEACH_ADDRESS.test(origin.address)) return null;
+
+  return (
+    ADDRESS_ACCESS_OVERRIDES.find(({ addressPattern }) =>
+      addressPattern.test(origin.address),
+    )?.access ?? null
+  );
 }
 
 export function distanceFeet(

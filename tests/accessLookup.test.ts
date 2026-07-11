@@ -102,6 +102,35 @@ describe("findNearestAccess", () => {
     }
   });
 
+  it("routes every Port Drive property to the access at the end of the street", () => {
+    const portDriveProperties = propertyAddresses.filter((property) =>
+      / Port Dr$/.test(property.address),
+    );
+
+    expect(portDriveProperties).toHaveLength(29);
+
+    for (const property of portDriveProperties) {
+      const match = findNearestAccess(
+        {
+          latitude: property.latitude,
+          longitude: property.longitude,
+          address: `${property.address}, ${property.town}, NC`,
+        },
+        productionAccesses as BeachAccess[],
+      );
+
+      expect(match.access, property.address).toMatchObject({
+        id: "north-topsail-beach-port-drive-access",
+        name: "Port Drive Beach Access",
+        address: "End of Port Drive",
+        accessType: "Neighborhood Beach Access",
+      });
+      expect(match.directionsUrl, property.address).toContain(
+        "destination=34.5251417%2C-77.3466111",
+      );
+    }
+  });
+
   it("does not apply the Oyster Lane override outside North Topsail Beach", () => {
     const match = findNearestAccess(
       {
@@ -152,6 +181,44 @@ describe("findNearestAccessByWalkingRoute", () => {
     expect(match.access.id).toBe("north-topsail-beach-oyster-lane-access");
     expect(match.distanceFeet).toBe(476);
     expect(match.estimatedWalkMinutes).toBe(2);
+    expect(match.isRouteDistance).toBe(true);
+  });
+
+  it("measures only the Port Drive street-end route for Port Drive properties", async () => {
+    const requestedDestinations: Array<{
+      latitude: number;
+      longitude: number;
+    }> = [];
+
+    const match = await findNearestAccessByWalkingRoute(
+      {
+        latitude: 34.527098,
+        longitude: -77.348036,
+        address: "235 Port Drive, North Topsail Beach, NC",
+      },
+      productionAccesses as BeachAccess[],
+      {
+        apiKey: "test-key",
+        fetcher: async (_url, init) => {
+          requestedDestinations.push(
+            JSON.parse(String(init?.body)).destination.location.latLng,
+          );
+          return new Response(
+            JSON.stringify({
+              routes: [{ distanceMeters: 285, duration: "240s" }],
+            }),
+            { status: 200 },
+          );
+        },
+      },
+    );
+
+    expect(requestedDestinations).toEqual([
+      { latitude: 34.5251417, longitude: -77.3466111 },
+    ]);
+    expect(match.access.id).toBe("north-topsail-beach-port-drive-access");
+    expect(match.distanceFeet).toBe(935);
+    expect(match.estimatedWalkMinutes).toBe(4);
     expect(match.isRouteDistance).toBe(true);
   });
 

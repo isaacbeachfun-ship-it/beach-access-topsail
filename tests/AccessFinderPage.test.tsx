@@ -194,4 +194,22 @@ describe("AccessFinderPage", () => {
     expect(screen.getByText("Neighborhood beach access")).toBeInTheDocument();
     expect(screen.getByText("End of Oyster Lane")).toBeInTheDocument();
   });
+
+  test("shows the Port Drive neighborhood access at the end of the street", async () => {
+    render(<AccessFinderPage />);
+
+    const input = screen.getByRole("combobox", {
+      name: "Topsail property address",
+    });
+    fireEvent.change(input, { target: { value: "235 Port Dr" } });
+    fireEvent.click(
+      await screen.findByRole("option", { name: /235 Port Dr/i }),
+    );
+
+    expect(
+      await screen.findByRole("heading", { name: "Port Drive Beach Access" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Neighborhood beach access")).toBeInTheDocument();
+    expect(screen.getByText("End of Port Drive")).toBeInTheDocument();
+  });
 });
