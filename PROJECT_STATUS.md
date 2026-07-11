@@ -19,7 +19,7 @@ not replace or modify the Carolina Coast Pricing application.
 | Apex host | `https://topsailpricing.com/` |
 | `www` host | `https://www.topsailpricing.com/` |
 | Vercel project | `topsail-beach-access` |
-| Production deployment | `dpl_FkJLG1wQh8mxQc3t7tUfjMuAVHVV` |
+| Production deployment | `dpl_rTwkwmp8cs3WARPFgXnFHDHR6cJD` |
 | Public access | No password or authentication |
 | Carolina Coast Pricing | Unchanged on its separate project |
 | Rollback deployment | `https://topsail-pricing-p92vzptn6-isaacbeachfun-9768s-projects.vercel.app` |
@@ -34,11 +34,14 @@ being maintained.
 
 ## Verification
 
-- `npm test`: 22 test files, 98 tests passing.
+- `npm test`: 22 test files, 101 tests passing.
 - `npm run build`: passing Vite production build.
 - Public desktop and mobile checks: shell branding, no-password access, address
   lookup, map fallback, and representative addresses across North Topsail
   Beach, Surf City, and Topsail Beach.
+- Mobile layout repair: the fallback map is bounded to 340 pixels, all rendered
+  MapLibre markers remain absolutely positioned, and the page has no document-
+  level horizontal overflow at 390 pixels wide.
 - CarolinaCoastPricing.com remained on its existing deployment and continued to
   serve the pricing site.
 

@@ -86,7 +86,7 @@ The `www.topsailpricing.com` host serves the same public finder. Both hosts are
 attached to the dedicated Vercel project `topsail-beach-access`; there is no
 login or password wall.
 
-The current production deployment is `dpl_FkJLG1wQh8mxQc3t7tUfjMuAVHVV`.
+The current production deployment is `dpl_rTwkwmp8cs3WARPFgXnFHDHR6cJD`.
 CarolinaCoastPricing.com remains on its separate pricing application and was
 not changed. The previous deployment remains the rollback target:
 
@@ -117,6 +117,6 @@ attributed API surfaces for the public experience.
 
 ## Launch Verification
 
-The public launch was verified with 22 test files and 98 tests, plus a passing
+The public launch was verified with 22 test files and 101 tests, plus a passing
 Vite production build. Desktop and mobile checks covered the public shell,
 address lookup, map fallback, and the three Topsail towns.
