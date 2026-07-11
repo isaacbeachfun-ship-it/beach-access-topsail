@@ -81,6 +81,19 @@ vi.mock("../src/data/streetViewStills.json", () => ({
       date: "2026-02",
       copyright: "© Google",
     },
+    "north-topsail-beach-oyster-lane-access": {
+      state: "AVAILABLE",
+      panoId: "CIHM0ogKEICAgIDa_dfJ2QE",
+      latitude: 34.52474420424951,
+      longitude: -77.34773682442166,
+      heading: 133,
+      pitch: 0,
+      fov: 75,
+      date: "2019-09",
+      copyright: "Google Maps / Southeastern Unmanned Aerial Solutions",
+      embedUrl:
+        "https://www.google.com/maps/embed?pb=!4v1783739810030!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRGFfZGZKMlFF!2m2!1d34.52474420424951!2d-77.34773682442166!3f133!4f0!5f0.7820865974627469",
+    },
   },
 }));
 
@@ -219,6 +232,29 @@ describe("AccessMediaGallery", () => {
     ).toBeInTheDocument();
     expect(screen.queryByText("Google Street View")).not.toBeInTheDocument();
     expect(mocks.lookupAerialView).not.toHaveBeenCalled();
+  });
+
+  test("renders the reviewed Oyster Lane Google Street View embed", async () => {
+    render(
+      <AccessMediaGallery
+        access={{
+          ...access,
+          id: "north-topsail-beach-oyster-lane-access",
+          name: "Oyster Lane Beach Access",
+        }}
+        media={[]}
+      />,
+    );
+
+    expect(
+      await screen.findByTitle(
+        "Google Street View of Oyster Lane Beach Access",
+      ),
+    ).toHaveAttribute(
+      "src",
+      "https://www.google.com/maps/embed?pb=!4v1783739810030!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRGFfZGZKMlFF!2m2!1d34.52474420424951!2d-77.34773682442166!3f133!4f0!5f0.7820865974627469",
+    );
+    expect(screen.getByText("Captured 2019-09")).toBeInTheDocument();
   });
 
   test("shows guest-facing guidance instead of internal launch copy when no media is available", async () => {

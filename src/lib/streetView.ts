@@ -16,6 +16,7 @@ export interface StreetViewStill {
   fov?: number;
   date?: string;
   copyright?: string;
+  embedUrl?: string;
   checkedAt?: string;
   errorMessage?: string;
 }

@@ -119,15 +119,25 @@ export function AccessMediaGallery({ access, media }: AccessMediaGalleryProps) {
             </a>
           </p>
         </>
-      ) : streetViewUrl ? (
+      ) : streetViewStill?.embedUrl || streetViewUrl ? (
         <>
           <div className="media-image-wrap street-view-wrap">
-            <img
-              src={streetViewUrl}
-              alt={`Street View still facing ${access.name} from the nearest Google panorama.`}
-              loading="lazy"
-              decoding="async"
-            />
+            {streetViewStill?.embedUrl ? (
+              <iframe
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                src={streetViewStill.embedUrl}
+                title={`Google Street View of ${access.name}`}
+              />
+            ) : (
+              <img
+                src={streetViewUrl}
+                alt={`Street View still facing ${access.name} from the nearest Google panorama.`}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
             <div className="media-overlay-actions">
               <span className="media-status media-status-launch-safe">
                 Google Street View

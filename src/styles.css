@@ -408,9 +408,11 @@ html {
 }
 
 .media-image-wrap img,
-.media-image-wrap video {
+.media-image-wrap video,
+.media-image-wrap iframe {
   width: 100%;
   height: 100%;
+  border: 0;
   object-fit: cover;
 }
 
