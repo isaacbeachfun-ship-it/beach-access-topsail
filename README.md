@@ -86,7 +86,7 @@ The `www.topsailpricing.com` host serves the same public finder. Both hosts are
 attached to the dedicated Vercel project `topsail-beach-access`; there is no
 login or password wall.
 
-The current production deployment is `dpl_GxZiG752DXTCrU6Tv6KR7qedPpbv`.
+The current production deployment is `dpl_4FAM6eZoNJjhFmgGUJ2CbVhBssQ9`.
 CarolinaCoastPricing.com remains on its separate pricing application and was
 not changed. The previous deployment remains the rollback target:
 
@@ -115,11 +115,15 @@ attributed API surfaces for the public experience.
 - An Oyster Lane address override that routes North Topsail Beach properties to
   the neighborhood access at the street end instead of sending them east on
   New River Inlet Road.
+- A Port Drive address override that routes all known street properties to the
+  neighborhood easement at the ocean end of Port Drive.
+- A focused Treasure embed at `/?embed=treasure` that keeps the finder and map
+  while omitting the standalone navigation, hero, directory, and SEO guide.
 - Static generated data from the canonical CSV.
 - No Supabase writes.
 
 ## Launch Verification
 
-The public launch was verified with 22 test files and 105 tests, plus a passing
+The public launch was verified with 22 test files and 111 tests, plus a passing
 Vite production build. Desktop and mobile checks covered the public shell,
 address lookup, map fallback, and the three Topsail towns.

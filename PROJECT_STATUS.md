@@ -19,7 +19,7 @@ not replace or modify the Carolina Coast Pricing application.
 | Apex host | `https://topsailpricing.com/` |
 | `www` host | `https://www.topsailpricing.com/` |
 | Vercel project | `topsail-beach-access` |
-| Production deployment | `dpl_GxZiG752DXTCrU6Tv6KR7qedPpbv` |
+| Production deployment | `dpl_4FAM6eZoNJjhFmgGUJ2CbVhBssQ9` |
 | Public access | No password or authentication |
 | Carolina Coast Pricing | Unchanged on its separate project |
 | Rollback deployment | `https://topsail-pricing-p92vzptn6-isaacbeachfun-9768s-projects.vercel.app` |
@@ -34,8 +34,9 @@ being maintained.
 
 ## Verification
 
-- `npm test`: 22 test files, 105 tests passing.
+- `npm test`: 22 test files, 111 tests passing.
 - `npm run build`: passing Vite production build.
+- `npm audit --omit=dev`: zero known runtime vulnerabilities.
 - Public desktop and mobile checks: shell branding, no-password access, address
   lookup, map fallback, and representative addresses across North Topsail
   Beach, Surf City, and Topsail Beach.
@@ -45,6 +46,11 @@ being maintained.
 - All 24 known Oyster Lane property addresses resolve to the neighborhood
   beach access at the end of Oyster Lane, with directions ending there rather
   than continuing east on New River Inlet Road.
+- All 29 known Port Drive property addresses resolve to the neighborhood beach
+  access at the ocean end of Port Drive rather than Beach Access #46.
+- `https://topsailpricing.com/?embed=treasure` serves a focused, responsive
+  finder for the Treasure WordPress page without duplicate app navigation,
+  promotional content, or document-level horizontal overflow.
 - CarolinaCoastPricing.com remained on its existing deployment and continued to
   serve the pricing site.
 
