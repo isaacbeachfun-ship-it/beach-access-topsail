@@ -101,7 +101,6 @@ export function AccessFinderPage({ embedded = false }: AccessFinderPageProps) {
 
   async function applyLookupPoint(point: LookupPoint) {
     setLookupPoint(point);
-    setMatch(null);
     setIsSearching(true);
 
     try {
@@ -124,11 +123,21 @@ export function AccessFinderPage({ embedded = false }: AccessFinderPageProps) {
       return;
     }
 
+    const exactPropertyMatch = findExactPropertyAddress(
+      propertyAddresses,
+      lookupAddress,
+    );
+    const localSuggestions = searchPropertyAddresses(
+      propertyAddresses,
+      lookupAddress,
+      2,
+    );
     const propertyMatch =
       selectedProperty &&
       formatPropertyAddressLabel(selectedProperty) === lookupAddress
         ? selectedProperty
-        : findExactPropertyAddress(propertyAddresses, lookupAddress);
+        : exactPropertyMatch ??
+          (localSuggestions.length === 1 ? localSuggestions[0] : null);
 
     if (propertyMatch) {
       setSelectedProperty(propertyMatch);

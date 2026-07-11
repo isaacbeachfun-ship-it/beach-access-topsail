@@ -210,6 +210,27 @@ describe("AccessFinderPage", () => {
     expect(screen.getByText("End of Oyster Lane")).toBeInTheDocument();
   });
 
+  test("submits the only matching local property instead of geocoding partial text", async () => {
+    render(<AccessFinderPage />);
+
+    const input = screen.getByRole("combobox", {
+      name: "Topsail property address",
+    });
+    fireEvent.change(input, { target: { value: "208 oyster" } });
+
+    expect(
+      await screen.findByRole("option", { name: /208 Oyster Ln/i }),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Find Access" }));
+
+    expect(
+      await screen.findByRole("heading", {
+        name: "Oyster Lane Beach Access",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("End of Oyster Lane")).toBeInTheDocument();
+  });
+
   test("shows the Port Drive neighborhood access at the end of the street", async () => {
     render(<AccessFinderPage />);
 
